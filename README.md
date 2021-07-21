@@ -8,13 +8,17 @@ Allowed things to use:<br/>
 → Keyword "friend" alowed for non-member overloads<br/>
 
 Ressources: <br/> 
-https://www.cplusplus.com <br/>
-https://cppreference.com <br/>
-https://stackoverflow.com/questions/60475422/how-does-an-iterator-works-internally-in-c (iterators)<br/>
-https://www.youtube.com/watch?v=F9eDv-YIOQ0 (iterators)<br/>
-https://www.youtube.com/watch?v=SgcHcbQ0RCQ (iterators)<br/>
+<ul>
+  <li>https://www.cplusplus.com</li>
+  <li>https://cppreference.com</li>
+  <li>https://stackoverflow.com/questions/60475422/how-does-an-iterator-works-internally-in-c (iterators)</li>
+  <li>https://www.youtube.com/watch?v=F9eDv-YIOQ0 (iterators)</li>
+  <li>https://www.youtube.com/watch?v=SgcHcbQ0RCQ (iterators)</li>
+</ul>
 
 Containers to implement:<br/>
-→ Vector (see how binary work)<br/>
-→ Map<br/>
-→ Stack<br/>
+<ul>
+  <li>Vector (see how binary work)</li>
+  <li>Map</li>
+  <li>Stack</li>
+</ul>
