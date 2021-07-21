@@ -8,8 +8,8 @@ Allowed things to use:
 → Keyword "friend" alowed for non-member overloads
 
 Ressources:
-https://www.cplusplus.com
-https://cppreference.com
+https://www.cplusplus.com\
+https://cppreference.com\
 
 https://stackoverflow.com/questions/60475422/how-does-an-iterator-works-internally-in-c (iterators)
 https://www.youtube.com/watch?v=F9eDv-YIOQ0 (iterators)
