@@ -7,7 +7,7 @@ Allowed things to use:
 → std::allocator
 → Keyword "friend" alowed for non-member overloads
 
-Ressources:
+Ressources: <br/> 
 https://www.cplusplus.com <br/>
 https://cppreference.com <br/>
 
