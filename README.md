@@ -4,8 +4,10 @@ The code is in C++98 only !<br/>
 Compilation flags: Wall -Wextra -Werror -std=c++98<br/>
 
 Allowed things to use:<br/>
-→ std::allocator<br/>
-→ Keyword "friend" alowed for non-member overloads<br/>
+<ul>
+  <li>std::allocator</li>
+  <li>Keyword "friend" alowed for non-member overloads</li>
+</ul>
 
 Ressources: <br/> 
 <ul>
