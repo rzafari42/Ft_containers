@@ -1,5 +1,5 @@
-<title>The aim of the project is to implement various containers types of the C++ standard template library.</title>
-The code is in C++98 only !<br/>
+#The aim of the project is to implement various containers types of the C++ standard template library.
+#The code is in C++98 only !
 
 Compilation flags: Wall -Wextra -Werror -std=c++98<br/>
 
