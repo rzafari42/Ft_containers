@@ -6,7 +6,7 @@ Compilation flags: Wall -Wextra -Werror -std=c++98<br/>
 Allowed things to use:<br/>
 <ul>
   <li>std::allocator</li>
-  <li>Keyword "friend" alowed for non-member overloads</li>
+  <li>Keyword "<a href="https://docs.microsoft.com/en-us/cpp/cpp/friend-cpp?view=msvc-160">friend</a>" alowed for non-member overloads</li>
 </ul>
 
 Ressources: <br/> 
