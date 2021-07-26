@@ -20,7 +20,7 @@ Ressources: <br/>
 
 Containers to implement:<br/>
 <ul>
-  <li>Vector (see how binary work)</li>
-  <li>Map</li>
-  <li>Stack</li>
+  <li><a href="https://www.cplusplus.com/reference/vector/vector/?kw=vector">Vector</a>(see how binary work)</li>
+  <li><a href="https://www.cplusplus.com/reference/map/map/?kw=map">Map</a></li>
+  <li><a href="https://www.cplusplus.com/reference/stack/stack/?kw=stack">Stack</a></li>
 </ul>
