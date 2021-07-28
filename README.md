@@ -16,6 +16,7 @@ Ressources: <br/>
   <li><a href="https://stackoverflow.com/questions/60475422/how-does-an-iterator-works-internally-in-c">How iterators work</a></li>
   <li><a href="https://www.youtube.com/watch?v=SgcHcbQ0RCQ">Iterators (youtube)</a></li>
   <li><a href="https://www.youtube.com/watch?v=F9eDv-YIOQ0">How to write iterators (youtube)</a></li>
+  <li><a href="https://stdcxx.apache.org/doc/stdlibug/16-3.html">Guide to create your own containers</a></li>
 </ul>
 
 Containers to implement:<br/>
