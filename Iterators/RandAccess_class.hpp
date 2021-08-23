@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 11:19:35 by rzafari           #+#    #+#             */
-/*   Updated: 2021/08/13 19:07:33 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/08/17 15:15:14 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ namespace ft_
             typedef T*          pointer;
             typedef ptrdiff_t   difference_type;
 
-            RandAccess(void);
+            RandAccess();
             RandAccess(RandAccess const& src);
-            virtual ~RandAccess(void);
+            virtual ~RandAccess();
             RandAccess& operator=(RandAccess const& rhs);
 
             bool            operator==(RandAccess const& rhs) const;
@@ -38,9 +38,9 @@ namespace ft_
             bool            operator<(RandAccess const& rhs) const;
             bool            operator<=(RandAccess const& rhs) const;
 
-            RandAccess<T>&  operator++(void);
+            RandAccess<T>&  operator++();
             RandAccess<T>   operator++(int);
-            RandAccess<T>&  operator--(void);
+            RandAccess<T>&  operator--();
             RandAccess<T>   operator--(int);
             RandAccess<T>   operator+(difference_type n) const;
             friend RandAccess<Spe>	operator+(difference_type n, const RandAccess &rhs) { return rhs.operator+(n); }
@@ -49,8 +49,8 @@ namespace ft_
             RandAccess<T>&  operator+=(difference_type n);
             RandAccess<T>&  operator-=(difference_type n);
 
-            pointer         operator->(void) const;
-            reference       operator*(void) const;
+            pointer         operator->() const;
+            reference       operator*() const;
             reference       operator[](difference_type n) const;
     };
 }

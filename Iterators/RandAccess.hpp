@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 15:29:27 by rzafari           #+#    #+#             */
-/*   Updated: 2021/08/13 19:07:22 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/08/23 17:53:58 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@
 namespace ft_
 {
     template< class T >
-    RandAccess<T>::RandAccess(void) : _val(NULL) 
+    RandAccess<T>::RandAccess() : _val(NULL) 
     { 
-        return;
     }
 
     template< class T >
@@ -29,59 +28,58 @@ namespace ft_
     }
 
     template< class T >
-    RandAccess<T>::~RandAccess(void) 
+    RandAccess<T>::~RandAccess() 
     {
-        return;
     }
 
     template< class T >
     RandAccess<T>& RandAccess<T>::operator=(RandAccess const& rhs)
     { 
         if (this != &rhs)
-            this->_val = rhs._val;
+            _val = rhs._val;
         return (*this);
     }
 
     template< class T >
     bool RandAccess<T>::operator==(RandAccess const& rhs) const
     {
-        return this->_val == rhs._val;
+        return _val == rhs._val;
     }
 
     template< class T >
     bool RandAccess<T>::operator!=(RandAccess const& rhs) const
     {
-        return this->_val != rhs._val;
+        return _val != rhs._val;
     }
 
     template< class T >
     bool RandAccess<T>::operator>(RandAccess const& rhs) const
     {
-        return this->_val > rhs._val;
+        return _val > rhs._val;
     }
 
     template< class T >
     bool RandAccess<T>::operator>=(RandAccess const& rhs) const
     {
-        return this->_val >= rhs._val;
+        return _val >= rhs._val;
     }
 
     template< class T >
     bool RandAccess<T>::operator<(RandAccess const& rhs) const
     {
-        return this->_val < rhs._val;
+        return _val < rhs._val;
     }
 
     template< class T >
     bool RandAccess<T>::operator>(RandAccess const& rhs) const
     {
-        return this->_val <= rhs._val;
+        return _val <= rhs._val;
     }
 
     template< class T >
-    RandAccess<T>& RandAccess<T>::operator++(void)
+    RandAccess<T>& RandAccess<T>::operator++()
     {
-        this->_val++;
+        _val++;
         return *this;
     }
 
@@ -89,14 +87,14 @@ namespace ft_
     RandAccess<T> RandAccess<T>::operator++(int)
     {
         RandAccess<T> tmp(*this);
-        this->_val++;
+        _val++;
         return tmp;
     }
 
     template< class T >
-    RandAccess<T>& RandAccess<T>::operator--(void)
+    RandAccess<T>& RandAccess<T>::operator--()
     {
-        this->_val--;
+        _val--;
         return *this;
     }
 
@@ -104,58 +102,58 @@ namespace ft_
     RandAccess<T> RandAccess<T>::operator--(int)
     {
         RandAccess<T> tmp(*this);
-        this->_val--;
+        _val--;
         return tmp;
     }
 
     template< class T >
     RandAccess<T> RandAccess<T>::operator+(difference_type n) const
     {
-        return RandAccess(this->_val + n);
+        return RandAccess(_val + n);
     }
 
     template< class T >
     RandAccess<T> RandAccess<T>::operator-(difference_type n) const
     {
-        return RandAccess(this->_val - n);
+        return RandAccess(_val - n);
     }
 
     template< class T >
     typename RandAccess<T>::difference_type RandAccess<T>::operator-(RandAccess const& n) const
     {
-        return this->_val - n._val;
+        return _val - n._val;
     }
 
     template< class T >
     RandAccess<T>&  RandAccess<T>::operator+=(difference_type n)
     {
-        this->_val += n;
+        _val += n;
         return *this;
     }
 
     template< class T >
     RandAccess<T>&  RandAccess<T>::operator-=(difference_type n)
     {
-        this->_val -= n;
+        _val -= n;
         return *this;
     }
 
     template< class T >
-    typename RandAccess<T>::pointer RandAccess<T>::operator->(void) const
+    typename RandAccess<T>::pointer RandAccess<T>::operator->() const
     {
-        return this->_val;
+        return _val;
     }
 
     template< class T >
-    typename RandAccess<T>::reference RandAccess<T>::operator*(void) const
+    typename RandAccess<T>::reference RandAccess<T>::operator*() const
     {
-        return *this->_val;
+        return *_val;
     }
 
     template< class T >
     typename RandAccess<T>::reference RandAccess<T>::operator[](difference_type n) const
     {
-        return this->_val[n];
+        return _val[n];
     }
 }
 

@@ -6,57 +6,61 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 13:13:12 by rzafari           #+#    #+#             */
-/*   Updated: 2021/08/12 20:27:54 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/08/23 18:30:12 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_CLASS_HPP
 # define VECTOR_CLASS_HPP
 # include <memory>
-# include <vector>
+# include <vector> //To withdraw before pushing on the vogsphere
+# include <../Iterators/RandAccess_class.hpp>
+# include <../Iterators/Reverse_class.hpp>
 # include "../utils.hpp"
 
 namespace ft_
 {
-
-    /*template<typename Vector>
-    class VectorIterator
-    {
-        public:
-            using value_type = typename Vector::value_type;
-		    using ReferenceType
-            typedef typename allocator_type::difference_type    difference_type;
-
-            vectorIterator(void);
-            vectorIterator(vectorIterator const & src);
-            vectorIterator &operator=(vectorIterator const& rhs);
-            ~vectorIterator(void);
-
-
-            iterator        operator++(int);
-            iterator&       operator++(void);
-            iterator        operator--(int);
-            iterator&       operator--(void);
-            iterator&       operator+= (difference_type n);
-            iterator&       operator-= (difference_type n);
-            iterator        operator+(difference_type n) const;
-            iterator        operator+(difference_type n, const iterator &rhs);
-            iterator        operator-(difference_type n) const;
-            bool            operator==(const iterator& rhs) const;
-            bool            operator!=(const iterator& rhs) const;
-            bool            operator>(const iterator& rhs) const;
-            bool            operator<(const iterator& rhs) const;
-            bool            operator>=(const iterator& rhs) const;
-            bool            operator<=(const iterator& rhs) const;
-            pointer         operator->(void) const;
-            reference       operator*(void) const;
-            reference       operator[](difference_type n) const;
-            difference_type		operator-(const RandIte<value_type> &n) const { return super::operator-(n); };
-    };*/
-
     template < class T, class Allocator = std::allocator<T> >
     class vector
     {
+        class iterator : public RandAccess<T>
+        {
+            public:
+                iterator();
+                iterator(iterator const& src);
+                iterator& operator=(iterator const& rhs);
+                virtual ~iterator();
+
+                iterator&  operator++();
+                iterator   operator++(int);
+                iterator&  operator--();
+                iterator   operator--(int);
+                iterator   operator+(difference_type n) const;
+                iterator   operator+(difference_type n, const iterator &rhs);
+                iterator   operator-(difference_type n) const;
+                iterator&  operator+=(difference_type n);
+                iterator&  operator-=(difference_type n);
+        };
+
+        class iterator : public RandAccess<T>
+        {
+            public:
+                const_iterator();
+                const_iterator(const_iterator const& src);
+                const_iterator& operator=(const_iterator const& rhs);
+                virtual ~const_iterator();
+
+                const_iterator&  operator++();
+                const_iterator   operator++(int);
+                const_iterator&  operator--();
+                const_iterator   operator--(int);
+                const_iterator   operator+(difference_type n) const;
+                const_iterator   operator+(difference_type n, const iterator &rhs);
+                const_iterator   operator-(difference_type n) const;
+                const_iterator&  operator+=(difference_type n);
+                const_iterator&  operator-=(difference_type n);
+        };
+
         public:
             typedef T                                           value_type;
             typedef Allocator                                   allocator_type;
@@ -68,8 +72,8 @@ namespace ft_
             typedef typename allocator_type::difference_type    difference_type;
             typedef pointer                                     iterator;
             typedef const_pointer                               const_iterator;
-            //typedef ft_::reverse_iterator<iterator>          reverse_iterator;
-            //typedef ft_::reverse_iterator<const_iterator>    const_reverse_iterator;
+            typedef ft_::reverse_iterator<iterator>             reverse_iterator;
+            typedef ft_::reverse_iterator<const_iterator>       const_reverse_iterator;
 
         public:
             //Member Functions
@@ -87,20 +91,20 @@ namespace ft_
                 vector& operator=(const vector& x);
 
                 //Iterators
-                iterator                begin(void);
-                const_iterator          begin(void) const;
-                iterator                end(void);
-                const_iterator          end(void) const;
-                reverse_iterator        rbegin(void);
-                const_reverse_iterator  rbegin(void) const;
-                reverse_iterator        rend(void);
-                const_reverse_iterator  rend(void) const;
+                iterator                begin();
+                const_iterator          begin() const;
+                iterator                end();
+                const_iterator          end() const;
+                reverse_iterator        rbegin();
+                const_reverse_iterator  rbegin() const;
+                reverse_iterator        rend();
+                const_reverse_iterator  rend() const;
 
                 //Capacity
-                size_type   size(void) const;
-                size_type   max_size(void) const;
-                size_type   capacity(void) const;
-                bool        empty(void) const;
+                size_type   size() const;
+                size_type   max_size() const;
+                size_type   capacity() const;
+                bool        empty() const;
                /*(1)*/ void        resize(size_type n, value_type val = value_type());
                /*(2)*/ void        reserve(size_type n);
 
@@ -109,17 +113,17 @@ namespace ft_
                 const_reference operator[](size_type n) const;
                 reference       at(size_type n);
                 const_reference at(size_type n) const;
-                reference       front(void);
-                const_reference front(void) const;
-                reference       back(void);
-                const_reference back(void) const;
+                reference       front();
+                const_reference front() const;
+                reference       back();
+                const_reference back() const;
 
                 //Modifiers
                 template <class InputIterator>
                     void        assign(InputIterator first, InputIterator last);
                 void            assign(size_type n, const value_type& val);
                 void            push_back(const value_type& val);
-                void            pop_back(void);
+                void            pop_back();
                 iterator        insert(iterator position, const value_type& val);	
                 void            insert(iterator position, size_type n, const value_type& val);	
                 template <class InputIterator>
@@ -127,7 +131,7 @@ namespace ft_
                 iterator        erase(iterator position);
                 iterator        erase(iterator first, iterator last);
                 void            swap(vector& x);
-                void            clear(void);
+                void            clear();
 
                 //Allocator
                 allocator_type get_allocator() const;

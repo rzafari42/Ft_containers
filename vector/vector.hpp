@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 19:19:53 by rzafari           #+#    #+#             */
-/*   Updated: 2021/08/12 20:42:21 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/08/23 21:00:02 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,32 +76,118 @@ namespace ft_
     }*/ //Currently doing the clear() function so I can simplify this part of code ;)
 
     template < class T, class Allocator >
-    typename vector<T, Allocator>::iterator vector<T, Allocator>::begin(void)
+    typename vector<T, Allocator>::iterator vector<T, Allocator>::begin()
     {
-        return (iterator(_data));
+        return iterator(_data);
     }
 
     template < class T, class Allocator >
-    typename vector<T, Allocator>::const_iterator vector<T, Allocator>::begin(void) const
+    typename vector<T, Allocator>::const_iterator vector<T, Allocator>::begin() const
     {
-        return (const_iterator(_data));
+        return const_iterator(_data);
     }
 
     template < class T, class Allocator >
-    typename vector<T, Allocator>::iterator vector<T, Allocator>::end(void)
+    typename vector<T, Allocator>::iterator vector<T, Allocator>::end()
     {
-        return (iterator(_data + _size));
+        return iterator(_data + _size);
     }
 
     template < class T, class Allocator >
-    typename vector<T, Allocator>::const_iterator vector<T, Allocator>::end(void) const
+    typename vector<T, Allocator>::const_iterator vector<T, Allocator>::end() const
     {
-        return (const_iterator(_data + _size));
+        return const_iterator(_data + _size);
+    }
+
+    template < class T, class Allocator >
+    typename vector<T, Allocator>::reverse_iterator vector<T, Allocator>::rbegin()
+    {
+        return reverse_iterator(end());
     }
 
 
     template < class T, class Allocator >
-    void vector<T, Allocator>::clear(void)
+    typename vector<T, Allocator>::const_reverse_iterator vector<T, Allocator>::rbegin() const
+    {
+        return const_reverse_iterator(end());
+    }
+
+    template < class T, class Allocator >
+    typename vector<T, Allocator>::reverse_iterator vector<T, Allocator>::rend()
+    {
+        return reverse_iterator(begin());
+    }
+    
+    template < class T, class Allocator >
+    typename vector<T, Allocator>::const_reverse_iterator vector<T, Allocator>::rend() const
+    {
+        return const_reverse_iterator(begin());
+    }
+
+    template < class T, class Allocator >
+    typename vector<T, Allocator>::size_type vector<T, Allocator>::size() const
+    {
+        return _size;
+    }
+
+    template < class T, class Allocator >
+    typename vector<T, Allocator>::size_type vector<T, Allocator>::max_size() const
+    {
+        return _allocator.max_size();
+    }
+
+    template < class T, class Allocator >
+    typename vector<T, Allocator>::size_type vector<T, Allocator>::capacity() const
+    {
+        return _capacity;
+    }
+
+    template < class T, class Allocator >
+    bool vector<T, Allocator>::empty() const
+    {
+        if (!_size)
+            return true;
+        return false;
+    }
+
+   /* template < class T, class Allocator >
+    void vector<T, Allocator>::resize(size_type n, value_type val = value_type())
+    {
+        if (n < _size)
+        {
+            while (_size != n)
+                _allocator.destroy(&_data[_size--])
+        }
+        else
+        {
+            if (n > _capacity)
+                _allocator.allocate(tmp._capacity)
+            //while (_size < n)
+                //_allocator.construc(&_data[_size++], val);
+        }
+    }*/ //Let's code the reserve() function so it'll be easier to do this one
+
+    template < class T, class Allocator >
+    void vector<T, Allocator>::reserve(size_type n)
+    {
+        if (n > _capacity)
+        {
+            T   *tmp;
+
+            tmp = _alloc.allocate(n);
+            for (size_type i = 0; i < _size; i++)
+            {
+                _alloc.construct(&tmp[i], _data[i]);
+                _alloc.destroy(&_data[i]);
+            }
+            _alloc.deallocate(_data, _capacity);
+            _capacity = n;
+            _data = tmp;
+        }
+    }
+
+    template < class T, class Allocator >
+    void vector<T, Allocator>::clear()
     {
         for (; _size >= 0; _size--)
             _allocator.destroy(&_data[_size]);
