@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 19:19:53 by rzafari           #+#    #+#             */
-/*   Updated: 2021/08/23 21:00:02 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/08/24 22:56:06 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 namespace ft_
 {
+    //Constructors
     template < class T, class Allocator >
     vector<T, Allocator>::vector(const allocator_type& alloc) : _data(NULL), _allocator(alloc), _size(0), _capacity(0) { }
 
@@ -44,6 +45,7 @@ namespace ft_
         *this = x;
     }
 
+    //Destructor
     template < class T, class Allocator >
     vector<T, Allocator>::~vector()
     {
@@ -51,6 +53,7 @@ namespace ft_
         _data = NULL;
     }
 
+    //Operator=
 /*
     template < class T, class Allocator >
     vector<T, Allocator> & vector<T, Allocator>::operator=(const vector& x)
@@ -75,6 +78,8 @@ namespace ft_
         return *this;
     }*/ //Currently doing the clear() function so I can simplify this part of code ;)
 
+
+    //Iterators
     template < class T, class Allocator >
     typename vector<T, Allocator>::iterator vector<T, Allocator>::begin()
     {
@@ -124,6 +129,7 @@ namespace ft_
         return const_reverse_iterator(begin());
     }
 
+    //Capacity
     template < class T, class Allocator >
     typename vector<T, Allocator>::size_type vector<T, Allocator>::size() const
     {
@@ -150,7 +156,7 @@ namespace ft_
         return false;
     }
 
-   /* template < class T, class Allocator >
+    /*template < class T, class Allocator >
     void vector<T, Allocator>::resize(size_type n, value_type val = value_type())
     {
         if (n < _size)
@@ -165,7 +171,7 @@ namespace ft_
             //while (_size < n)
                 //_allocator.construc(&_data[_size++], val);
         }
-    }*/ //Let's code the reserve() function so it'll be easier to do this one
+    } */ //Let's code the push_back() function so it'll be easier to do this one
 
     template < class T, class Allocator >
     void vector<T, Allocator>::reserve(size_type n)
@@ -185,6 +191,114 @@ namespace ft_
             _data = tmp;
         }
     }
+
+    //Element Access
+    template < class T, class Allocator >
+    vector<T, Allocator>::reference vector<T, Allocator>::operator[](size_type n)
+    {
+        return _data[n];
+    }
+
+    template < class T, class Allocator >
+    vector<T, Allocator>::const_reference vector<T, Allocator>::operator[](size_type n) const
+    {
+        return _data[n];
+    }
+
+    template < class T, class Allocator >
+    vector<T, Allocator>::reference vector<T, Allocator>::at(size_type n)
+    {
+        if (n >= _size)
+            throw std::out_of_range(n);
+        return _data[n];
+    }
+
+    template < class T, class Allocator >
+    vector<T, Allocator>::const_reference vector<T, Allocator>::at(size_type n) const
+    {
+        if (n >= _size)
+            throw std::out_of_range(n);
+        return _data[n];
+    }
+
+    template < class T, class Allocator >
+    vector<T, Allocator>::reference vector<T, Allocator>::front()
+    {
+        return _data[0];
+    }
+
+    template < class T, class Allocator >
+    vector<T, Allocator>::const_reference vector<T, Allocator>::front() const
+    {
+        return _data[0];
+    }
+
+    template < class T, class Allocator >
+    vector<T, Allocator>::reference vector<T, Allocator>::back()
+    {
+        return _data[_size - 1];
+    }
+
+    template < class T, class Allocator >
+    vector<T, Allocator>::const_reference vector<T, Allocator>::back() const
+    {
+        return _data[_size - 1];
+    }
+
+    //Modifiers
+    template < class T, class Allocator >
+    void vector<T, Allocator>::push_back(const value_type& val)
+    {
+        if (_size == _capacity)
+            reserve(_size + 1);
+        ++_size;
+        _data[size] = val;
+    }
+
+    template < class T, class Allocator >
+    void vector<T, Allocator>::pop_back()
+    {
+        _allocator.destroy(&_data[_size]);
+        --_size;
+    }
+
+    /*template < class T, class Allocator >
+    vector<T, Allocator>::iterator vector<T, Allocator>::insert(iterator position, const value_type& val)
+    {
+     
+    }
+
+    template < class T, class Allocator >
+    void vector<T, Allocator>::insert(iterator position, size_type n, const value_type& val)
+    {
+     
+    }
+
+    template < class T, class Allocator >
+    template <class InputIterator>
+    void vector<T, Allocator>::insert(iterator position, InputIterator first, InputIterator last)
+    {
+        
+    }
+
+    template < class T, class Allocator >
+    vector<T, Allocator>::iterator vector<T, Allocator>::erase(iterator position)
+    {
+     
+    }
+
+    template < class T, class Allocator >
+    vector<T, Allocator>::iterator vector<T, Allocator>::erase(iterator position, iterator first)
+    {
+     
+    }
+
+    template < class T, class Allocator >
+    void vector<T, Allocator>::swap(vector& x)
+    {
+        
+    }*/
+
 
     template < class T, class Allocator >
     void vector<T, Allocator>::clear()
