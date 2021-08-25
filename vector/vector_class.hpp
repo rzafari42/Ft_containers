@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 13:13:12 by rzafari           #+#    #+#             */
-/*   Updated: 2021/08/23 18:30:12 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/08/25 19:46:39 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,10 +137,10 @@ namespace ft_
                 allocator_type get_allocator() const;
 
         private:
-            T*          _data;
-            Allocator   _allocator;
-            size_type   _size;
-            size_type   _capacity;
+            T*              _data;
+            allocator_type  _alloc;
+            size_type       _size;
+            size_type       _capacity;
     };
 
     //Non-member function overloads
