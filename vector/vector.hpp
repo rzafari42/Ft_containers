@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 19:19:53 by rzafari           #+#    #+#             */
-/*   Updated: 2021/08/25 19:46:40 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/08/26 19:17:30 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -286,26 +286,52 @@ namespace ft_
     template < class T, class Allocator >
     vector<T, Allocator>::iterator vector<T, Allocator>::erase(iterator position)
     {
-        if (position < end())
-        {
-            _alloc.destroy(&_data[position]);
-            _size--;
-        }
-        return _data[position + 1];
+        vector<T, Allocator> tmp(position + 1, end());
+        iterator it = tmp.begin();
+        iterator ite = tmp.end();
+
+        for(size_t i = 0; i <= tmp.size(); i++)
+            pop_back();
+        for (; it != ite; it++)
+            push_back(*it);
+        return position;
     }
 
-    /*template < class T, class Allocator >
-    vector<T, Allocator>::iterator vector<T, Allocator>::erase(iterator position, iterator first)
+    template < class T, class Allocator >
+    vector<T, Allocator>::iterator vector<T, Allocator>::erase(iterator first, iterator last)
     {
-     
+        vector<T, Allocator> tmp(first, end());
+        iterator it = last + 1;
+        iterator ite = tmp.end();
+
+        for(size_t i = 0; i <= tmp.size(); i++)
+            pop_back();
+        for(; it != ite; it++)
+            push_back(*it);
+        return first;
     }
 
     template < class T, class Allocator >
     void vector<T, Allocator>::swap(vector& x)
     {
-        
+        vector<T, Allocator> tmp;
+
+        tmp._data = _data;
+        tmp._alloc = _alloc;
+        tmp._size = _size;
+        tmp._capacity = _capacity;
+
+        _data = x._data;
+        _alloc = x._alloc;
+        _size = x._size;
+        _capacity = x._capacity;
+
+        x._data = tmp._data;
+        x._alloc = tmp._alloc;
+        x._size = tmp._size;
+        x._capacity = tmp._capacity;
     }
-*/
+
 
     template < class T, class Allocator >
     void vector<T, Allocator>::clear()
