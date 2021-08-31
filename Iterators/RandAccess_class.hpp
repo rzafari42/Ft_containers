@@ -6,14 +6,14 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 11:19:35 by rzafari           #+#    #+#             */
-/*   Updated: 2021/08/17 15:15:14 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/08/29 18:11:51 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RANDACCESS_CLASS_HPP
 # define RANDACCESS_CLASS_HPP
 
-namespace ft_
+namespace ft
 {
     template < class T >
     class RandAccess
@@ -43,7 +43,7 @@ namespace ft_
             RandAccess<T>&  operator--();
             RandAccess<T>   operator--(int);
             RandAccess<T>   operator+(difference_type n) const;
-            friend RandAccess<Spe>	operator+(difference_type n, const RandAccess &rhs) { return rhs.operator+(n); }
+            friend RandAccess<T>	operator+(difference_type n, const RandAccess &rhs) { return rhs.operator+(n); }
             RandAccess<T>   operator-(difference_type n) const;
             difference_type operator-(RandAccess const& n) const;
             RandAccess<T>&  operator+=(difference_type n);

@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 15:29:27 by rzafari           #+#    #+#             */
-/*   Updated: 2021/08/23 17:53:58 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/08/29 18:12:06 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define RANDACCESS_HPP
 # include "RandAccess_class.hpp"
 
-namespace ft_
+namespace ft
 {
     template< class T >
     RandAccess<T>::RandAccess() : _val(NULL) 
