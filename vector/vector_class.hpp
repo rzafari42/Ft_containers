@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 13:13:12 by rzafari           #+#    #+#             */
-/*   Updated: 2021/08/25 19:46:39 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/08/31 23:49:11 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,27 @@
 # define VECTOR_CLASS_HPP
 # include <memory>
 # include <vector> //To withdraw before pushing on the vogsphere
-# include <../Iterators/RandAccess_class.hpp>
-# include <../Iterators/Reverse_class.hpp>
-# include "../utils.hpp"
+# include "Iterators/RandAccess_class.hpp"
+# include "Iterators/Reverse_class.hpp"
+# include "utils.hpp"
 
-namespace ft_
+namespace ft
 {
-    template < class T, class Allocator = std::allocator<T> >
+    template < class T, class Alloc = std::allocator<T> >
     class vector
     {
+        public:
+            typedef T                                           value_type;
+            typedef Alloc                                       allocator_type;
+            typedef typename allocator_type::reference          reference;
+            typedef typename allocator_type::const_reference    const_reference;
+            typedef typename allocator_type::pointer            pointer;
+            typedef typename allocator_type::const_pointer      const_pointer;
+            typedef typename allocator_type::size_type          size_type;
+            typedef typename allocator_type::difference_type    difference_type;
+            //typedef pointer                                     iterator;
+            //typedef const_pointer                               const_iterator;
+
         class iterator : public RandAccess<T>
         {
             public:
@@ -36,17 +48,19 @@ namespace ft_
                 iterator&  operator--();
                 iterator   operator--(int);
                 iterator   operator+(difference_type n) const;
-                iterator   operator+(difference_type n, const iterator &rhs);
+                friend iterator   operator+(difference_type n, const iterator &rhs);
                 iterator   operator-(difference_type n) const;
                 iterator&  operator+=(difference_type n);
                 iterator&  operator-=(difference_type n);
         };
 
-        class iterator : public RandAccess<T>
+        class const_iterator : public RandAccess<T>
         {
             public:
-                const_iterator();
-                const_iterator(const_iterator const& src);
+                typedef RandAccess<T> super;
+		        const_iterator(T *src) : RandAccess<T>(src) {};
+                const_iterator() : RandAccess<T>() { return; };
+                const_iterator(const RandAccess<T> &rhs) : RandAccess<T>(rhs) {};
                 const_iterator& operator=(const_iterator const& rhs);
                 virtual ~const_iterator();
 
@@ -55,25 +69,15 @@ namespace ft_
                 const_iterator&  operator--();
                 const_iterator   operator--(int);
                 const_iterator   operator+(difference_type n) const;
-                const_iterator   operator+(difference_type n, const iterator &rhs);
+                friend const_iterator   operator+(difference_type n, const const_iterator &rhs);
                 const_iterator   operator-(difference_type n) const;
                 const_iterator&  operator+=(difference_type n);
                 const_iterator&  operator-=(difference_type n);
         };
 
         public:
-            typedef T                                           value_type;
-            typedef Allocator                                   allocator_type;
-            typedef typename allocator_type::reference          reference;
-            typedef typename allocator_type::const_reference    const_reference;
-            typedef typename allocator_type::pointer            pointer;
-            typedef typename allocator_type::const_pointer      const_pointer;
-            typedef typename allocator_type::size_type          size_type;
-            typedef typename allocator_type::difference_type    difference_type;
-            typedef pointer                                     iterator;
-            typedef const_pointer                               const_iterator;
-            typedef ft_::reverse_iterator<iterator>             reverse_iterator;
-            typedef ft_::reverse_iterator<const_iterator>       const_reverse_iterator;
+            typedef ft::reverse_iterator<iterator>             reverse_iterator;
+            typedef ft::reverse_iterator<const_iterator>       const_reverse_iterator;
 
         public:
             //Member Functions
@@ -81,7 +85,7 @@ namespace ft_
                 explicit vector(const allocator_type& alloc = allocator_type());
                 explicit vector(size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type());
                 template <class InputIterator>
-                    vector(typename ft_::enable_if<!std::numeric_limits<InputIterator>::is_integer, InputIterator>::type first, InputIterator last, const allocator_type& alloc = allocator_type());
+                    vector(typename ft::enable_if<!std::numeric_limits<InputIterator>::is_integer, InputIterator>::type first, InputIterator last, const allocator_type& alloc = allocator_type());
                 vector(const vector& x);
 
                 //Destructor
@@ -150,11 +154,11 @@ namespace ft_
     template <class T, class Alloc>
         bool operator!=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
     template <class T, class Alloc>
-        bool operator< (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
+        bool operator<(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
     template <class T, class Alloc>
         bool operator<=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
     template <class T, class Alloc>
-        bool operator> (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
+        bool operator>(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
     template <class T, class Alloc>
         bool operator>=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
 
