@@ -6,200 +6,16 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 19:19:53 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/06 00:18:53 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/04 20:40:44 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_HPP
 # define VECTOR_HPP
-
 # include "vector_class.hpp"
 
 namespace ft
 {
-    //Iterators
-    template < class T, class Alloc >
-    typename vector<T, Alloc>::iterator vector<T, Alloc>::iterator::iterator() { return; }
-
-    template < class T, class Alloc >
-    typename vector<T, Alloc>::iterator vector<T, Alloc>::iterator::iterator(T *src) : RandAccess<T>(src) { return; }
-
-    template < class T, class Alloc >
-    typename vector<T, Alloc>::iterator vector<T, Alloc>::iterator::iterator(const RandAccess<T>& src) {return;}
-
-    template < class T, class Alloc >
-    typename vector<T, Alloc>::iterator vector<T, Alloc>::iterator::iterator(iterator const& src) {return;}
-
-    template < class T, class Alloc >
-    typename  vector<T, Alloc>::iterator::reference vector<T, Alloc>::iterator::operator*() const
-    {
-        return *this->_val;
-    }
-
-    template < class T, class Alloc >
-    typename  vector<T, Alloc>::iterator::pointer vector<T, Alloc>::iterator::operator->() const
-    {
-        return this->_val;
-    }
-
-    template < class T, class Alloc >
-    typename  vector<T, Alloc>::iterator& vector<T, Alloc>::iterator::operator++()
-    {
-        RandAccess<T>::operator++();
-
-        return *this;
-    }
-
-    template < class T, class Alloc >
-    typename  vector<T, Alloc>::iterator vector<T, Alloc>::iterator::operator++(int)
-    {
-        return RandAccess<T>::operator++(0);
-    }
-
-    template < class T, class Alloc >
-    typename  vector<T, Alloc>::iterator& vector<T, Alloc>::iterator::operator--()
-    {
-        RandAccess<T>::operator--();
-
-        return *this;
-    }
-
-    template < class T, class Alloc >
-    typename  vector<T, Alloc>::iterator vector<T, Alloc>::iterator::operator--(int)
-    {
-        return RandAccess<T>::operator--(0);
-    }
-
-    template < class T, class Alloc >
-    typename  vector<T, Alloc>::iterator::reference vector<T, Alloc>::iterator::operator[](size_type n) const
-    {
-        return this->_val[n];
-    }
-
-    template < class T, class Alloc >
-    typename  vector<T, Alloc>::iterator vector<T, Alloc>::iterator::operator+(difference_type n) const
-    {
-        return RandAccess<T>::operator+(n);
-    }
-
-    template < class T, class Alloc >
-    typename  vector<T, Alloc>::iterator::difference_type vector<T, Alloc>::iterator::operator-(const RandAccess<T>& n) const
-    {
-        return RandAccess<T>::operator-(n);
-    }
-
-    template < class T, class Alloc >
-    typename  vector<T, Alloc>::iterator vector<T, Alloc>::iterator::operator-(difference_type n) const
-    {
-        return RandAccess<T>::operator-(n);
-    }
-
-    template < class T, class Alloc >
-    typename  vector<T, Alloc>::iterator& vector<T, Alloc>::iterator::operator+=(difference_type n)
-    {
-        this->_val += n
-
-        return *this;
-    }
-
-    template < class T, class Alloc >
-    typename  vector<T, Alloc>::iterator& vector<T, Alloc>::iterator::operator-=(difference_type n)
-    {
-        this->_val -= n
-
-        return *this;
-    }
-
-    //Const Iterators
-    template < class T, class Alloc >
-    typename vector<T, Alloc>::const_iterator vector<T, Alloc>::const_iterator::const_iterator() {return;}
-
-    template < class T, class Alloc >
-    typename vector<T, Alloc>::const_iterator vector<T, Alloc>::const_iterator::const_iterator(T *src) : RandAccess<T>(src) {return;}
-
-    template < class T, class Alloc >
-    typename vector<T, Alloc>::const_iterator vector<T, Alloc>::const_iterator::const_iterator(const RandAccess<T> &rhs) : RandAccess<T>(rhs) {return;}
-
-    template < class T, class Alloc >
-    typename vector<T, Alloc>::const_iterator::reference vector<T, Alloc>::const_iterator::operator*() const
-    {
-        return *this->_val;
-    }
-
-    template < class T, class Alloc >
-    typename  vector<T, Alloc>::const_iterator::pointer vector<T, Alloc>::const_iterator::operator->() const
-    {
-        return this->_val;
-    }
-
-    template < class T, class Alloc >
-    typename  vector<T, Alloc>::const_iterator& vector<T, Alloc>::const_iterator::operator++()
-    {
-        RandAccess<T>::operator++();
-
-        return *this;
-    }
-
-    template < class T, class Alloc >
-    typename  vector<T, Alloc>::const_iterator vector<T, Alloc>::const_iterator::operator++(int)
-    {
-        return RandAccess<T>::operator++(0);
-    }
-
-    template < class T, class Alloc >
-    typename  vector<T, Alloc>::const_iterator& vector<T, Alloc>::const_iterator::operator--()
-    {
-        RandAccess<T>::operator--();
-
-        return *this;
-    }
-
-    template < class T, class Alloc >
-    typename  vector<T, Alloc>::const_iterator vector<T, Alloc>::const_iterator::operator--(int)
-    {
-        return RandAccess<T>::operator--(0);
-    }
-
-    template < class T, class Alloc >
-    typename  vector<T, Alloc>::const_reference vector<T, Alloc>::const_iterator::operator[](size_type n) const
-    {
-        return this->_val[n];
-    }
-
-    template < class T, class Alloc >
-    typename  vector<T, Alloc>::const_iterator vector<T, Alloc>::const_iterator::operator+(difference_type n) const
-    {
-        return RandAccess<T>::operator+(n);
-    }
-
-    template < class T, class Alloc >
-    typename  vector<T, Alloc>::difference_type vector<T, Alloc>::const_iterator::operator-(const RandAccess<T>& n) const
-    {
-        return RandAccess<T>::operator-(n);
-    }
-
-    template < class T, class Alloc >
-    typename  vector<T, Alloc>::const_iterator vector<T, Alloc>::const_iterator::operator-(difference_type n) const
-    {
-        return RandAccess<T>::operator-(n);
-    }
-
-    template < class T, class Alloc >
-    typename  vector<T, Alloc>::const_iterator& vector<T, Alloc>::const_iterator::operator+=(difference_type n) const
-    {
-        this->_val += n
-
-        return *this;
-    }
-
-    template < class T, class Alloc >
-    typename  vector<T, Alloc>::const_iterator& vector<T, Alloc>::const_iterator::operator-=(difference_type n) const
-    {
-        this->_val -= n
-
-        return *this;
-    }
-
     //Constructors
     template < class T, class Alloc >
     vector<T, Alloc>::vector(const allocator_type& alloc) : _data(NULL), _alloc(alloc), _size(0), _capacity(0) { }
@@ -416,7 +232,7 @@ namespace ft
     //Modifiers
     template < class T, class Alloc >
     template < class InputIterator >
-    void vector<T, Alloc>::assign(InputIterator first, InputIterator last)
+    void vector<T, Alloc>::assign (typename ft::enable_if<!std::numeric_limits<InputIterator>::is_integer, InputIterator>::type first, InputIterator last)
     {
         if (!empty())
             clear();

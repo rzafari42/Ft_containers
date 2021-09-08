@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 12:07:10 by rzafari           #+#    #+#             */
-/*   Updated: 2021/08/30 14:35:19 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/03 20:36:01 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,10 @@ namespace ft
             Iterator _base;
 
         public:
-            typedef Iterator                iterator_type;
-            typedef ptrdiff_t               difference_type;
-            typedef iterator_type*          pointer;
-            typedef iterator_type&          reference;
-            typedef iterator_type const&    const_reference;         
+            typedef             Iterator                        iterator_type;
+            typedef typename    Iterator::difference_type       difference_type;
+            typedef typename    Iterator::pointer               pointer;
+            typedef typename    Iterator::reference             reference;
 
             //Member Functions
                 //Constructors
@@ -54,7 +53,7 @@ namespace ft
                 template <class Iter>
                     bool operator==(const reverse_iterator<Iter>& lhs);
                 template <class Iter>
-                    bool operator!=(const reverse_iterator<Iter>& lhs);
+                    bool operator!=(const reverse_iterator<Iter>& lhs) const { return _base.operator!=(lhs.base()); };
                 template <class Iter>
                     bool operator<(const reverse_iterator<Iter>& lhs);
                 template <class Iter>

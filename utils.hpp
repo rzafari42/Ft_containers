@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/12 12:16:49 by rzafari           #+#    #+#             */
-/*   Updated: 2021/08/12 20:46:55 by rzafari          ###   ########.fr       */
+/*   Created: 2021/08/31 23:55:41 by rzafari           #+#    #+#             */
+/*   Updated: 2021/09/02 16:23:24 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define UTILS_HPP
 # include <iostream>
 
-namespace ft_
+namespace ft
 {
     template <bool, class _Tp = void>
     struct enable_if {};
@@ -25,7 +25,8 @@ namespace ft_
     template <class InputIterator>
     size_t InputIterator_len(InputIterator first, InputIterator last)
     {
-        for(size_t i = 0; first != last; first++)
+        size_t i = 0;
+        for(; first != last; first++)
             i++;
         return i;
     }

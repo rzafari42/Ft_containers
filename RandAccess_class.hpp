@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 11:19:35 by rzafari           #+#    #+#             */
-/*   Updated: 2021/08/29 18:11:51 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/02 18:12:41 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ namespace ft
             typedef ptrdiff_t   difference_type;
 
             RandAccess();
+            RandAccess(T *src);
             RandAccess(RandAccess const& src);
             virtual ~RandAccess();
             RandAccess& operator=(RandAccess const& rhs);

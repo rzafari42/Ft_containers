@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 15:29:27 by rzafari           #+#    #+#             */
-/*   Updated: 2021/08/29 18:12:06 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/02 18:22:58 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ namespace ft
     template< class T >
     RandAccess<T>::RandAccess() : _val(NULL) 
     { 
+    }
+
+    template< class T >
+    RandAccess<T>::RandAccess(T *src) : _val(src)
+    {
     }
 
     template< class T >
