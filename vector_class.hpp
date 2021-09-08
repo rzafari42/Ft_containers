@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 13:13:12 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/05 20:04:41 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/08 16:17:41 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define VECTOR_CLASS_HPP
 # include <memory>
 # include <vector> //To withdraw before pushing on the vogsphere
-# include "Iterators/RandAccess_class.hpp"
+//# include "Iterators/RandAccess_class.hpp"
 # include "RandAccess_class.hpp"
-# include "Iterators/Reverse_class.hpp"
+//# include "Iterators/Reverse_class.hpp"
 # include "Reverse_class.hpp"
 # include "utils.hpp"
 
@@ -39,22 +39,14 @@ namespace ft
         {
             public:
                 iterator();
-                iterator(T *src) : RandAccess<T>(src) {};
+                iterator(T *src);
                 iterator(const RandAccess<T>& src);
                 iterator(iterator const& src);
                 virtual ~iterator();
 
                 reference       operator*() const;
                 pointer         operator->() const;
-                iterator&       operator++();
-                iterator        operator++(int);
-                iterator&       operator--();
-                iterator        operator--(int);
                 reference       operator[](size_type n) const;
-                iterator        operator+(difference_type n) const;
-                friend iterator operator+(difference_type n, const iterator &rhs);
-                difference_type operator-(const RandAccess<T>& n) const;
-                iterator        operator-(difference_type n) const;
                 iterator&       operator+=(difference_type n);
                 iterator&       operator-=(difference_type n);
         };
@@ -69,15 +61,7 @@ namespace ft
 
                 reference               operator*() const;
                 pointer                 operator->() const;
-                const_iterator&         operator++();
-                const_iterator          operator++(int);
-                const_iterator&         operator--();
-                const_iterator          operator--(int);
                 const_reference         operator[](size_type n) const;
-                const_iterator          operator+(difference_type n) const;
-                friend const_iterator   operator+(difference_type n, const const_iterator &rhs);
-                const_iterator          operator-(difference_type n) const;
-                difference_type         operator-(const RandAccess<T>& n) const;
                 const_iterator&         operator+=(difference_type n);
                 const_iterator&         operator-=(difference_type n);
         };

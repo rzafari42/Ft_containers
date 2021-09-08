@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 19:19:53 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/06 00:18:53 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/08 16:18:47 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,16 +187,14 @@ namespace ft
     template < class T, class Alloc >
     typename  vector<T, Alloc>::const_iterator& vector<T, Alloc>::const_iterator::operator+=(difference_type n) const
     {
-        this->_val += n
-
+        this->_val += n;
         return *this;
     }
 
     template < class T, class Alloc >
     typename  vector<T, Alloc>::const_iterator& vector<T, Alloc>::const_iterator::operator-=(difference_type n) const
     {
-        this->_val -= n
-
+        this->_val -= n;
         return *this;
     }
 

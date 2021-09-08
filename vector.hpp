@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 19:19:53 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/04 20:40:44 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/08 16:13:33 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,63 @@
 
 namespace ft
 {
+    template < class T, class Alloc >
+    vector<T, Alloc>::iterator::iterator(): RandAccess<T>()
+    {
+    }
+
+    template < class T, class Alloc >
+    vector<T, Alloc>::iterator::iterator(T *src): RandAccess<T>(src)
+    {
+    }
+
+    template < class T, class Alloc >
+    vector<T, Alloc>::iterator::iterator(const RandAccess<T>& src): RandAccess<T>(src)
+    {
+    }
+
+    template < class T, class Alloc >
+    vector<T, Alloc>::iterator::iterator(iterator const& src): RandAccess<T>(src)
+    {
+    }
+
+    template < class T, class Alloc >
+    vector<T, Alloc>::iterator::~iterator()
+    {
+    }
+
+    template < class T, class Alloc >
+    typename vector<T, Alloc>::reference vector<T, Alloc>::iterator::operator*() const
+    {
+        return *_data;
+    }
+
+    template < class T, class Alloc >
+    typename vector<T, Alloc>::pointer vector<T, Alloc>::iterator::operator->() const
+    {
+        return _data;
+    }
+
+    template < class T, class Alloc >
+    typename vector<T, Alloc>::reference vector<T, Alloc>::iterator::operator[](size_type n) const
+    {
+        return _data[n];
+    }
+
+    template < class T, class Alloc >
+    typename vector<T, Alloc>::iterator& vector<T, Alloc>::iterator::operator+=(difference_type n)
+    {
+        _data += n;
+        return *this;
+    }
+
+    template < class T, class Alloc >
+    typename vector<T, Alloc>::iterator& vector<T, Alloc>::iterator::operator-=(difference_type n)
+    {
+        _data -= n;
+        return *this;
+    }
+
     //Constructors
     template < class T, class Alloc >
     vector<T, Alloc>::vector(const allocator_type& alloc) : _data(NULL), _alloc(alloc), _size(0), _capacity(0) { }
