@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 19:19:53 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/08 16:13:33 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/09 12:33:25 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,35 +41,35 @@ namespace ft
     {
     }
 
-    template < class T, class Alloc >
+    template < class T, class Alloc > 
     typename vector<T, Alloc>::reference vector<T, Alloc>::iterator::operator*() const
     {
-        return *_data;
+        return *(this->_val);
     }
 
     template < class T, class Alloc >
     typename vector<T, Alloc>::pointer vector<T, Alloc>::iterator::operator->() const
     {
-        return _data;
+        return this->_val;
     }
 
     template < class T, class Alloc >
     typename vector<T, Alloc>::reference vector<T, Alloc>::iterator::operator[](size_type n) const
     {
-        return _data[n];
+        return this->_val[n];
     }
 
     template < class T, class Alloc >
     typename vector<T, Alloc>::iterator& vector<T, Alloc>::iterator::operator+=(difference_type n)
     {
-        _data += n;
+        this->_val += n;
         return *this;
     }
 
     template < class T, class Alloc >
     typename vector<T, Alloc>::iterator& vector<T, Alloc>::iterator::operator-=(difference_type n)
     {
-        _data -= n;
+        this->_val -= n;
         return *this;
     }
 
