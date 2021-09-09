@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 13:13:12 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/09 12:29:08 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/09 15:37:48 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,13 @@
 # include <memory>
 # include <vector> //To withdraw before pushing on the vogsphere
 //# include "Iterators/RandAccess_class.hpp"
+//# include "Iterators/RandAccess.hpp"
 # include "RandAccess_class.hpp"
+# include "RandAccess.hpp"
 //# include "Iterators/Reverse_class.hpp"
+//# include "Iterators/Reverse.hpp"
 # include "Reverse_class.hpp"
+# include "Reverse.hpp"
 # include "utils.hpp"
 
 namespace ft
@@ -54,9 +58,9 @@ namespace ft
         class const_iterator : public RandAccess<T>
         {
             public:
-		        const_iterator(T *src) : RandAccess<T>(src) {};
-                const_iterator() : RandAccess<T>() { return; };
-                const_iterator(const RandAccess<T> &rhs) : RandAccess<T>(rhs) {};
+		        const_iterator(T *src);
+                const_iterator();
+                const_iterator(const RandAccess<T> &src);
                 virtual ~const_iterator();
 
                 reference               operator*() const;

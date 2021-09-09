@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 15:29:27 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/08 14:36:15 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/09 14:14:46 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ namespace ft
     template< class T >
     RandAccess<T>::RandAccess(RandAccess const& src) : _val(NULL) 
     {
-        *this = src
+        *this = src;
     }
 
     template< class T >
@@ -73,12 +73,6 @@ namespace ft
     bool RandAccess<T>::operator<(RandAccess const& rhs) const
     {
         return _val < rhs._val;
-    }
-
-    template< class T >
-    bool RandAccess<T>::operator>(RandAccess const& rhs) const
-    {
-        return _val <= rhs._val;
     }
 
     template< class T >

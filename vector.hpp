@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 19:19:53 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/09 12:33:25 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/09 15:37:43 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,58 @@ namespace ft
         this->_val -= n;
         return *this;
     }
+
+   /* template< class T, class Alloc >
+    vector<T,Alloc>::const_iterator::const_iterator() : RandAccess<T>()
+    {
+    }*/
+
+    template< class T, class Alloc >
+    vector<T,Alloc>::const_iterator::const_iterator(T *src) : RandAccess<T>(src)
+    {
+    }
+
+    template< class T, class Alloc >
+    vector<T,Alloc>::const_iterator::const_iterator(const RandAccess<T> &src) : RandAccess<T>(src)
+    {
+    }
+
+    template< class T, class Alloc >
+    vector<T,Alloc>::const_iterator::~const_iterator()
+    {
+    }
+
+    template < class T, class Alloc > 
+    typename vector<T, Alloc>::reference vector<T, Alloc>::const_iterator::operator*() const
+    {
+        return *(this->_val);
+    }
+/*
+    template < class T, class Alloc >
+    typename vector<T, Alloc>::pointer vector<T, Alloc>::const_iterator::operator->() const
+    {
+        return this->_val;
+    }
+
+    template < class T, class Alloc >
+    typename vector<T, Alloc>::const_reference vector<T, Alloc>::const_iterator::operator[](size_type n) const
+    {
+        return this->_val[n];
+    }
+
+    template < class T, class Alloc >
+    typename vector<T, Alloc>::const_iterator& vector<T, Alloc>::const_iterator::operator+=(difference_type n)
+    {
+        this->_val += n;
+        return *this;
+    }
+
+    template < class T, class Alloc >
+    typename vector<T, Alloc>::const_iterator& vector<T, Alloc>::const_iterator::operator-=(difference_type n)
+    {
+        this->_val -= n;
+        return *this;
+    }*/
 
     //Constructors
     template < class T, class Alloc >
@@ -331,7 +383,7 @@ namespace ft
 
         for (size_t i = 0; i < tmp.size(); i++)
             pop_back();
-        push_back(*val);
+        push_back(val);
         for (; it != ite; it++)
             push_back(*it);
         return position;
@@ -458,7 +510,7 @@ namespace ft
 
     template <class T, class Alloc>
     bool operator<(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
-    {   
+    {
         return lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
     }
 
