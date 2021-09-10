@@ -6,13 +6,14 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 19:19:53 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/10 12:06:21 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/10 20:00:33 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_HPP
 # define VECTOR_HPP
 # include "vector_class.hpp"
+# include <vector>
 
 namespace ft
 {
@@ -260,8 +261,11 @@ namespace ft
         {
             if (n > _capacity)
                 reserve(n);
-            while (n > _size)
-                _data[n--] = val;
+            while (_size < n)
+            {
+                push_back(val);
+                _size++;
+            }
         }
         _size = n;
     }
@@ -363,8 +367,7 @@ namespace ft
     {
         if (_size == _capacity)
             reserve(_size + 1);
-        ++_size;
-        _data[_size] = val;
+        _alloc.construct(&_data[_size++], val);
     }
 
     template < class T, class Alloc >
@@ -504,7 +507,7 @@ namespace ft
     template < class T, class Alloc >
     void vector<T, Alloc>::clear()
     {
-        for (; _size >= 0; _size--)
+        for (; _size > 0; _size--)
             _alloc.destroy(&_data[_size]);
         _size = 0;
     }

@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 12:07:10 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/10 12:53:41 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/10 16:49:20 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,18 @@ namespace ft
                 template < class Iter >
                     reverse_iterator(const reverse_iterator<Iter>& rev_it); //copy
 
-                iterator_type base() const;
-                reference operator*() const;
-                pointer operator->() const;
-                reverse_iterator operator+(difference_type n) const;
-                reverse_iterator operator-(difference_type n) const;
-                reverse_iterator& operator++();
-                reverse_iterator  operator++(int);
-                reverse_iterator& operator--();
-                reverse_iterator  operator--(int);
-                reverse_iterator& operator+=(difference_type n);
-                reverse_iterator& operator-=(difference_type n);
-                reference operator[](difference_type n) const;
+                iterator_type       base() const;
+                reference           operator*() const;
+                pointer             operator->() const;
+                reverse_iterator    operator+(difference_type n) const;
+                reverse_iterator    operator-(difference_type n) const;
+                reverse_iterator&   operator++();
+                reverse_iterator    operator++(int);
+                reverse_iterator&   operator--();
+                reverse_iterator    operator--(int);
+                reverse_iterator&   operator+=(difference_type n);
+                reverse_iterator&   operator-=(difference_type n);
+                reference           operator[](difference_type n) const;
 
             //Non-Member function overloads
                 //Relational operators

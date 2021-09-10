@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 13:13:12 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/08 16:18:48 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/10 14:12:44 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,15 @@
 # define VECTOR_CLASS_HPP
 # include <memory>
 # include <vector> //To withdraw before pushing on the vogsphere
-# include "../Iterators/RandAccess_class.hpp"
-# include "../Iterators/Reverse_class.hpp"
+//# include "Iterators/RandAccess_class.hpp"
+//# include "Iterators/RandAccess.hpp"
+# include "../RandAccess_class.hpp"
+# include "../RandAccess.hpp"
+//# include "Iterators/Reverse_class.hpp"
+//# include "Iterators/Reverse.hpp"
+# include "../Reverse_class.hpp"
+# include "../Reverse.hpp"
 # include "../utils.hpp"
-
-
 
 namespace ft
 {
@@ -39,22 +43,14 @@ namespace ft
         {
             public:
                 iterator();
-                iterator(T *src) : RandAccess<T>(src);
+                iterator(T *src);
                 iterator(const RandAccess<T>& src);
                 iterator(iterator const& src);
                 virtual ~iterator();
-
+    
                 reference       operator*() const;
                 pointer         operator->() const;
-                iterator&       operator++();
-                iterator        operator++(int);
-                iterator&       operator--();
-                iterator        operator--(int);
                 reference       operator[](size_type n) const;
-                iterator        operator+(difference_type n) const;
-                friend iterator operator+(difference_type n, const iterator &rhs);
-                difference_type operator-(const RandAccess<T>& n) const;
-                iterator        operator-(difference_type n) const;
                 iterator&       operator+=(difference_type n);
                 iterator&       operator-=(difference_type n);
         };
@@ -62,23 +58,14 @@ namespace ft
         class const_iterator : public RandAccess<T>
         {
             public:
-                const_iterator(T *src) : RandAccess<T>(src);
-                const_iterator() : RandAccess<T>();
-                const_iterator(const RandAccess<T>& rhs) : RandAccess<T>(rhs);
-
+		        const_iterator(T *src);
+                const_iterator();
+                const_iterator(const RandAccess<T> &src);
                 virtual ~const_iterator();
 
                 reference               operator*() const;
                 pointer                 operator->() const;
-                const_iterator&         operator++();
-                const_iterator          operator++(int);
-                const_iterator&         operator--();
-                const_iterator          operator--(int);
                 const_reference         operator[](size_type n) const;
-                const_iterator          operator+(difference_type n) const;
-                friend const_iterator   operator+(difference_type n, const const_iterator &rhs);
-                const_iterator          operator-(difference_type n) const;
-                difference_type         operator-(const RandAccess<T>& n) const;
                 const_iterator&         operator+=(difference_type n);
                 const_iterator&         operator-=(difference_type n);
         };
@@ -132,7 +119,7 @@ namespace ft
 
                 //Modifiers
                 template <class InputIterator>
-                    void            assign(InputIterator first, InputIterator last);
+                    void        assign (typename ft::enable_if<!std::numeric_limits<InputIterator>::is_integer, InputIterator>::type first, InputIterator last);
                 void            assign(size_type n, const value_type& val);
                 void            push_back(const value_type& val);
                 void            pop_back();
@@ -140,6 +127,8 @@ namespace ft
                 void            insert(iterator position, size_type n, const value_type& val);	
                 template <class InputIterator>
                     void        insert(iterator position, InputIterator first, InputIterator last);
+                /*template <class InputIterator>
+		            void        insert(iterator position, InputIterator first, typename ft::enable_if<!std::numeric_limits<InputIterator>::is_integer, InputIterator>::type last);*/
                 iterator        erase(iterator position);
                 iterator        erase(iterator first, iterator last);
                 void            swap(vector& x);
