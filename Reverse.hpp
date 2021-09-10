@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 15:17:24 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/09 14:35:43 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/10 12:56:11 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ namespace ft
     template< class Iterator >
     typename reverse_iterator<Iterator>::reference reverse_iterator<Iterator>::operator*() const
     {
-        Iterator tmp = _base;
-        return *--_base;
+        return (--Iterator(_base)).operator*();
     }
 
     template< class Iterator >
@@ -79,7 +78,7 @@ namespace ft
     }
 
     template< class Iterator >
-   reverse_iterator<Iterator>& reverse_iterator<Iterator>::operator--()
+    reverse_iterator<Iterator>& reverse_iterator<Iterator>::operator--()
     {
         _base++;
         return *this;
@@ -92,7 +91,7 @@ namespace ft
         _base++;
         return tmp;
     }
-    
+
     template< class Iterator >
     reverse_iterator<Iterator>& reverse_iterator<Iterator>::operator+=(difference_type n)
     {

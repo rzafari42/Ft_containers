@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 12:07:10 by rzafari           #+#    #+#             */
-/*   Updated: 2021/08/30 19:18:12 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/10 12:53:41 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ namespace ft
 
         public:
             typedef Iterator        iterator_type;
-            typedef typename Iterator::iterator_category    iterator_category;
-            typedef typename Iterator::value_type           value_type;
             typedef typename Iterator::difference_type      difference_type;
             typedef typename Iterator::pointer              pointer;
             typedef typename Iterator::reference            reference;

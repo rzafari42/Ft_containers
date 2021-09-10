@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 13:13:12 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/09 15:37:48 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/10 12:10:12 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ namespace ft
 
                 //Modifiers
                 template <class InputIterator>
-                    void            assign (typename ft::enable_if<!std::numeric_limits<InputIterator>::is_integer, InputIterator>::type first, InputIterator last);
+                    void        assign (typename ft::enable_if<!std::numeric_limits<InputIterator>::is_integer, InputIterator>::type first, InputIterator last);
                 void            assign(size_type n, const value_type& val);
                 void            push_back(const value_type& val);
                 void            pop_back();
@@ -127,6 +127,8 @@ namespace ft
                 void            insert(iterator position, size_type n, const value_type& val);	
                 template <class InputIterator>
                     void        insert(iterator position, InputIterator first, InputIterator last);
+                /*template <class InputIterator>
+		            void        insert(iterator position, InputIterator first, typename ft::enable_if<!std::numeric_limits<InputIterator>::is_integer, InputIterator>::type last);*/
                 iterator        erase(iterator position);
                 iterator        erase(iterator first, iterator last);
                 void            swap(vector& x);

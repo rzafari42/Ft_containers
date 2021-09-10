@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 19:19:53 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/09 15:37:43 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/10 12:06:21 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ namespace ft
         return *this;
     }
 
-   /* template< class T, class Alloc >
+    template< class T, class Alloc >
     vector<T,Alloc>::const_iterator::const_iterator() : RandAccess<T>()
     {
-    }*/
+    }
 
     template< class T, class Alloc >
     vector<T,Alloc>::const_iterator::const_iterator(T *src) : RandAccess<T>(src)
@@ -98,7 +98,7 @@ namespace ft
     {
         return *(this->_val);
     }
-/*
+
     template < class T, class Alloc >
     typename vector<T, Alloc>::pointer vector<T, Alloc>::const_iterator::operator->() const
     {
@@ -123,7 +123,7 @@ namespace ft
     {
         this->_val -= n;
         return *this;
-    }*/
+    }
 
     //Constructors
     template < class T, class Alloc >
@@ -399,7 +399,7 @@ namespace ft
         for (size_t i = 0; i < tmp.size(); i++)
             pop_back();
         for (size_t i = 0; i < n; i++)
-            push_back(*val);
+            push_back(val);
         for (; it != ite; it++)
             push_back(*it);
     }
@@ -420,6 +420,38 @@ namespace ft
             push_back(*it);
     }
 
+    /*template < class T, class Alloc >
+    template <class InputIterator>
+    void vector<T, Alloc>::insert(iterator position, InputIterator first, typename ft::enable_if<!std::numeric_limits<InputIterator>::is_integer, InputIterator>::type last)
+    {
+        difference_type		int_pos = position - this->begin();
+        size_type count = 0;
+        while (first != last)
+        {
+            first++;
+            count++;
+        }
+        first -= count;
+        if (_capacity - _size <= count)
+        {
+            if (_size == 0)
+                reserve(1);
+            else
+                reserve(_capacity * 2);
+        }
+        ft::vector<T>	tmp(begin() + int_pos, end());
+        for (size_type i = 0; i < tmp.size(); i++)
+            pop_back();
+        while (first != last)
+        {
+            push_back(*first);
+            first++;
+        }
+        iterator it = tmp.begin();
+        for (size_type i = 0; i < tmp.size(); i++, it++)
+            push_back(*it);
+    }
+*/
     template < class T, class Alloc >
     typename vector<T, Alloc>::iterator vector<T, Alloc>::erase(iterator position)
     {
@@ -511,7 +543,7 @@ namespace ft
     template <class T, class Alloc>
     bool operator<(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
     {
-        return lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+        return ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
     }
 
     template <class T, class Alloc>
