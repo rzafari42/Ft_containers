@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 15:17:24 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/10 13:56:32 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/13 16:20:54 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ namespace ft
     template< class Iterator >
     reverse_iterator<Iterator> reverse_iterator<Iterator>::operator++(int)
     {
-        reverse_iterator tmp(this);
+        reverse_iterator tmp(*this);
         _base--;
         return tmp;
     }
@@ -87,7 +87,7 @@ namespace ft
     template< class Iterator >
     reverse_iterator<Iterator> reverse_iterator<Iterator>::operator--(int)
     {
-        reverse_iterator tmp(this);
+        reverse_iterator tmp(*this);
         _base++;
         return tmp;
     }
@@ -110,6 +110,48 @@ namespace ft
     typename reverse_iterator<Iterator>::reference reverse_iterator<Iterator>::operator[](difference_type n) const
     {
         return *(*this + n);
+    }
+
+    template< class Iterator >
+    template <class Iter>
+    bool reverse_iterator<Iterator>::operator==(const reverse_iterator<Iter>& lhs)
+    {
+        return _base.opearator==(rhs.base());
+    }
+
+    template< class Iterator >
+    template <class Iter>
+    bool reverse_iterator<Iterator>::operator!=(const reverse_iterator<Iter>& lhs)
+    {
+        return _base.opearator!=(rhs.base());
+    }
+    
+    template< class Iterator >
+    template <class Iter>
+    bool reverse_iterator<Iterator>::operator<(const reverse_iterator<Iter>& lhs)
+    {
+        return _base.opearator<(rhs.base());
+    }
+
+    template< class Iterator >
+    template <class Iter>
+    bool reverse_iterator<Iterator>::operator<=(const reverse_iterator<Iter>& lhs)
+    {
+        return _base.opearator<=(rhs.base());
+    }
+
+    template< class Iterator >
+    template <class Iter>
+    bool reverse_iterator<Iterator>::operator>(const reverse_iterator<Iter>& lhs)
+    {
+        return _base.opearator>(rhs.base());
+    }
+
+    template< class Iterator >
+    template <class Iter>
+    bool reverse_iterator<Iterator>::operator>=(const reverse_iterator<Iter>& lhs)
+    {
+        return _base.opearator>=(rhs.base());
     }
 }
 

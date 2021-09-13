@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 11:19:35 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/09 15:36:53 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/13 16:02:29 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ namespace ft
             RandAccess<T>&  operator--();
             RandAccess<T>   operator--(int);
             RandAccess<T>   operator+(difference_type n) const;
-            friend RandAccess<T>	operator+(difference_type n, const RandAccess &rhs) { return rhs.operator+(n); }
+            friend RandAccess<T>    operator+(difference_type n, RandAccess const& rhs) { return rhs.operator+(n); }
+        
             RandAccess<T>   operator-(difference_type n) const;
             difference_type operator-(RandAccess const& n) const;
             RandAccess<T>&  operator+=(difference_type n);

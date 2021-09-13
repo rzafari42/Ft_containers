@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 19:19:53 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/10 20:00:33 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/13 13:54:24 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -381,7 +381,7 @@ namespace ft
     typename vector<T, Alloc>::iterator vector<T, Alloc>::insert(iterator position, const value_type& val)
     {
         vector<T, Alloc> tmp(position, end());
-        iterator it = position;
+        iterator it = tmp.begin();
         iterator ite = tmp.end();
 
         for (size_t i = 0; i < tmp.size(); i++)
@@ -396,7 +396,7 @@ namespace ft
     void vector<T, Alloc>::insert(iterator position, size_type n, const value_type& val)
     {
         vector<T, Alloc> tmp(position, end());
-        iterator it = position;
+        iterator it = tmp.begin();
         iterator ite = tmp.end();
 
         for (size_t i = 0; i < tmp.size(); i++)
@@ -407,7 +407,7 @@ namespace ft
             push_back(*it);
     }
 
-    template < class T, class Alloc >
+    /*template < class T, class Alloc >
     template <class InputIterator>
     void vector<T, Alloc>::insert(iterator position, InputIterator first, InputIterator last)
     {
@@ -421,40 +421,36 @@ namespace ft
             push_back(*first);
         for (; it != ite; it++)
             push_back(*it);
-    }
+    }*/
 
-    /*template < class T, class Alloc >
+    template < class T, class Alloc >
     template <class InputIterator>
     void vector<T, Alloc>::insert(iterator position, InputIterator first, typename ft::enable_if<!std::numeric_limits<InputIterator>::is_integer, InputIterator>::type last)
     {
-        difference_type		int_pos = position - this->begin();
-        size_type count = 0;
-        while (first != last)
-        {
-            first++;
-            count++;
-        }
-        first -= count;
-        if (_capacity - _size <= count)
-        {
-            if (_size == 0)
-                reserve(1);
-            else
-                reserve(_capacity * 2);
-        }
-        ft::vector<T>	tmp(begin() + int_pos, end());
-        for (size_type i = 0; i < tmp.size(); i++)
-            pop_back();
-        while (first != last)
-        {
-            push_back(*first);
-            first++;
-        }
+        vector<T, Alloc> tmp(position, end());
         iterator it = tmp.begin();
-        for (size_type i = 0; i < tmp.size(); i++, it++)
+        iterator ite = tmp.end();
+
+        size_t nb = 0;
+        InputIterator tmp_first = first;
+        while (first != last)
+        {
+            nb++;
+            first++;
+        }
+        first = tmp_first;
+        
+        if (nb + size() >= _capacity)
+            reserve(2 * _capacity);
+        
+        for (size_t i = 0; i < tmp.size(); i++)
+            pop_back();
+        for(; first != last; first++)
+            push_back(*first);
+        for(; it != ite; it++)
             push_back(*it);
     }
-*/
+
     template < class T, class Alloc >
     typename vector<T, Alloc>::iterator vector<T, Alloc>::erase(iterator position)
     {
@@ -473,12 +469,11 @@ namespace ft
     typename vector<T, Alloc>::iterator vector<T, Alloc>::erase(iterator first, iterator last)
     {
         vector<T, Alloc> tmp(first, end());
-        iterator it = last + 1;
-        iterator ite = tmp.end();
+        iterator it = first + 1;
 
         for(size_t i = 0; i < tmp.size(); i++)
             pop_back();
-        for(; it != ite; it++)
+        for(; it != last; it++)
             push_back(*it);
         return first;
     }
