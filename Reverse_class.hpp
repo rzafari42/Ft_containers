@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 12:07:10 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/13 16:19:52 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/15 09:49:48 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,17 @@ namespace ft
             //Non-Member function overloads
                 //Relational operators
                 template <class Iter>
-                    bool operator==(const reverse_iterator<Iter>& lhs);
+                    bool operator==(const reverse_iterator<Iter>& rhs);
                 template <class Iter>
-                    bool operator!=(const reverse_iterator<Iter>& lhs);
+                    bool operator!=(const reverse_iterator<Iter>& rhs);
                 template <class Iter>
-                    bool operator<(const reverse_iterator<Iter>& lhs);
+                    bool operator<(const reverse_iterator<Iter>& rhs);
                 template <class Iter>
-                    bool operator<=(const reverse_iterator<Iter>& lhs);
+                    bool operator<=(const reverse_iterator<Iter>& rhs);
                 template <class Iter>
-                    bool operator>(const reverse_iterator<Iter>& lhs);
+                    bool operator>(const reverse_iterator<Iter>& rhs);
                 template <class Iter>
-                    bool operator>=(const reverse_iterator<Iter>& lhs);
+                    bool operator>=(const reverse_iterator<Iter>& rhs);
     };
 }
 
