@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 19:19:53 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/21 10:31:22 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/21 23:25:37 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,15 +148,9 @@ namespace ft
     }
 
     template < class T, class Alloc >
-    vector<T, Alloc>::vector(const vector& x) : _data(x._data), _alloc(x._alloc), _size(x._size), _capacity(x._capacity)
+    vector<T, Alloc>::vector(vector const &src) : _data(NULL),  _alloc(allocator_type()), _size(0), _capacity(0) 
     {
-        /*_size = x.size();
-        _capacity = x.capacity();
-        _max_size = x.max_size();
-        _data = _alloc.allocate(_capacity);
-        for (size_type i = 0; i < _size; i++)
-            _alloc.construct(&_tab[i], x[i]);*/
-        *this = x;
+	    *this = src;
     }
 
     //Destructor
@@ -463,7 +457,7 @@ namespace ft
         iterator it = tmp.begin();
         iterator ite = tmp.end();
 
-        for(size_t i = 0; i < tmp.size(); i++)
+        for(size_t i = 0; i <= tmp.size(); i++)
             pop_back();
         for (; it != ite; it++)
             push_back(*it);
@@ -473,12 +467,14 @@ namespace ft
     template < class T, class Alloc >
     typename vector<T, Alloc>::iterator vector<T, Alloc>::erase(iterator first, iterator last)
     {
-        vector<T, Alloc> tmp(first, end());
-        iterator it = first + 1;
-
-        for(size_t i = 0; i < tmp.size(); i++)
+        vector<T, Alloc> tmp(first + 1, end());
+        vector<T, Alloc> tmp2(last, end());
+        iterator it = tmp2.begin();
+        iterator ite = tmp2.end();
+    
+        for(size_t i = 0; i <= tmp.size(); i++)
             pop_back();
-        for(; it != last; it++)
+        for(; it != ite; it++)
             push_back(*it);
         return first;
     }

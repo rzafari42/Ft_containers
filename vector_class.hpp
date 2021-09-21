@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 13:13:12 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/21 09:48:12 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/21 20:01:29 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "RandAccess.hpp"
 # include "Reverse.hpp"
 # include "utils.hpp"
+# include <vector>
 
 namespace ft
 {
@@ -135,6 +136,7 @@ namespace ft
             allocator_type  _alloc;
             size_type       _size;
             size_type       _capacity;
+            size_type       _max_size;
     };
 
     //Non-member function overloads
