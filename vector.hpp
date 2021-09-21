@@ -6,14 +6,13 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 19:19:53 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/13 13:54:24 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/21 10:31:22 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_HPP
 # define VECTOR_HPP
 # include "vector_class.hpp"
-# include <vector>
 
 namespace ft
 {
@@ -151,6 +150,12 @@ namespace ft
     template < class T, class Alloc >
     vector<T, Alloc>::vector(const vector& x) : _data(x._data), _alloc(x._alloc), _size(x._size), _capacity(x._capacity)
     {
+        /*_size = x.size();
+        _capacity = x.capacity();
+        _max_size = x.max_size();
+        _data = _alloc.allocate(_capacity);
+        for (size_type i = 0; i < _size; i++)
+            _alloc.construct(&_tab[i], x[i]);*/
         *this = x;
     }
 

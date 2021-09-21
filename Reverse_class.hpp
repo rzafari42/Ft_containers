@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 12:07:10 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/15 09:49:48 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/21 09:34:51 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,19 @@ namespace ft
                 reference           operator[](difference_type n) const;
 
             //Non-Member function overloads
-                //Relational operators
-                template <class Iter>
-                    bool operator==(const reverse_iterator<Iter>& rhs);
-                template <class Iter>
-                    bool operator!=(const reverse_iterator<Iter>& rhs);
-                template <class Iter>
-                    bool operator<(const reverse_iterator<Iter>& rhs);
-                template <class Iter>
-                    bool operator<=(const reverse_iterator<Iter>& rhs);
-                template <class Iter>
-                    bool operator>(const reverse_iterator<Iter>& rhs);
-                template <class Iter>
-                    bool operator>=(const reverse_iterator<Iter>& rhs);
+            //Relational operators
+            template <class Iter>
+                bool operator==(const reverse_iterator<Iter>& rhs) const;
+            template <class Iter>
+                bool operator!=(const reverse_iterator<Iter>& rhs) const;
+            template <class Iter>
+                bool operator<(const reverse_iterator<Iter>& rhs) const;
+            template <class Iter>
+                bool operator<=(const reverse_iterator<Iter>& rhs) const;
+            template <class Iter>
+                bool operator>(const reverse_iterator<Iter>& rhs) const;
+            template <class Iter>
+                bool operator>=(const reverse_iterator<Iter>& rhs) const;
     };
 }
 
