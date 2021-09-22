@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 19:19:53 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/22 16:45:46 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/22 18:44:06 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,19 @@ namespace ft
     }
 
     template < class T, class Alloc > 
-    typename vector<T, Alloc>::reference vector<T, Alloc>::iterator::operator*() const
+    typename vector<T, Alloc>::iterator::reference vector<T, Alloc>::iterator::operator*() const
     {
         return *(this->_val);
     }
 
     template < class T, class Alloc >
-    typename vector<T, Alloc>::pointer vector<T, Alloc>::iterator::operator->() const
+    typename vector<T, Alloc>::iterator::pointer vector<T, Alloc>::iterator::operator->() const
     {
         return this->_val;
     }
 
     template < class T, class Alloc >
-    typename vector<T, Alloc>::reference vector<T, Alloc>::iterator::operator[](size_type n) const
+    typename vector<T, Alloc>::iterator::reference vector<T, Alloc>::iterator::operator[](size_type n) const
     {
         return this->_val[n];
     }
@@ -94,19 +94,19 @@ namespace ft
     }
 
     template < class T, class Alloc > 
-    typename vector<T, Alloc>::reference vector<T, Alloc>::const_iterator::operator*() const
+    typename vector<T, Alloc>::const_iterator::reference vector<T, Alloc>::const_iterator::operator*() const
     {
         return *(this->_val);
     }
 
     template < class T, class Alloc >
-    typename vector<T, Alloc>::pointer vector<T, Alloc>::const_iterator::operator->() const
+    typename vector<T, Alloc>::const_iterator::pointer vector<T, Alloc>::const_iterator::operator->() const
     {
         return this->_val;
     }
 
     template < class T, class Alloc >
-    typename vector<T, Alloc>::const_reference vector<T, Alloc>::const_iterator::operator[](size_type n) const
+    typename vector<T, Alloc>::const_iterator::const_reference vector<T, Alloc>::const_iterator::operator[](size_type n) const
     {
         return this->_val[n];
     }
