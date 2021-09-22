@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 19:19:53 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/22 19:45:24 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/22 21:14:44 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,7 +267,56 @@ namespace ft
         return false;
     }
 
-    template < class T, class Alloc >
+    template <class T, class Alloc>
+    void vector<T, Alloc>::reserve(size_type n)
+    {
+        vector<T, Alloc>	tmp;
+        iterator first = begin(); iterator last = end();
+
+        if (n > _capacity)
+        {
+            _size = 0 ;
+            _capacity = n;
+            tmp._data = _alloc.allocate(n);
+            for (; first != last; ++first)
+                _alloc.construct(&tmp._data[_size++], *first);
+            _data = tmp._data;
+        }
+    }
+
+    /*template <class T, class Alloc>
+    void vector<T, Alloc>::resize(size_type n, value_type val)
+    {
+        if (n < _size)
+            for (; n < _size; _size--)
+                _alloc.destroy(&_data[_size]);
+        else
+        {
+            if (n <= _capacity)
+                ;
+            else if (n <= _capacity * 2)
+                reserve(_capacity * 2);
+            else
+                reserve(n);
+            for (; _size < n; _size++)
+                _alloc.construct(&_data[_size], val);
+        }
+    }*/
+
+    /*template < class T, class Alloc >
+    void vector<T, Alloc>::resize(size_type n, value_type val)
+    {
+        if (n < size())
+        {
+            while (_size != n)
+                _alloc.destroy(&_data[_size--]);
+        }
+        else
+        {
+            /* code */
+        } 
+    }*/
+    /*template < class T, class Alloc >
     void vector<T, Alloc>::resize(size_type n, value_type val)
     {
         if (n < _size)
@@ -305,7 +354,7 @@ namespace ft
             _capacity =  n;
             _data = tmp;
         }
-    }
+    }*/
 
     //Element Access
     template < class T, class Alloc >
@@ -384,8 +433,10 @@ namespace ft
     void vector<T, Alloc>::push_back(const value_type& val)
     {
         if (_size == _capacity)
-            reserve(_size + 1);
-        _alloc.construct(&_data[_size++], val);
+            resize(_size + 1, val);
+        else
+            _alloc.construct(&_data[_size++], val);
+        //reserve(_size + 1);            
     }
 
     template < class T, class Alloc >
