@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 15:29:27 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/13 16:20:23 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/22 16:46:39 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ namespace ft
     }
 
     template< class T >
-    typename RandAccess<T>::pointer RandAccess<T>::operator->() const
+    typename RandAccess<T>::pointer RandAccess<T>::operator->() 
     {
         return _val;
     }
