@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 19:19:53 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/22 18:44:06 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/22 19:45:24 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,12 @@ namespace ft
     template < class T, class Alloc >
     vector<T, Alloc>::vector(vector const &src) : _data(NULL),  _alloc(allocator_type()), _size(0), _capacity(0) 
     {
-	    *this = src;
+	    _size = src.size();
+        _capacity = src.capacity();
+        _max_size = src.max_size();
+        _data = _alloc.allocate(_capacity);
+        for (size_type i = 0; i < _size; i++)
+            _alloc.construct(&_data[i], src[i]);
     }
 
     //Destructor
@@ -166,8 +171,22 @@ namespace ft
     template < class T, class Alloc >
     vector<T, Alloc> & vector<T, Alloc>::operator=(const vector& x)
     {
+        vector<T, Alloc> tmp;
         if (this != &x)
-            assign(x.begin(), x.end());
+        {
+            for (size_type i = 0; i < _size; i++)
+                _alloc.destroy(&_data[i]);
+            if (x.size() > tmp._capacity)
+                tmp._capacity = x.size();
+            if (x.capacity() < _capacity)
+                tmp._capacity = _capacity;
+            tmp._data = _alloc.allocate(tmp._capacity);
+            const_iterator first = x.begin(); const_iterator last = x.end();
+            for (size_type i = 0; first != last; ++first)
+                tmp._alloc.construct(&tmp._data[i++], *first);
+            _data = tmp._data; _size = x.size(); _capacity = tmp._capacity;
+        }
+        //assign(x.begin(), x.end());
         return *this;
     }
 
@@ -272,7 +291,7 @@ namespace ft
     template < class T, class Alloc >
     void vector<T, Alloc>::reserve(size_type n)
     {
-        if (n > _capacity)
+        if (n > capacity())
         {
             T   *tmp;
 
@@ -283,7 +302,7 @@ namespace ft
                 _alloc.destroy(&_data[i]);
             }
             _alloc.deallocate(_data, _capacity);
-            _capacity = n;
+            _capacity =  n;
             _data = tmp;
         }
     }
@@ -344,7 +363,7 @@ namespace ft
     //Modifiers
     template < class T, class Alloc >
     template < class InputIterator >
-    void vector<T, Alloc>::assign (typename ft::enable_if<!std::numeric_limits<InputIterator>::is_integer, InputIterator>::type first, InputIterator last)
+    void vector<T, Alloc>::assign(typename ft::enable_if<!std::numeric_limits<InputIterator>::is_integer, InputIterator>::type first, InputIterator last)
     {
         if (!empty())
             clear();
@@ -556,9 +575,9 @@ namespace ft
     template <class T, class Alloc>
     bool operator>(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
     {
-        if (lhs < rhs)
-            return false;
-        return true;
+        if (rhs < lhs)
+            return true;
+        return false;
     }
 
     template <class T, class Alloc>

@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 13:13:12 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/22 18:33:01 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/22 19:23:04 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ namespace ft
         class const_iterator : public RandAccess<value_type>
         {
             public:
-                typedef	value_type const&			reference;
+                typedef	value_type const&   reference;
                 typedef	value_type const&	const_reference;
-                typedef	value_type const*			pointer;
+                typedef	value_type const*   pointer;
                 typedef ptrdiff_t			difference_type;
 
             public:
