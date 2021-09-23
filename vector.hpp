@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 19:19:53 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/23 15:43:23 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/23 20:03:00 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -390,13 +390,12 @@ namespace ft
         if (n > _capacity)
         {
             _alloc.deallocate(_data, _capacity);
-            _capacity = 0;
             _data = NULL;
 
             _data = _alloc.allocate(n);
             _capacity = n;
         }
-        for (size_type i = 0; i < n; i++)
+        for (size_t i = 0; i < n; i++)
             _alloc.construct(&_data[_size++], val);
     }
 
@@ -419,75 +418,53 @@ namespace ft
     template < class T, class Alloc >
     typename vector<T, Alloc>::iterator vector<T, Alloc>::insert(iterator position, const value_type& val)
     {
-        vector<T, Alloc> tmp(position, end());
-        iterator it = tmp.begin();
-        iterator ite = tmp.end();
+        difference_type const position_pos = position - this->begin();
 
-        for (size_t i = 0; i < tmp.size(); i++)
-            pop_back();
-        push_back(val);
-        for (; it != ite; it++)
-            push_back(*it);
-        return position;
+        insert(position, 1, val);
+        return (iterator(this->begin() + position_pos));
     }
 
     template < class T, class Alloc >
     void vector<T, Alloc>::insert(iterator position, size_type n, const value_type& val)
     {
-        vector<T, Alloc> tmp(position, end());
-        iterator it = tmp.begin();
-        iterator ite = tmp.end();
+        difference_type const old_end_pos = this->end() - this->begin();
+        difference_type const position_pos = position - this->begin();
+        iterator    old_end, end;
 
-        for (size_t i = 0; i < tmp.size(); i++)
-            pop_back();
-        for (size_t i = 0; i < n; i++)
-            push_back(val);
-        for (; it != ite; it++)
-            push_back(*it);
+        resize(_size + n);
+        old_end = this->begin() + old_end_pos;
+        position = this->begin() + position_pos;
+        end = this->end();
+
+        while (old_end != position)
+            *--end = *--old_end;
+        while (n > 0)
+        {
+            *position++ = val;
+            n--;
+        }
     }
-
-    /*template < class T, class Alloc >
-    template <class InputIterator>
-    void vector<T, Alloc>::insert(iterator position, InputIterator first, InputIterator last)
-    {
-        vector<T, Alloc> tmp(position, end());
-        iterator it = position;
-        iterator ite = tmp.end();
-
-        for (size_t i = 0; i < tmp.size(); i++)
-            pop_back();
-        for (; first != last; first++)
-            push_back(*first);
-        for (; it != ite; it++)
-            push_back(*it);
-    }*/
 
     template < class T, class Alloc >
     template <class InputIterator>
     void vector<T, Alloc>::insert(iterator position, InputIterator first, typename ft::enable_if<!std::numeric_limits<InputIterator>::is_integer, InputIterator>::type last)
     {
-        vector<T, Alloc> tmp(position, end());
-        iterator it = tmp.begin();
-        iterator ite = tmp.end();
+        difference_type const old_end_pos = this->end() - this->begin();
+        difference_type const position_pos = position - this->begin();
+        iterator    old_end, end;
 
-        size_t nb = 0;
-        InputIterator tmp_first = first;
+        resize(_size + InputIterator_len(first, last));
+        old_end = this->begin() + old_end_pos;
+        position = this->begin() + position_pos;
+        end = this->end();
+
+        while (old_end != position)
+            *--end = *--old_end;
         while (first != last)
         {
-            nb++;
+            *position++ = *first;
             first++;
         }
-        first = tmp_first;
-        
-        if (nb + size() >= _capacity)
-            reserve(2 * _capacity);
-        
-        for (size_t i = 0; i < tmp.size(); i++)
-            pop_back();
-        for(; first != last; first++)
-            push_back(*first);
-        for(; it != ite; it++)
-            push_back(*it);
     }
 
     template < class T, class Alloc >
