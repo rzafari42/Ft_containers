@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 19:19:53 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/23 20:12:25 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/23 20:27:12 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -451,8 +451,9 @@ namespace ft
     {
         difference_type const old_end_pos = this->end() - this->begin();
         difference_type const position_pos = position - this->begin();
-        iterator    old_end, end;
 
+        iterator old_end, end;
+        
         resize(_size + InputIterator_len(first, last));
         old_end = this->begin() + old_end_pos;
         position = this->begin() + position_pos;
@@ -461,10 +462,7 @@ namespace ft
         while (old_end != position)
             *--end = *--old_end;
         while (first != last)
-        {
-            *position++ = *first;
-            first++;
-        }
+            *position++ = *first++;
     }
 
     template < class T, class Alloc >
