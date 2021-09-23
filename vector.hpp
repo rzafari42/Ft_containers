@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 19:19:53 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/23 00:18:06 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/23 15:43:23 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -270,7 +270,7 @@ namespace ft
     template < class T, class Alloc >
     void vector<T, Alloc>::reserve(size_type n)
     {
-        if (n > capacity())
+        if (n > _capacity)
         {
             T   *tmp;
 
@@ -306,7 +306,7 @@ namespace ft
                 _alloc.construct(&_data[_size], val);
                 _size++;
             }
-        } 
+        }
     }
 
     //Element Access
@@ -367,19 +367,37 @@ namespace ft
     template < class InputIterator >
     void vector<T, Alloc>::assign(typename ft::enable_if<!std::numeric_limits<InputIterator>::is_integer, InputIterator>::type first, InputIterator last)
     {
-        if (!empty())
-            clear();
+        size_type n = InputIterator_len(first, last);
+        
+        clear();
+        if (n > capacity())
+        {
+            _alloc.deallocate(_data, _capacity);
+            _capacity = 0;
+            _data = NULL;
+
+            _data = _alloc.allocate(n);
+            _capacity = n;
+        }
         for (; first != last; first++)
-            push_back(*first);
+            _alloc.construct(&_data[_size++], *first);
     }
 
     template < class T, class Alloc >
     void vector<T, Alloc>::assign(size_type n, const value_type& val)
     {
-        if (!empty())
-            clear();
-        for(size_t i = 0; i < n; i++)
-            push_back(val);
+        clear();
+        if (n > _capacity)
+        {
+            _alloc.deallocate(_data, _capacity);
+            _capacity = 0;
+            _data = NULL;
+
+            _data = _alloc.allocate(n);
+            _capacity = n;
+        }
+        for (size_type i = 0; i < n; i++)
+            _alloc.construct(&_data[_size++], val);
     }
 
     template < class T, class Alloc >
@@ -389,7 +407,6 @@ namespace ft
             resize(_size + 1, val);
         else
             _alloc.construct(&_data[_size++], val);
-        //reserve(_size + 1);            
     }
 
     template < class T, class Alloc >
