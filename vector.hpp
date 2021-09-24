@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 19:19:53 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/23 20:29:11 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/24 16:09:54 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,50 @@ namespace ft
     {
         this->_val -= n;
         return *this;
+    }
+
+    template < class T, class Alloc >
+    typename vector<T, Alloc>::iterator::difference_type vector<T, Alloc>::iterator::operator-(const RandAccess<T> &n) const
+    {
+        return RandAccess<T>::operator-(n);
+    }
+
+    template < class T, class Alloc >
+    typename vector<T, Alloc>::iterator vector<T, Alloc>::iterator::operator-(difference_type n) const
+    {
+        return RandAccess<T>::operator-(n);
+    }
+
+    template < class T, class Alloc >
+    typename vector<T, Alloc>::iterator vector<T, Alloc>::iterator::operator+(difference_type n) const
+    {
+        return RandAccess<T>::operator+(n);
+    }
+
+    template < class T, class Alloc >
+    typename vector<T, Alloc>::iterator& vector<T, Alloc>::iterator::operator++(void)
+    {
+        RandAccess<T>::operator++();
+        return *this;
+    }
+
+    template < class T, class Alloc >
+    typename vector<T, Alloc>::iterator vector<T, Alloc>::iterator::operator++(int)
+    {
+        return RandAccess<T>::operator++(0);
+    }
+
+    template < class T, class Alloc >
+    typename vector<T, Alloc>::iterator& vector<T, Alloc>::iterator::operator--(void)
+    {
+        RandAccess<T>::operator--();
+        return *this;
+    }
+
+    template < class T, class Alloc >
+    typename vector<T, Alloc>::iterator vector<T, Alloc>::iterator::operator--(int)
+    {
+        return RandAccess<T>::operator--(0);
     }
 
     template< class T, class Alloc >

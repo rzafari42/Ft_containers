@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 13:13:12 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/23 16:18:18 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/24 16:14:44 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "RandAccess.hpp"
 # include "Reverse.hpp"
 # include "utils.hpp"
-# include <vector>
 
 namespace ft
 {
@@ -41,10 +40,12 @@ namespace ft
 				typedef	value_type*			pointer;
 				typedef ptrdiff_t			difference_type;
 
+            private:
+                typedef RandAccess<T> super;
+                iterator(const RandAccess<T>& src);
             public:
                 iterator();
                 iterator(T *src);
-                iterator(const RandAccess<T>& src);
                 iterator(iterator const& src);
                 virtual ~iterator();
     
@@ -53,6 +54,16 @@ namespace ft
                 reference       operator[](size_type n) const;
                 iterator&       operator+=(difference_type n);
                 iterator&       operator-=(difference_type n);
+
+                difference_type		operator-(const RandAccess<value_type> &n) const;
+                iterator			operator-(difference_type n) const;
+                iterator			operator+(difference_type n) const;
+                friend iterator		operator+(difference_type n, const iterator &rhs) { return rhs.operator+(n); };
+
+                iterator			&operator++(void);
+                iterator			operator++(int);
+                iterator			&operator--(void);
+                iterator			operator--(int);
         };
 
         class const_iterator : public RandAccess<value_type>
@@ -64,8 +75,8 @@ namespace ft
                 typedef ptrdiff_t			difference_type;
 
             public:
-		        const_iterator(T *src);
                 const_iterator();
+		        const_iterator(T *src);
                 const_iterator(const RandAccess<T> &src);
                 virtual ~const_iterator();
 

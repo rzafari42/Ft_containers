@@ -6,12 +6,13 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 11:19:35 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/22 18:23:59 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/24 13:29:02 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RANDACCESS_CLASS_HPP
 # define RANDACCESS_CLASS_HPP
+# include "utils.hpp"
 
 namespace ft
 {
