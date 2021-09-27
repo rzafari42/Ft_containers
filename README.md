@@ -13,15 +13,14 @@ Ressources: <br/>
 <ul>
   <li><a href="https://www.cplusplus.com">cplusplus.com</a></li>
   <li><a href="https://cppreference.com">cppreference.com</a></li>
-  <li><a href="https://stackoverflow.com/questions/60475422/how-does-an-iterator-works-internally-in-c">How iterators work</a></li>
-  <li><a href="https://www.youtube.com/watch?v=SgcHcbQ0RCQ">Iterators (youtube)</a></li>
-  <li><a href="https://www.youtube.com/watch?v=F9eDv-YIOQ0">How to write iterators (youtube)</a></li>
+  <li><a href="https://www.youtube.com/watch?v=SgcHcbQ0RCQ">Iterators (video)</a></li>
+  <li><a href="https://www.youtube.com/watch?v=F9eDv-YIOQ0">How to write iterators (video)</a></li>
   <li><a href="https://stdcxx.apache.org/doc/stdlibug/16-3.html">Guide to create your own containers</a></li>
 </ul>
 
 Containers to implement:<br/>
 <ul>
   <li><a href="https://www.cplusplus.com/reference/vector/vector/?kw=vector">Vector</a></li>
-  <li><a href="https://www.cplusplus.com/reference/map/map/?kw=map">Map</a>(see how binary tree work)</li>
+  <li><a href="https://www.cplusplus.com/reference/map/map/?kw=map">Map</a>(see how binary tree works)</li>
   <li><a href="https://www.cplusplus.com/reference/stack/stack/?kw=stack">Stack</a></li>
 </ul>
