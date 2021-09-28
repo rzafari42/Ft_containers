@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 13:13:12 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/24 16:14:44 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/28 17:24:20 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,16 @@ namespace ft
                 const_reference         operator[](size_type n) const;
                 const_iterator&         operator+=(difference_type n);
                 const_iterator&         operator-=(difference_type n);
+
+                /*difference_type		operator-(const RandAccess<value_type> &n) const;
+                const_iterator		operator-(difference_type n) const;
+                iterator			operator+(difference_type n) const;
+                friend iterator		operator+(difference_type n, const iterator &rhs) { return rhs.operator+(n); };
+
+                const_iterator			&operator++(void);
+                const_iterator			&operator--(void);
+                const_iterator			operator--(int);
+                const_iterator			operator++(int);*/
         };
 
         public:
