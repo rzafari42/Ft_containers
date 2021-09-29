@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/28 17:29:17 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/29 18:15:36 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,20 @@
 # include <utility>
 # include "RandAccess.hpp"
 # include "Reverse.hpp"
+# include "Bidirect.hpp"
 # include <iterator>
 
 namespace ft 
 {
+    struct Node
+    {
+        int key;
+        int value;
+        Node *right;
+        Node *left;
+        Node *parent;
+    };
+
     template < class Key, class T, class Compare = std::less<Key>, class Alloc = std::allocator<std::pair<const Key,T>> > 
     class map
     {
@@ -53,7 +63,7 @@ namespace ft
                 virtual ~iterator();
 
                 iterator& operator++();
-                iterator  opeator++(int);
+                iterator  operator++(int);
                 iterator& operator--();
                 iterator  operator--(int);
     
@@ -77,7 +87,7 @@ namespace ft
                 virtual ~const_iterator();
 
                 const_iterator& operator++();
-                const_iterator  opeator++(int);
+                const_iterator  operator++(int);
                 const_iterator& operator--();
                 const_iterator  operator--(int);
     
@@ -151,6 +161,20 @@ namespace ft
 
                 //Allocator
                 allocator_type get_allocator() const;
+
+                //Binary Search Tree specific functions
+                Node *insert(Node *node, int value);
+                Node *newNode(int value);
+
+
+
+        private:
+            T*                  _data;
+            allocator_type      _alloc;
+            size_type           _size;
+            size_type           _max_size;
+            key_compare         _comp;
+            Node*               _root;
     };
 }
 #endif
