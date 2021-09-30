@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/29 18:15:36 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/30 14:44:07 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,8 +163,12 @@ namespace ft
                 allocator_type get_allocator() const;
 
                 //Binary Search Tree specific functions
-                Node *insert(Node *node, int value);
+                Node *insert(Node *node, int key);
                 Node *newNode(int value);
+                void PrintInOrder(Node *node);
+                Node *min_node(Node *node);
+                Node *max_node(Node *node);
+                Node *delete_node(Node *node, int key);
 
 
 
