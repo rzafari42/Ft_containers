@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 14:48:40 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/30 18:59:49 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/30 23:24:07 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ BST::~BST()
 Node *BST::newNode(int value)
 {
     Node *node = new Node;
-
     node->key = value;
     node->right = NULL;
     node->left = NULL;
@@ -84,45 +83,55 @@ int BST::max_node(Node *node)
 
 Node *BST::delete_node(Node *node, int key)
 {
-    std::cout << "node->key = " << node->key << std::endl;
-    if (!node)
-        return NULL;
+    if (node == NULL)
+        return node;
     if (key > node->key)
-        delete_node(node->right, key);
+    {
+        node->right = delete_node(node->right, key);
+        return node;
+    }
     else if (key < node->key)
-        delete_node(node->left, key);
-    else if (node->key == key)
-    { 
-        //No children case
-        if (node->left == NULL && node->right == NULL)
-        {
-            std::cout << "Children equal" << std::endl;
-            
-            node = NULL;
-            return NULL;
+    {
+        node->left = delete_node(node->left, key);
+        return node;
+    }
+
+    if (node->right == NULL) //1 and only one child case
+    {
+        Node *tmp = node->left;
+        delete node;
+        return tmp;
+    }
+    else if (node->left == NULL)
+    {
+        Node *tmp = node->right;
+        delete node;
+        return tmp;
+    }
+    else if (node->right != NULL && node->left != NULL)
+    {
+        Node* succParent = node;
+
+        Node* succ = node->right;
+        while (succ->left != NULL) {
+            succParent = succ;
+            succ = succ->left;
         }
-        else if (node->right == NULL && node->left != NULL) //1 and only one child case
-        {
-            std::cout << "Left child" << std::endl;
-            Node *tmp = node->left;
-            delete node;
-            return tmp;
-        }
-        else if (node->right != NULL && node->left == NULL)
-        {
-            std::cout << "Right child" << std::endl;
-            Node *tmp = node->right;
-            delete node;
-            return tmp;
-        }
-        else if (node->right != NULL && node->left != NULL)
-        {
-            //2 Children case: Get the inOrder successor (smallest in the right subtree)
-            std::cout << "Two child" << std::endl;
-            int tmp = min_node(node->right);
-            node->key = tmp;
-            node->right = delete_node(node->right, node->key);
-        }
+        if (succParent != node)
+            succParent->left = succ->right;
+        else
+            succParent->right = succ->right;
+ 
+        node->key = succ->key;
+ 
+        delete succ;
+        return node;
+        //2 Children case: Get the inOrder successor (smallest in the right subtree)
+       /* std::cout << "Two child" << std::endl;
+        int tmp = min_node(node->right);
+        std::cout << tmp << std::endl;
+        node->key = tmp;
+        node->right = delete_node(node->right, node->key);*/
     }
     return node;
 }
