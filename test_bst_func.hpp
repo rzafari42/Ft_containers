@@ -6,13 +6,14 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 14:48:40 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/30 23:24:07 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/01 12:34:55 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TEST_BST_FUNC_HPP
 # define TEST_BST_FUNC_HPP
 # include "test_BST.hpp"
+# include <memory>
 
  
 BST::BST() : _root(NULL)
@@ -96,43 +97,42 @@ Node *BST::delete_node(Node *node, int key)
         return node;
     }
 
-    if (node->right == NULL) //1 and only one child case
-    {
-        Node *tmp = node->left;
-        delete node;
-        return tmp;
-    }
-    else if (node->left == NULL)
-    {
-        Node *tmp = node->right;
-        delete node;
-        return tmp;
-    }
-    else if (node->right != NULL && node->left != NULL)
-    {
-        Node* succParent = node;
-
-        Node* succ = node->right;
-        while (succ->left != NULL) {
-            succParent = succ;
-            succ = succ->left;
+        ///if (node->right == NULL && node->left ==NULL)
+         //   return NULL;
+        if (node->left == NULL)
+        {
+            Node *tmp = node->right;
+            delete node;
+            return tmp;
         }
-        if (succParent != node)
-            succParent->left = succ->right;
-        else
-            succParent->right = succ->right;
- 
-        node->key = succ->key;
- 
-        delete succ;
-        return node;
+        else if (node->right == NULL)
+        {
+            Node *tmp = node->left;
+            delete node;
+            return tmp;
+        }
         //2 Children case: Get the inOrder successor (smallest in the right subtree)
-       /* std::cout << "Two child" << std::endl;
-        int tmp = min_node(node->right);
-        std::cout << tmp << std::endl;
-        node->key = tmp;
-        node->right = delete_node(node->right, node->key);*/
-    }
+        else
+        {
+            Node *succParent = node;
+            Node *succ = node->right;
+
+            while (succ->left != NULL)
+            {
+                succParent = succ;
+                succ = succ->left;  
+            }
+
+            if (succParent != node)
+                succParent->left = succ->right;
+            else
+                succParent->right = succ->right;
+
+            node->key = succ->key; 
+            delete succ;
+            return node;
+        }
+   
     return node;
 }
 
