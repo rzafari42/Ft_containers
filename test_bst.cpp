@@ -15,21 +15,21 @@ int main()
 
     std::cout << "Inorder traversal of the given tree \n";
     tree.PrintInOrder(root);
- 
+
     std::cout << "\nDelete 20\n";
     root = tree.delete_node(root, 20);
     std::cout << "Inorder traversal of the modified tree \n";
     tree.PrintInOrder(root);
- 
+
     std::cout << "\nDelete 30\n";
     root = tree.delete_node(root, 30);
     std::cout << "Inorder traversal of the modified tree \n";
     tree.PrintInOrder(root);
- 
+
     std::cout << "\nDelete 50\n";
     root = tree.delete_node(root, 50);
     std::cout << "Inorder traversal of the modified tree \n";
     tree.PrintInOrder(root);
- 
+
     return 0;
 }

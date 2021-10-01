@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/30 14:44:07 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/01 16:17:35 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@
 
 namespace ft 
 {
+    template<class T>
     struct Node
     {
-        int key;
-        int value;
-        Node *right;
-        Node *left;
-        Node *parent;
+        T       val;
+        Node    *right;
+        Node    *left;
+        Node    *parent;
     };
 
     template < class Key, class T, class Compare = std::less<Key>, class Alloc = std::allocator<std::pair<const Key,T>> > 
@@ -46,6 +46,10 @@ namespace ft
             typedef typename allocator_type::const_pointer      const_pointer;
             typedef size_t                                      size_type;
             typedef ptrdiff_t                                   difference_type;
+            typedef Node<value_type>                            node_type;
+            typedef node_type*                                  node_ptr;
+
+
 
         class iterator : public Bidirect<value_type>
         {
@@ -111,7 +115,7 @@ namespace ft
                 ~map();
 
                 //Operator=
-                map& operator= (const map& x);
+                map& operator=(const map& x);
 
                 //Iterators
                 iterator begin();
@@ -163,22 +167,21 @@ namespace ft
                 allocator_type get_allocator() const;
 
                 //Binary Search Tree specific functions
-                Node *insert(Node *node, int key);
-                Node *newNode(int value);
-                void PrintInOrder(Node *node);
-                Node *min_node(Node *node);
-                Node *max_node(Node *node);
-                Node *delete_node(Node *node, int key);
-
-
+                node_ptr newNode(int value);
+                node_ptr insertNode(node_ptr node, int key);
+                void     PrintInOrder(node_ptr node);
+                node_ptr min_node(node_ptr node);
+                node_ptr max_node(node_ptr node);
+                node_ptr delete_node(node_ptr node, int key);
 
         private:
-            T*                  _data;
-            allocator_type      _alloc;
-            size_type           _size;
-            size_type           _max_size;
-            key_compare         _comp;
-            Node*               _root;
+            T*                                          _data;
+            allocator_type                              _alloc;
+            size_type                                   _size;
+            size_type                                   _max_size;
+            key_compare                                 _comp;
+            std::allocator<node_type>                   _node_alloc;
+            node_ptr                                    _root;
     };
 }
 #endif

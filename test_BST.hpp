@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 14:44:26 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/30 18:59:33 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/01 14:42:54 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,5 @@ class BST
         int min_node(Node *node);
         int max_node(Node *node);
         Node *delete_node(Node *node, int key);
-
-    private:
-        Node *_root;
 };
 #endif

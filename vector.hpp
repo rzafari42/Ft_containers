@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 19:19:53 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/24 16:09:54 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/01 15:31:13 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,9 +228,10 @@ namespace ft
             const_iterator first = x.begin(); const_iterator last = x.end();
             for (size_type i = 0; first != last; ++first)
                 tmp._alloc.construct(&tmp._data[i++], *first);
-            _data = tmp._data; _size = x.size(); _capacity = tmp._capacity;
+            _data = tmp._data;
+            _size = x.size();
+            _capacity = tmp._capacity;
         }
-        //assign(x.begin(), x.end());
         return *this;
     }
 
