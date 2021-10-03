@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/01 16:21:48 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/03 20:45:25 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ namespace ft
     }
 
     template< class Key, class T, class Compare, class Alloc >
-    map< Key, T, Compare, Alloc >::const_iterator::reference map< Key, T, Compare, Alloc >::const_iterator::operator*() const
+    ft::map< Key, T, Compare, Alloc >::const_iterator::reference ft::map< Key, T, Compare, Alloc >::const_iterator::operator*() const
     {
         return *(this->_val);
     }
@@ -170,12 +170,62 @@ namespace ft
     template <class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc >& map< Key, T, Compare, Alloc >::operator=(const map& x)
     {
-        if (this != &c)
+        if (this != &x)
         {
                 //to complete
         }    
     }
 
+    //Iterators
+    template< class Key, class T, class Compare, class Alloc >
+    map< Key, T, Compare, Alloc>::iterator map< Key, T, Compare, Alloc>::begin()
+    {
+
+    } 
+
+    template< class Key, class T, class Compare, class Alloc >
+    map< Key, T, Compare, Alloc>::const_iterator map< Key, T, Compare, Alloc>::begin() const
+    {
+
+    }
+
+    template< class Key, class T, class Compare, class Alloc >
+    map< Key, T, Compare, Alloc>::iterator map< Key, T, Compare, Alloc>::end()
+    {
+
+    }
+
+    template< class Key, class T, class Compare, class Alloc >
+    map< Key, T, Compare, Alloc>::const_iterator map< Key, T, Compare, Alloc>::end() const
+    {
+
+    }
+
+    template< class Key, class T, class Compare, class Alloc >
+    map< Key, T, Compare, Alloc>::reverse_iterator map< Key, T, Compare, Alloc>::rbegin()
+    {
+
+    }
+
+    template< class Key, class T, class Compare, class Alloc >
+    map< Key, T, Compare, Alloc>::const_reverse_iterator map< Key, T, Compare, Alloc>::rbegin() const
+    {
+
+    }
+
+    template< class Key, class T, class Compare, class Alloc >
+    map< Key, T, Compare, Alloc>::reverse_iterator map< Key, T, Compare, Alloc>::rend()
+    {
+
+    }
+
+    template< class Key, class T, class Compare, class Alloc >
+    map< Key, T, Compare, Alloc>::const_reverse_iterator map< Key, T, Compare, Alloc>::rend() const
+    {
+
+    }
+
+    //Capacity
     template <class Key, class T, class Compare, class Alloc >
     bool map< Key, T, Compare, Alloc >::empty() const
     {
@@ -194,6 +244,143 @@ namespace ft
             return _node_alloc.max_size();
     }
     
+    //Element Access
+    template< class Key, class T, class Compare, class Alloc >
+    map< Key, T, Compare, Alloc>::mapped_type& map< Key, T, Compare, Alloc >::operator[] (const key_type& k)
+    {
+
+    }
+
+    //Modifiers
+
+    template< class Key, class T, class Compare, class Alloc >
+    ft::pair<typename ft::map<Key, T, Compare, Alloc>::iterator, bool>
+    map< Key, T, Compare, Alloc >::insert(const value_type& val)
+    {
+
+    }
+
+
+    template< class Key, class T, class Compare, class Alloc >
+    map< Key, T, Compare, Alloc >::iterator map< Key, T, Compare, Alloc >::insert(iterator position, const value_type& val)
+    {
+
+    }
+
+    template< class Key, class T, class Compare, class Alloc >
+    template <class InputIterator>
+    void map< Key, T, Compare, Alloc >::insert(InputIterator first, InputIterator last)
+    {
+
+    }
+
+    template< class Key, class T, class Compare, class Alloc >
+    void map< Key, T, Compare, Alloc >::erase(iterator position)
+    {
+
+    }
+
+    template< class Key, class T, class Compare, class Alloc >
+    map< Key, T, Compare, Alloc >::size_type map< Key, T, Compare, Alloc >::erase(const key_type& k)
+    {
+
+    }
+
+    template< class Key, class T, class Compare, class Alloc >
+    void map< Key, T, Compare, Alloc >::erase(iterator first, iterator last)
+    {
+
+    }
+
+    template< class Key, class T, class Compare, class Alloc >
+    void map< Key, T, Compare, Alloc >::swap(map& x)
+    {
+
+    }
+
+    template< class Key, class T, class Compare, class Alloc >
+    void map< Key, T, Compare, Alloc >::clear()
+    {
+
+    }  
+
+    //Observers
+    template< class Key, class T, class Compare, class Alloc >
+    map< Key, T, Compare, Alloc >::key_compare map< Key, T, Compare, Alloc >::key_comp() const
+    {
+
+    }
+
+    template< class Key, class T, class Compare, class Alloc >
+    map< Key, T, Compare, Alloc >::value_compare map< Key, T, Compare, Alloc >::value_comp() const
+    {
+
+    }
+
+    //Operation
+    template< class Key, class T, class Compare, class Alloc >
+    map< Key, T, Compare, Alloc >::iterator map< Key, T, Compare, Alloc >::find(const key_type& k)
+    {
+
+    }
+
+    template< class Key, class T, class Compare, class Alloc >
+    map< Key, T, Compare, Alloc >::const_iterator map< Key, T, Compare, Alloc >::find(const key_type& k) const
+    {
+
+    }
+
+    template< class Key, class T, class Compare, class Alloc >
+    map< Key, T, Compare, Alloc >::size_type map< Key, T, Compare, Alloc >::count(const key_type& k) const
+    {
+
+    }    
+
+    template< class Key, class T, class Compare, class Alloc >
+    map< Key, T, Compare, Alloc >::iterator map< Key, T, Compare, Alloc >::lower_bound(const key_type& k)
+    {
+
+    }    
+
+    template< class Key, class T, class Compare, class Alloc >
+    map< Key, T, Compare, Alloc >::const_iterator map< Key, T, Compare, Alloc >::lower_bound(const key_type& k) const
+    {
+
+    } 
+
+    template< class Key, class T, class Compare, class Alloc >
+    map< Key, T, Compare, Alloc >::iterator map< Key, T, Compare, Alloc >::upper_bound(const key_type& k)
+    {
+
+    }    
+
+    template< class Key, class T, class Compare, class Alloc >
+    map< Key, T, Compare, Alloc >::const_iterator map< Key, T, Compare, Alloc >::upper_bound(const key_type& k) const
+    {
+
+    }
+
+    template< class Key, class T, class Compare, class Alloc >
+    ft::pair<typename ft::map<Key, T, Compare, Alloc>::iterator, typename ft::map< Key, T, Compare , Alloc >::iterator>
+    map< Key, T, Compare, Alloc >::equal_range(const key_type& k)
+    {
+
+    }
+
+    template< class Key, class T, class Compare, class Alloc >
+    ft::pair<typename ft::map<Key, T, Compare, Alloc>::const_iterator, typename ft::map< Key, T, Compare , Alloc >::const_iterator>
+    map< Key, T, Compare, Alloc >::equal_range(const key_type& k) const
+    {
+
+    }
+
+    //Allocator
+    template< class Key, class T, class Compare, class Alloc >
+    typename map< Key, T, Compare, Alloc >::allocator_type map< Key, T, Compare, Alloc >::get_allocator() const
+    {
+
+    }
+
     //Binary Search Tree specific functions
     template< class Key, class T, class Compare, class Alloc >
     typename map<Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::newNode(int key)
@@ -205,8 +392,8 @@ namespace ft
         return node;
     }
 
-     template< class Key, class T, class Compare, class Alloc >
-    typename map<Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::insertNode(node_ptr node, int key)
+    template< class Key, class T, class Compare, class Alloc >
+    typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::insertNode(node_ptr node, int key)
     {
         if (node == NULL)
         {
@@ -236,7 +423,7 @@ namespace ft
     }
 
     template< class Key, class T, class Compare, class Alloc >
-    typename map<Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::min_node(node_ptr node)
+    typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::min_node(node_ptr node)
     {
         while (node && node->left != NULL)
             node = node->left;
@@ -244,63 +431,13 @@ namespace ft
     }
 
     template< class Key, class T, class Compare, class Alloc >
-    typename map<Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::max_node(node_ptr node)
+    typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::max_node(node_ptr node)
     {
         while (node && node->right != NULL)
             node = node->right;
         return node; 
     }
 
-    template< class Key, class T, class Compare, class Alloc >
-    typename map<Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::delete_node(node_ptr node, int key)
-    {
-        /*if (node == NULL)
-            return node;
-        if (key > node->key)
-        {
-            node->right = delete_node(node->right, key);
-            return node;
-        }
-        else if (key < node->key)
-        {
-            node->left = delete_node(node->left, key);
-            return node;
-        }
-
-        if (node->left == NULL)
-        {
-            node_ptr tmp = node->right;
-            delete node;
-            return tmp;
-        }
-        else if (node->right == NULL)
-        {
-            node_ptr tmp = node->left;
-            delete node;
-            return tmp;
-        }
-        //2 Children case: Get the inOrder successor (smallest in the right subtree)
-        else
-        {
-            node_ptr succParent = node;
-            node_ptr succ = node->right;
-
-            while (succ->left != NULL)
-            {
-                succParent = succ;
-                succ = succParent->left;  
-            }
-            if (succParent != node)
-                succParent->left = succ->right;
-            else
-                succParent->right = succ->right;
-
-            node->key = succ->key; 
-            _node_alloc.destroy(&);
-            return node;
-        }
-        return node;
-    }*/
 }
 
 #endif
