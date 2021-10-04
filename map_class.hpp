@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/03 20:41:52 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/04 12:29:41 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "Bidirect.hpp"
 # include <iterator>
 # include "utils.hpp"
+#include <map>
 
 namespace ft 
 {

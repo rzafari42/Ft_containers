@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/03 20:45:25 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/04 12:29:42 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,69 +167,73 @@ namespace ft
         _data = NULL;
     }
 
+    //Operator=
     template <class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc >& map< Key, T, Compare, Alloc >::operator=(const map& x)
     {
         if (this != &x)
         {
                 //to complete
-        }    
+        }
+        return *this;
     }
 
     //Iterators
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc>::iterator map< Key, T, Compare, Alloc>::begin()
     {
-
-    } 
+        return iterator(min_node(_root));
+    }
 
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc>::const_iterator map< Key, T, Compare, Alloc>::begin() const
     {
-
+        return const_iterator(min_node(_root));
     }
 
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc>::iterator map< Key, T, Compare, Alloc>::end()
     {
-
+        return iterator(max_node(_root));
     }
 
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc>::const_iterator map< Key, T, Compare, Alloc>::end() const
     {
-
+        return const_iterator(max_node(_root));
     }
 
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc>::reverse_iterator map< Key, T, Compare, Alloc>::rbegin()
     {
-
+        return reverse_iterator(end(_root));
     }
 
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc>::const_reverse_iterator map< Key, T, Compare, Alloc>::rbegin() const
     {
-
+        return const_reverse_iterator(end(_root));
     }
 
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc>::reverse_iterator map< Key, T, Compare, Alloc>::rend()
     {
-
+        return reverse_iterator(begin(_root));
     }
 
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc>::const_reverse_iterator map< Key, T, Compare, Alloc>::rend() const
     {
-
+        return const_reverse_iterator(begin(_root));
     }
 
     //Capacity
     template <class Key, class T, class Compare, class Alloc >
     bool map< Key, T, Compare, Alloc >::empty() const
     {
-        
+        if (!_size)
+            return true;
+        return false;
     }
 
     template <class Key, class T, class Compare, class Alloc >
@@ -248,7 +252,7 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc>::mapped_type& map< Key, T, Compare, Alloc >::operator[] (const key_type& k)
     {
-
+        
     }
 
     //Modifiers
@@ -308,13 +312,13 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc >::key_compare map< Key, T, Compare, Alloc >::key_comp() const
     {
-
+        return key_compare();
     }
 
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc >::value_compare map< Key, T, Compare, Alloc >::value_comp() const
     {
-
+        return value_compare(key_compare())
     }
 
     //Operation
