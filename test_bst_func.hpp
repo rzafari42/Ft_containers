@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 14:48:40 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/01 14:58:03 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/04 15:57:41 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ Node *BST::insert(Node *node, int key)
     {
         node->left = insert(node->left, key);
     }
+    
     return node;    
 }
 

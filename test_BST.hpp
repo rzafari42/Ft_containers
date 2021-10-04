@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 14:44:26 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/01 14:42:54 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/04 15:55:47 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ struct Node
     int key;
     Node *right;
     Node *left;
+    Node *parent;
 };
 
 class BST

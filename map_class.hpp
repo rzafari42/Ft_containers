@@ -6,20 +6,20 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/04 15:46:04 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/04 16:09:41 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef  MAP_CLASS_HPP
 # define MAP_CLASS_HPP
 # include <memory>
-# include <map>
 # include <utility>
 # include "RandAccess.hpp"
 # include "Reverse.hpp"
 # include "Bidirect.hpp"
 # include <iterator>
 # include "utils.hpp"
+# include <map>
 
 namespace ft 
 {
@@ -258,7 +258,7 @@ namespace ft
             key_compare                                 _comp;
             std::allocator<node_type>                   _node_alloc;
             node_ptr                                    _root;
-            node_ptr                                    _end;
+            node_ptr                                    _ghost;
     };
 
 

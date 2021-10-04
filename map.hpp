@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/04 15:46:04 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/04 16:09:39 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,13 +206,13 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc>::reverse_iterator map< Key, T, Compare, Alloc>::rbegin()
     {
-        return reverse_iterator(end());
+        return reverse_iterator(_ghost);
     }
 
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc>::const_reverse_iterator map< Key, T, Compare, Alloc>::rbegin() const
     {
-        return const_reverse_iterator(end());
+        return const_reverse_iterator(_ghost);
     }
 
     template< class Key, class T, class Compare, class Alloc >
