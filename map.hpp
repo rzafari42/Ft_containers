@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/04 12:29:42 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/04 15:46:04 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,25 +206,25 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc>::reverse_iterator map< Key, T, Compare, Alloc>::rbegin()
     {
-        return reverse_iterator(end(_root));
+        return reverse_iterator(end());
     }
 
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc>::const_reverse_iterator map< Key, T, Compare, Alloc>::rbegin() const
     {
-        return const_reverse_iterator(end(_root));
+        return const_reverse_iterator(end());
     }
 
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc>::reverse_iterator map< Key, T, Compare, Alloc>::rend()
     {
-        return reverse_iterator(begin(_root));
+        return reverse_iterator(begin());
     }
 
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc>::const_reverse_iterator map< Key, T, Compare, Alloc>::rend() const
     {
-        return const_reverse_iterator(begin(_root));
+        return const_reverse_iterator(begin());
     }
 
     //Capacity
@@ -239,24 +239,23 @@ namespace ft
     template <class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::size_type map< Key, T, Compare, Alloc >::size() const
     {
-            return _size;
+        return _size;
     }
 
     template <class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::size_type map< Key, T, Compare, Alloc >::max_size() const
     {
-            return _node_alloc.max_size();
+        return _node_alloc.max_size();
     }
     
     //Element Access
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc>::mapped_type& map< Key, T, Compare, Alloc >::operator[] (const key_type& k)
     {
-        
+
     }
 
     //Modifiers
-
     template< class Key, class T, class Compare, class Alloc >
     ft::pair<typename ft::map<Key, T, Compare, Alloc>::iterator, bool>
     map< Key, T, Compare, Alloc >::insert(const value_type& val)
@@ -325,7 +324,7 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc >::iterator map< Key, T, Compare, Alloc >::find(const key_type& k)
     {
-
+            
     }
 
     template< class Key, class T, class Compare, class Alloc >
