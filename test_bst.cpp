@@ -3,7 +3,7 @@
 int main()
 {
     BST tree = BST();
-    Node *root = NULL;
+    Node *root = NULL; //new Node;
 
     root = tree.insert(root, 50);
     root = tree.insert(root, 30);
@@ -12,6 +12,7 @@ int main()
     root = tree.insert(root, 70);
     root = tree.insert(root, 60);
     root = tree.insert(root, 80);
+
 
     std::cout << "Inorder traversal of the given tree \n";
     tree.PrintInOrder(root);

@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 14:48:40 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/04 15:57:41 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/05 17:32:01 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,6 @@
 BST::BST()
 {
 }
-
-/*BST::BST(int value)
-{
-    _root->key = value;
-    _root->left = _root->right = NULL;
-}*/
 
 BST::~BST()
 {
@@ -42,17 +36,18 @@ Node *BST::newNode(int value)
 Node *BST::insert(Node *node, int key)
 {
     if (node == NULL)
-        node = newNode(key);     
+        node = newNode(key);
     if (key > node->key)
     {
         node->right = insert(node->right, key);
+        node->right->parent = node;
     }
     if (key < node->key)
     {
         node->left = insert(node->left, key);
+        node->left->parent = node;
     }
-    
-    return node;    
+    return node;
 }
 
 void BST::PrintInOrder(Node *node)
@@ -101,12 +96,14 @@ Node *BST::delete_node(Node *node, int key)
     if (node->left == NULL)
     {
         Node *tmp = node->right;
+        tmp->parent = node->parent;
         delete node;
         return tmp;
     }
     else if (node->right == NULL)
     {
         Node *tmp = node->left;
+        tmp->parent = node->parent;
         delete node;
         return tmp;
     }
@@ -119,18 +116,16 @@ Node *BST::delete_node(Node *node, int key)
         while (succ->left != NULL)
         {
             succParent = succ;
-            succ = succParent->left;  
+            succ = succParent->left;
         }
         if (succParent != node)
             succParent->left = succ->right;
         else
             succParent->right = succ->right;
-
-        node->key = succ->key; 
+        node->key = succ->key;
         delete succ;
         return node;
     }
-   
     return node;
 }
 

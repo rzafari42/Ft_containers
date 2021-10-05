@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/04 16:09:39 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/05 18:05:43 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -414,6 +414,72 @@ namespace ft
         return node; 
     }
 
+    template< class Key, class T, class Compare, class Alloc >
+    typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::delete_node(node_ptr node, int key)
+    {
+        if (node == NULL)
+            return node;
+        if (key > node->key)
+        {
+            node->right = delete_node(node->right, key);
+            return node;
+        }
+        else if (key < node->key)
+        {
+            node->left = delete_node(node->left, key);
+            return node;
+        }
+
+        if (node->left == NULL)
+        {
+            Node *tmp = node->right;
+            tmp->parent = node->parent;
+            _node_alloc.destroy(&node);
+            return tmp;
+        }
+        else if (node->right == NULL)
+        {
+            Node *tmp = node->left;
+            tmp->parent = node->parent;
+            _node_alloc.destroy(&node);
+            return tmp;
+        }
+        //2 Children case: Get the inOrder successor (smallest in the right subtree)
+        else
+        {
+            Node *succParent = node;
+            Node *succ = node->right;
+
+            if (node->right != _ghost)
+            {
+                while (succ->left != NULL)
+                {
+                    succParent = succ;
+                    succ = succParent->left;
+                }
+                if (succParent != node)
+                    succParent->left = succ->right;
+                else
+                    succParent->right = succ->right;
+                node->key = succ->key;
+                _node_alloc.destroy(&succ);
+            }
+            else
+            {
+                if (node->left != NULL)
+                {
+                    node->key = node->left->key;
+                    node->right = _ghost;
+                }
+                node->key = succ->key;
+                _node_alloc.destroy(&succ);
+            }
+            return node;
+        }
+        return node;
+    }
+
+    
     template< class Key, class T, class Compare, class Alloc >
     void map< Key, T, Compare, Alloc >::PrintInOrder(node_ptr node)
     {
