@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/05 18:05:43 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/06 08:18:53 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -474,7 +474,6 @@ namespace ft
                 node->key = succ->key;
                 _node_alloc.destroy(&succ);
             }
-            return node;
         }
         return node;
     }
