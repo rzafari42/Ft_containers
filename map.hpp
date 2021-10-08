@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/06 08:18:53 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/08 19:03:46 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,13 +141,13 @@ namespace ft
     }
 
     template< class Key, class T, class Compare, class Alloc >
-    map< Key, T, Compare, Alloc >::map(const key_compare& comp, const allocator_type& alloc) : _data(NULL), _alloc(alloc), _size(0), _max_size(0), _comp(comp), _root(NULL)
+    map< Key, T, Compare, Alloc >::map(const key_compare& comp, const allocator_type& alloc) : _data(NULL), _alloc(alloc), _size(0), _max_size(0), _comp(comp), _root(NULL), _ghost(NULL)
     {
     }
 
     template< class Key, class T, class Compare, class Alloc >
     template <class InputIterator>
-    map< Key, T, Compare, Alloc >::map(InputIterator first, InputIterator last, const key_compare& comp, const allocator_type& alloc) : _data(NULL), _alloc(alloc), _size(0), _max_size(0), _comp(comp), _root(NULL)
+    map< Key, T, Compare, Alloc >::map(InputIterator first, InputIterator last, const key_compare& comp, const allocator_type& alloc) : _data(NULL), _alloc(alloc), _size(0), _max_size(0), _comp(comp), _root(NULL), _ghost(NULL)
     {
         insert(first, last);
         return;
@@ -298,7 +298,34 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     void map< Key, T, Compare, Alloc >::swap(map& x)
     {
+        map<Key, T, Compare, Alloc> tmp;
 
+        tmp._data = _data;
+        tmp._alloc = _alloc;
+        tmp._size = _size;
+        tmp._max_size = _max_size;
+        tmp._comp = _comp;
+        tmp._node_alloc = _node_alloc;
+        tmp._root = _root;
+        tmp._ghost = _ghost;
+
+        _data = x._data;
+        _alloc = x._alloc;
+        _size = x._size;
+        _max_size = x._max_size;
+        _comp = x._comp;
+        _node_alloc = x._node_alloc;
+        _root = x._root;
+        _ghost = x._ghost;
+
+        x._data = _data;
+        x._alloc = _alloc;
+        x._size = _size;
+        x._max_size = _max_size;
+        x._comp = _comp;
+        x._node_alloc = _node_alloc;
+        x._root = _root;
+        x._ghost = _ghost;
     }
 
     template< class Key, class T, class Compare, class Alloc >
@@ -392,6 +419,7 @@ namespace ft
         node->key = key;
         node->right = NULL;
         node->left = NULL;
+        node->parent = NULL;
         return node;
     }
 
@@ -406,10 +434,12 @@ namespace ft
         if (key > node->key)
         {
             node->right = insert(node->right, key);
+            node->right->parent = node;
         }
         if (key < node->key)
         {
             node->left = insert(node->left, key);
+            node->left->parent = node;
         }
         return node; 
     }
@@ -437,7 +467,7 @@ namespace ft
             _node_alloc.destroy(&node);
             return tmp;
         }
-        else if (node->right == NULL)
+        else if (node->right == NULL || node->right == _ghost)
         {
             Node *tmp = node->left;
             tmp->parent = node->parent;
@@ -450,35 +480,21 @@ namespace ft
             Node *succParent = node;
             Node *succ = node->right;
 
-            if (node->right != _ghost)
+            while (succ->left != NULL)
             {
-                while (succ->left != NULL)
-                {
-                    succParent = succ;
-                    succ = succParent->left;
-                }
-                if (succParent != node)
-                    succParent->left = succ->right;
-                else
-                    succParent->right = succ->right;
-                node->key = succ->key;
-                _node_alloc.destroy(&succ);
+                succParent = succ;
+                succ = succParent->left;
             }
+            if (succParent != node)
+                succParent->left = succ->right;
             else
-            {
-                if (node->left != NULL)
-                {
-                    node->key = node->left->key;
-                    node->right = _ghost;
-                }
-                node->key = succ->key;
-                _node_alloc.destroy(&succ);
-            }
+                succParent->right = succ->right;
+            node->key = succ->key;
+            _node_alloc.destroy(&succ);
         }
         return node;
     }
 
-    
     template< class Key, class T, class Compare, class Alloc >
     void map< Key, T, Compare, Alloc >::PrintInOrder(node_ptr node)
     {
@@ -488,6 +504,7 @@ namespace ft
             std::cout << node->key << ' ';
             PrintInOrder(node->right);
         }
+        return;
     }
 
     template< class Key, class T, class Compare, class Alloc >
