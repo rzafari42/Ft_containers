@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 19:19:53 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/08 19:03:47 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/10 20:33:22 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,49 @@ namespace ft
     {
         this->_val -= n;
         return *this;
+    }
+
+    template < class T, class Alloc >
+    typename vector<T, Alloc>::const_iterator::difference_type vector<T, Alloc>::const_iterator::operator-(const RandAccess<T> &n) const
+    {
+        return RandAccess<T>::operator-(n);
+    }
+
+    template < class T, class Alloc >
+    typename vector<T, Alloc>::const_iterator vector<T, Alloc>::const_iterator::operator-(difference_type n) const
+    {
+        return RandAccess<T>::operator-(n);
+    }
+
+    template < class T, class Alloc >
+    typename vector<T, Alloc>::const_iterator vector<T, Alloc>::const_iterator::operator+(difference_type n) const
+    {
+        return RandAccess<T>::operator+(n);
+    }
+    template < class T, class Alloc >
+    typename vector<T, Alloc>::const_iterator& vector<T, Alloc>::const_iterator::operator++(void)
+    {
+        RandAccess<T>::operator++();
+        return *this;
+    }
+
+    template < class T, class Alloc >
+    typename vector<T, Alloc>::const_iterator vector<T, Alloc>::const_iterator::operator++(int)
+    {
+        return RandAccess<T>::operator++(0);
+    }
+
+    template < class T, class Alloc >
+    typename vector<T, Alloc>::const_iterator& vector<T, Alloc>::const_iterator::operator--(void)
+    {
+        RandAccess<T>::operator--();
+        return *this;
+    }
+
+    template < class T, class Alloc >
+    typename vector<T, Alloc>::const_iterator vector<T, Alloc>::const_iterator::operator--(int)
+    {
+        return RandAccess<T>::operator--(0);
     }
 
     //Constructors

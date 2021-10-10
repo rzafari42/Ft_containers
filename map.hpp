@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/08 19:03:46 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/10 20:12:34 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -518,11 +518,10 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::max_node(node_ptr node)
     {
-        while (node && node->right != NULL)
+        while (node && (node->right != _ghost || node->right != NULL))
             node = node->right;
         return node; 
     }
-
 }
 
 #endif
