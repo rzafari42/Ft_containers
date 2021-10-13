@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:34:57 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/11 13:31:58 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/13 11:11:04 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,37 @@
 
 namespace ft
 {
-    template < class T >
-    class Bidirect
+    template < class T, typename node >
+    class MapIter
     {
+        protected:
+            T       *_val;
+            node    *node;
+
         public:
-            typedef T&  reference;
-            typedef T*  pointer;
+            typedef T                   value_type;
+            typedef value_type&         reference;
+            typedef value_type const&   const_reference;
+            typedef value_type*         pointer;
+            typedef ptrdiff_t           difference_type;
+            typedef node*               node_ptr;
 
-            Bidirect();
-            Bidirect(T *src);
-            Bidirect(Bidirect const& src);
-            virtual ~Bidirect();
-            Bidirect&  operator=(Bidirect const& rhs);
+            MapIter();
+            MapIter(MapIter const& src);
+            virtual ~MapIter();
+            MapIter&  operator=(MapIter const& rhs);
 
-            bool operator==(Bidirect const& rhs);
-            bool operator!=(Bidirect const& rhs);
-            Bidirect<T>& operator++();
-            Bidirect<T>  operator++(int);
-            Bidirect<T>& operator--();
-            Bidirect<T>  operator--(int);
+            bool operator==(MapIter const& rhs);
+            bool operator!=(MapIter const& rhs);
+            MapIter<T>& operator++();
+            MapIter<T>  operator++(int);
+            MapIter<T>& operator--();
+            MapIter<T>  operator--(int);
 
             reference operator*() const;
             pointer operator->() const;
 
-        protected:
-            T       *_val;
+
     };
 }
 
