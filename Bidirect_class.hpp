@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:34:57 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/13 11:11:04 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/13 11:39:03 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,13 @@ namespace ft
 
             bool operator==(MapIter const& rhs);
             bool operator!=(MapIter const& rhs);
-            MapIter<T>& operator++();
-            MapIter<T>  operator++(int);
-            MapIter<T>& operator--();
-            MapIter<T>  operator--(int);
+            MapIter<T, node>& operator++();
+            MapIter<T, node>  operator++(int);
+            MapIter<T, node>& operator--();
+            MapIter<T, node>  operator--(int);
 
             reference operator*() const;
             pointer operator->() const;
-
-
     };
 }
 
