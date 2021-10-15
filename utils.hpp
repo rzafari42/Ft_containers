@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 23:55:41 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/04 15:40:42 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/15 13:55:01 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,18 @@ namespace ft
         }
         return (first2!=last2);
     }
+
+     ////////////////////////
+    //        NODE       //
+    ///////////////////////
+    template<class T>
+    struct Node
+    {
+        T       key;
+        Node    *right;
+        Node    *left;
+        Node    *parent;
+    };
 }
 
 #endif

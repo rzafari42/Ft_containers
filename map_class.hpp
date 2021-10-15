@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/11 13:32:06 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/14 13:16:04 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,13 @@
 # include <utility>
 # include "RandAccess.hpp"
 # include "Reverse.hpp"
-# include "Bidirect.hpp"
+# include "MapIter.hpp"
 # include <iterator>
 # include "utils.hpp"
 # include <map>
 
 namespace ft 
 {
-
-    ////////////////////////
-    //        NODE       //
-    ///////////////////////
-    template<class T>
-    struct Node
-    {
-        T       key;
-        Node    *right;
-        Node    *left;
-        Node    *parent;
-    };
-
-
     ////////////////////////
     //        LESS       //
     ///////////////////////
