@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:34:57 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/15 14:04:05 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/15 16:36:23 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 namespace ft
 {
-    template < class T, typename node >
+    template < class T, typename Node >
     class MapIter
     {
         protected:
@@ -29,7 +29,7 @@ namespace ft
             typedef value_type const&   const_reference;
             typedef value_type*         pointer;
             typedef ptrdiff_t           difference_type;
-            typedef node*               node_ptr;
+            typedef Node*               node_ptr;
 
             MapIter();
             MapIter(MapIter const& src);

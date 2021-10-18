@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/11 13:35:25 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/18 11:36:06 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,22 @@ namespace ft
 {
     //iterator
     template< class Key, class T, class Compare, class Alloc >
-    map< Key, T, Compare, Alloc >::iterator::iterator() : Bidirect<T>()
+    map< Key, T, Compare, Alloc >::iterator::iterator() : MapIter<T, Node>()
     {
     }
 
     template< class Key, class T, class Compare, class Alloc >
-    map< Key, T, Compare, Alloc >::iterator::iterator(T *src) : Bidirect<T>(src)
+    map< Key, T, Compare, Alloc >::iterator::iterator(T *src) : MapIter<T, Node>(src)
     {
     }
 
     template< class Key, class T, class Compare, class Alloc >
-    map< Key, T, Compare, Alloc >::iterator::iterator(iterator const& src) : Bidirect<T>(src)
+    map< Key, T, Compare, Alloc >::iterator::iterator(iterator const& src) : MapIter<T, Node>(src)
     {
     }
 
     template< class Key, class T, class Compare, class Alloc >
-    map< Key, T, Compare, Alloc >::iterator::iterator(const Bidirect<value_type>& src) : Bidirect<T>(src)
+    map< Key, T, Compare, Alloc >::iterator::iterator(const MapIter<value_type, node_type>& src) : MapIter<T, Node>(src)
     {
     }
 
@@ -45,25 +45,25 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc >::iterator& map< Key, T, Compare, Alloc >::iterator::operator++()
     {
-        return Bidirect<T>::operator++();
+        return MapIter<T, Node>::operator++();
     }
 
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc >::iterator map< Key, T, Compare, Alloc >::iterator::operator++(int)
     {
-        return Bidirect<T>::operator++(0);
+        return MapIter<T, Node>::operator++(0);
     }
 
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc >::iterator& map< Key, T, Compare, Alloc >::iterator::operator--()
     {
-        return Bidirect<T>::operator--();
+        return MapIter<T, Node>::operator--();
     }
 
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc >::iterator map< Key, T, Compare, Alloc >::iterator::operator--(int)
     {
-        return Bidirect<T>::operator--(0);
+        return MapIter<T, Node>::operator--(0);
     }
 
     template< class Key, class T, class Compare, class Alloc >
@@ -80,22 +80,22 @@ namespace ft
 
     //const_iterator
     template< class Key, class T, class Compare, class Alloc >
-    map< Key, T, Compare, Alloc >::const_iterator::const_iterator() : Bidirect<T>()
+    map< Key, T, Compare, Alloc >::const_iterator::const_iterator() : MapIter<T, Node>()
     {
     }
 
     template< class Key, class T, class Compare, class Alloc >
-    map< Key, T, Compare, Alloc >::const_iterator::const_iterator(T *src) : Bidirect<T>(src)
+    map< Key, T, Compare, Alloc >::const_iterator::const_iterator(T *src) : MapIter<T, Node>(src)
     {
     }
 
     template< class Key, class T, class Compare, class Alloc >
-    map< Key, T, Compare, Alloc >::const_iterator::const_iterator(iterator const& src) : Bidirect<T>(src)
+    map< Key, T, Compare, Alloc >::const_iterator::const_iterator(iterator const& src) : MapIter<T, Node>(src)
     {
     }
 
     template< class Key, class T, class Compare, class Alloc >
-    map< Key, T, Compare, Alloc >::const_iterator::const_iterator(const Bidirect<value_type>& src) : Bidirect<T>(src)
+    map< Key, T, Compare, Alloc >::const_iterator::const_iterator(const MapIter<value_type, node_type>& src) : MapIter<T, Node>(src)
     {
     }
 
@@ -107,25 +107,25 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc >::const_iterator& map< Key, T, Compare, Alloc >::const_iterator::operator++()
     {
-        return Bidirect<T>::operator++();
+        return MapIter<T, Node>::operator++();
     }
 
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc >::const_iterator map< Key, T, Compare, Alloc >::const_iterator::operator++(int)
     {
-        return Bidirect<T>::operator++(0);
+        return MapIter<T, Node>::operator++(0);
     }
 
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc >::const_iterator& map< Key, T, Compare, Alloc >::const_iterator::operator--()
     {
-        return Bidirect<T>::operator--();
+        return MapIter<T, Node>::operator--();
     }
 
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc >::const_iterator map< Key, T, Compare, Alloc >::const_iterator::operator--(int)
     {
-        return Bidirect<T>::operator--(0);
+        return MapIter<T, Node>::operator--(0);
     }
 
     template< class Key, class T, class Compare, class Alloc >
@@ -173,7 +173,14 @@ namespace ft
     {
         if (this != &x)
         {
-                //to complete
+            x._data = this->_data;
+            x._alloc = this->_alloc;
+            x._size = this->_size;
+            x._max_size = this->_max_size;
+            x._comp = this->_comp;
+            x._node_alloc = this->_node_alloc;
+            x._root = this->_root;
+            x._ghost = this->_ghost;
         }
         return *this;
     }
@@ -252,7 +259,7 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc>::mapped_type& map< Key, T, Compare, Alloc >::operator[] (const key_type& k)
     {
-
+        return (*((this->insert(make_pair(k, mapped_type()))).first)).second;
     }
 
     //Modifiers

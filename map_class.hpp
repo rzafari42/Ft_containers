@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/14 13:16:04 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/17 14:38:46 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,6 @@ namespace ft
     template <class T1, class T2>
     bool operator>= (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) { return (lhs.first >= rhs.second && lhs.second >= rhs.second);}
 
-
-
-
-
     ////////////////////////
     //        MAP        //
     ///////////////////////
@@ -93,7 +89,7 @@ namespace ft
             typedef typename allocator_type::const_pointer      const_pointer;
             typedef size_t                                      size_type;
             typedef ptrdiff_t                                   difference_type;
-            typedef Node<value_type>                            node_type;
+            typedef ft::Node<value_type>                        node_type;
             typedef node_type*                                  node_ptr;
 
         class value_compare
@@ -113,7 +109,7 @@ namespace ft
                 }
         };
 
-        class iterator : public Bidirect<value_type>
+        class iterator : public MapIter<value_type, Node>
         {
             public:
                 typedef value_type&         reference;
@@ -125,7 +121,7 @@ namespace ft
                 iterator();
                 iterator(T *src);
                 iterator(iterator const& src);
-                iterator(const Bidirect<value_type>& src);
+                iterator(const MapIter<value_type, node_type>& src);
                 virtual ~iterator();
 
                 iterator& operator++();
@@ -137,7 +133,7 @@ namespace ft
                 pointer   operator->() const;
         };
 
-        class const_iterator : public Bidirect<value_tpe>
+        class const_iterator : public MapIter<value_tpe, Node>
         {
             public:
                 typedef value_type const&   reference;
@@ -149,7 +145,7 @@ namespace ft
                 const_iterator();
                 const_iterator(T *src);
                 const_iterator(iterator const& src);
-                const_iterator(const Bidirect<value_type>& src);
+                const_iterator(const MapIter<value_type, node_type>& src);
                 virtual ~const_iterator();
 
                 const_iterator& operator++();

@@ -16,50 +16,50 @@
 
 namespace ft
 {
-    template <class T, typename node >
-    MapIter<T, node >::MapIter() : _node(NULL)
+    template <class T, typename Node >
+    MapIter<T, Node >::MapIter() : _node(NULL)
     {
     }
 
-    template <class T, typename node >
-    MapIter<T, node >::MapIter(MapIter const& src)
+    template <class T, typename Node >
+    MapIter<T, Node >::MapIter(MapIter const& src)
     {
         *this = src;
     }
 
-    template <class T, typename node >
-    MapIter<T, node >::~MapIter()
+    template <class T, typename Node >
+    MapIter<T, Node >::~MapIter()
     {
     }
 
-    template <class T, typename node >
-    MapIter<T, node >& MapIter<T, node>::operator=(MapIter const& rhs)
+    template <class T, typename Node >
+    MapIter<T, Node >& MapIter<T, Node>::operator=(MapIter const& rhs)
     {
         if (this != &rhs)
             _node = rhs._node;
         return *this; 
     }
 
-    template <class T, typename node >
-    bool MapIter<T, node >::operator==(MapIter const& rhs)
+    template <class T, typename Node >
+    bool MapIter<T, Node >::operator==(MapIter const& rhs)
     {
             return _node == rhs._node;
     }
 
-    template < class T, typename node >
-    bool MapIter<T, node >::operator!=(MapIter const& rhs)
+    template < class T, typename Node >
+    bool MapIter<T, Node >::operator!=(MapIter const& rhs)
     {
         return _node != rhs._node;
     }
 
-    template < class T, typename node>
-    MapIter<T, node> &MapIter<T, node>::operator++()
+    template < class T, typename Node>
+    MapIter<T, Node> &MapIter<T, Node>::operator++()
     {
         if (_node->right)
             _node = min_node(_node->right);
         else if (_node->parent)
         {
-            node  *tmp = _node;
+            Node  *tmp = _node;
     
             _node = _node->parent;
             while (_node && tmp = _node->right)
@@ -71,16 +71,16 @@ namespace ft
         return *this;
     }
 
-    template < class T, typename node >
-    MapIter<T, node> MapIter<T, node>::operator++(int)
+    template < class T, typename Node >
+    MapIter<T, Node> MapIter<T, Node>::operator++(int)
     {
-        MapIter<T, node> tmp(*this);
+        MapIter<T, Node> tmp(*this);
         operator++();
         return tmp;
     }
 
-    template < class T, typename node >
-    MapIter<T, node >& MapIter<T, node>::operator--()
+    template < class T, typename Node >
+    MapIter<T, Node >& MapIter<T, Node>::operator--()
     {
         if (_node->left)
             _node = max_node(_node->right);
@@ -98,22 +98,22 @@ namespace ft
         return *this;
     }
 
-    template < class T, typename node >
-    MapIter<T, node > MapIter<T, node>::operator--(int)
+    template < class T, typename Node >
+    MapIter<T, Node > MapIter<T, Node>::operator--(int)
     {
         MapIter<T, node> tmp(*this);
         operator--();
         return tmp;
     }
 
-    template < class T, typename node >
-    MapIter<T, node>::reference MapIter<T, node>::operator*() const
+    template < class T, typename Node >
+    MapIter<T, Node>::reference MapIter<T, Node>::operator*() const
     {
         return _node->key;
     }
 
-    template < class T, typename node >
-    MapIter<T, node >::pointer MapIter<T, node>::operator->() const
+    template < class T, typename Node >
+    MapIter<T, Node >::pointer MapIter<T, Node>::operator->() const
     {
         return &_node->key;
     }
