@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/17 14:38:46 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/18 16:17:30 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "RandAccess.hpp"
 # include "Reverse.hpp"
 # include "MapIter.hpp"
-# include <iterator>
 # include "utils.hpp"
 # include <map>
 
@@ -27,7 +26,7 @@ namespace ft
     //        LESS       //
     ///////////////////////
     template <class T> 
-    struct less : binary_function <T,T,bool> 
+    struct less : std::binary_function <T,T,bool> 
     {
         bool operator() (const T& x, const T& y) const {return x<y;}
     };
@@ -74,7 +73,7 @@ namespace ft
     //        MAP        //
     ///////////////////////
 
-    template < class Key, class T, class Compare = std::less<Key>, class Alloc = std::allocator<pair<const Key,T> > >
+    template < class Key, class T, class Compare = less<Key>, class Alloc = std::allocator<pair<const Key,T> > >
     class map
     {
         public:

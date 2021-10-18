@@ -62,7 +62,7 @@ namespace ft
             Node  *tmp = _node;
     
             _node = _node->parent;
-            while (_node && tmp = _node->right)
+            while (_node && tmp == _node->right)
             {
                 tmp = _node;
                 _node = _node->parents;        
@@ -86,10 +86,10 @@ namespace ft
             _node = max_node(_node->right);
         else if (_node->parent)
         {
-            node  *tmp = _node;
+            Node  *tmp = _node;
     
             _node = _node->parent;
-            while (_node && tmp = _node->left)
+            while (_node && tmp == _node->left)
             {
                 tmp = _node;
                 _node = _node->parents;        
@@ -101,19 +101,19 @@ namespace ft
     template < class T, typename Node >
     MapIter<T, Node > MapIter<T, Node>::operator--(int)
     {
-        MapIter<T, node> tmp(*this);
+        MapIter<T, Node> tmp(*this);
         operator--();
         return tmp;
     }
 
     template < class T, typename Node >
-    MapIter<T, Node>::reference MapIter<T, Node>::operator*() const
+    typename MapIter<T, Node>::reference MapIter<T, Node>::operator*() const
     {
         return _node->key;
     }
 
     template < class T, typename Node >
-    MapIter<T, Node >::pointer MapIter<T, Node>::operator->() const
+    typename MapIter<T, Node >::pointer MapIter<T, Node>::operator->() const
     {
         return &_node->key;
     }

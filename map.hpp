@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/18 11:36:06 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/18 16:17:37 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,12 +264,10 @@ namespace ft
 
     //Modifiers
     template< class Key, class T, class Compare, class Alloc >
-    ft::pair<typename ft::map<Key, T, Compare, Alloc>::iterator, bool>
-    map< Key, T, Compare, Alloc >::insert(const value_type& val)
+    ft::pair<typename map<Key, T, Compare, Alloc>::iterator, bool> map< Key, T, Compare, Alloc >::insert(const value_type& val)
     {
-
+        //let's code the 'count' funct. before
     }
-
 
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc >::iterator map< Key, T, Compare, Alloc >::insert(iterator position, const value_type& val)
@@ -351,7 +349,7 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc >::value_compare map< Key, T, Compare, Alloc >::value_comp() const
     {
-        return value_compare(key_compare())
+        return value_compare(key_compare());
     }
 
     //Operation
@@ -370,8 +368,19 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc >::size_type map< Key, T, Compare, Alloc >::count(const key_type& k) const
     {
+        const_iterator it = begin();
+        const_iterator ite = end();
 
-    }    
+        if (!_root)
+            return 0;
+        while (it != ite)
+        {
+            if (!key_comp()(it->first, k) && !key_comp()(k, it->first))
+                return 1;
+            it++;
+        }
+        return 0;
+    }
 
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc >::iterator map< Key, T, Compare, Alloc >::lower_bound(const key_type& k)

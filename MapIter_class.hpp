@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:34:57 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/15 16:36:23 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/18 16:17:04 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ namespace ft
 
             reference operator*() const;
             pointer operator->() const;
-
-            friend class map;
     };
 }
 
