@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/19 14:33:54 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/19 16:52:16 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ namespace ft
                 }
         };
 
-        class iterator : public MapIter<value_type, Node<value_type> >
+        /*class iterator : public MapIter<value_type, Node<value_type> >
         {
             public:
                 typedef value_type&         reference;
@@ -154,9 +154,11 @@ namespace ft
     
                 reference operator*() const;
                 pointer   operator->() const;
-        };
+        };*/
 
         public:
+            typedef ft::MapIter<T, node_type>                   iterator;
+            typedef ft::MapIter<T, node_type>                   const_iterator;
             typedef ft::reverse_iterator<iterator>              reverse_iterator;
             typedef ft::reverse_iterator<const_iterator>        const_reverse_iterator;
 
@@ -226,10 +228,11 @@ namespace ft
                 //Binary Search Tree specific functions
                 node_ptr newNode(int value);
                 node_ptr insertNode(node_ptr node, int key);
+                node_ptr min_node(node_ptr node);
+                node_ptr max_node(node_ptr node);
+
+                node_ptr delete_node(node_ptr node, int key);
                 void     PrintInOrder(node_ptr node);
-                Node<T>* min_node(node_ptr node);
-                Node<T>* max_node(node_ptr node);
-                Node<T>* delete_node(node_ptr node, int key);
 
         private:
             T*                                          _data;

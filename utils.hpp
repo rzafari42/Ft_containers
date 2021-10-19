@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 23:55:41 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/19 12:33:22 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/19 16:42:30 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ namespace ft
         Node    *left;
         Node    *parent;
     };
+    
 }
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/19 14:33:54 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/19 17:04:13 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 namespace ft
 {
     //iterator
-    template< class Key, class T, class Compare, class Alloc >
+    /*template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc >::iterator::iterator()
     {
     }
@@ -138,7 +138,7 @@ namespace ft
     typename map< Key, T, Compare, Alloc >::const_iterator::pointer map< Key, T, Compare, Alloc >::const_iterator::operator->() const
     {
         return this->_val;
-    }
+    }*/
 
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc >::map(const key_compare& comp, const allocator_type& alloc) : _data(NULL), _alloc(alloc), _size(0), _max_size(0), _comp(comp), _root(NULL), _ghost(NULL)
@@ -186,6 +186,7 @@ namespace ft
     }
 
     //Iterators
+
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc>::iterator map< Key, T, Compare, Alloc>::begin()
     {
@@ -462,7 +463,23 @@ namespace ft
     }
 
     template< class Key, class T, class Compare, class Alloc >
-    Node<T>* map< Key, T, Compare, Alloc >::delete_node(node_ptr node, int key)
+    typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::min_node(node_ptr node)
+    {   
+        while (node && node->left != NULL)
+            node = node->left;
+        return node;
+    }
+
+    template< class Key, class T, class Compare, class Alloc >
+    typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::max_node(node_ptr node)
+    {
+        while (node && node->right != NULL)
+            node = node->right;
+        return node;
+    }
+
+    template< class Key, class T, class Compare, class Alloc >
+    typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::delete_node(node_ptr node, int key)
     {
         if (node == NULL)
             return node;
@@ -522,22 +539,6 @@ namespace ft
             PrintInOrder(node->right);
         }
         return;
-    }
-
-    template< class Key, class T, class Compare, class Alloc >
-    Node<T>* map< Key, T, Compare, Alloc >::min_node(node_ptr node)
-    {
-        while (node && node->left != NULL)
-            node = node->left;
-        return node; 
-    }
-
-    template< class Key, class T, class Compare, class Alloc >
-    Node<T>* map< Key, T, Compare, Alloc >::max_node(node_ptr node)
-    {
-        while (node && (node->right != _ghost || node->right != NULL))
-            node = node->right;
-        return node; 
     }
 }
 
