@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/18 16:17:30 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/19 14:33:54 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ namespace ft
             typedef pair<const key_type, mapped_type>			value_type;
             typedef Compare                                     key_compare;
             typedef Alloc                                       allocator_type;
-            typedef typename allocator_type::refence            reference;
+            typedef typename allocator_type::reference          reference;
             typedef typename allocator_type::const_reference    const_reference;
             typedef typename allocator_type::pointer            pointer;
             typedef typename allocator_type::const_pointer      const_pointer;
@@ -102,13 +102,13 @@ namespace ft
                 typedef bool result_type;
                 typedef value_type first_argument_type;
                 typedef value_type second_argument_type;
-                bool operator() (const value_tye& x, const value_type& y) const
+                bool operator() (const value_type& x, const value_type& y) const
                 {
                     return comp(x.first, y.first);
                 }
         };
 
-        class iterator : public MapIter<value_type, Node>
+        class iterator : public MapIter<value_type, Node<value_type> >
         {
             public:
                 typedef value_type&         reference;
@@ -132,7 +132,7 @@ namespace ft
                 pointer   operator->() const;
         };
 
-        class const_iterator : public MapIter<value_tpe, Node>
+        class const_iterator : public MapIter<value_type, Node<value_type> >
         {
             public:
                 typedef value_type const&   reference;
@@ -227,9 +227,9 @@ namespace ft
                 node_ptr newNode(int value);
                 node_ptr insertNode(node_ptr node, int key);
                 void     PrintInOrder(node_ptr node);
-                node_ptr min_node(node_ptr node);
-                node_ptr max_node(node_ptr node);
-                node_ptr delete_node(node_ptr node, int key);
+                Node<T>* min_node(node_ptr node);
+                Node<T>* max_node(node_ptr node);
+                Node<T>* delete_node(node_ptr node, int key);
 
         private:
             T*                                          _data;
