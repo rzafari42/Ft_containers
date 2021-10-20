@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/19 16:52:16 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/20 11:52:32 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ namespace ft
             pair (const pair<U,V>& pr) : first(pr.first), second(pr.second) {return;}
         pair (const first_type& a, const second_type& b) : first(a), second(b) { return; }
 
-        pair& operator= (const pair& pr) {first = pr.first; second = pr.second; return *this; }
+        pair& operator=(const pair& pr) {first = pr.first; second = pr.second; return *this; }
     };
 
     template <class T1, class T2>
@@ -102,7 +102,7 @@ namespace ft
                 typedef bool result_type;
                 typedef value_type first_argument_type;
                 typedef value_type second_argument_type;
-                bool operator() (const value_type& x, const value_type& y) const
+                bool operator() (const value_type& x, const value_type& y) const 
                 {
                     return comp(x.first, y.first);
                 }
@@ -199,7 +199,7 @@ namespace ft
                 iterator insert (iterator position, const value_type& val);
                 template <class InputIterator>
                     void insert (InputIterator first, InputIterator last);
-                
+
                 void erase(iterator position);
                 size_type erase (const key_type& k);
                 void erase (iterator first, iterator last);
@@ -210,7 +210,7 @@ namespace ft
                 //Observers
                 key_compare key_comp() const;
                 value_compare value_comp() const;
-                
+
                 //Operation
                 iterator find (const key_type& k);
                 const_iterator find (const key_type& k) const;
@@ -244,7 +244,5 @@ namespace ft
             node_ptr                                    _root;
             node_ptr                                    _ghost;
     };
-
-
 }
 #endif
