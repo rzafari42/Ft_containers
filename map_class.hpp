@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/20 14:54:47 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/20 18:37:09 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MAP_CLASS_HPP
 # include <memory>
 # include <utility>
+# include <iostream>
 # include "RandAccess.hpp"
 # include "Reverse.hpp"
 # include "MapIter.hpp"
@@ -34,7 +35,7 @@ namespace ft
     ////////////////////////
     //        PAIR       //
     ///////////////////////
-    template < class T1, class T2 >
+    template < class T1, class T2>
     struct pair
     {
         typedef T1 first_type;
@@ -49,7 +50,20 @@ namespace ft
         pair (const first_type& a, const second_type& b) : first(a), second(b) { return; }
 
         pair& operator=(const pair& pr) {first = pr.first; second = pr.second; return *this; }
-    };
+   };
+
+    template<class T1, class T2>
+    std::ostream & operator<<( std::ostream & flux, pair<T1, T2>& rhs )
+    {
+        flux << "value: " << " | key:"  << std::endl;
+        return flux;
+    }
+
+    template <class T1, class T2>
+    void	printPair(const pair<T1, T2> &iterator)
+    {
+        std::cout << "key: " << iterator.first << " | value: " << iterator.second << std::endl;
+    }
 
     template <class T1, class T2>
     bool operator== (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) { return (lhs.first = rhs.first && lhs.second = rhs.second);}
@@ -226,7 +240,7 @@ namespace ft
                 allocator_type get_allocator() const;
 
                 //Binary Search Tree specific functions
-                node_ptr newNode(int value);
+                node_ptr newNode(value_type &val);
                 node_ptr insertNode(node_ptr node, value_type val);
                 node_ptr min_node(node_ptr node);
                 node_ptr max_node(node_ptr node);

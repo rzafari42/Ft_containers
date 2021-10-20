@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/20 15:54:49 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/20 19:14:00 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -273,7 +273,7 @@ namespace ft
             ret.second = false;
         else
         {
-            _root = insertNode(_root, val.first);
+            _root = insertNode(_root, val);
             ret.second = true;
         }
         ret.first = find(val).first;
@@ -372,13 +372,31 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::iterator map< Key, T, Compare, Alloc >::find(const key_type& k)
     {
+        iterator it = begin();
+        iterator ite = end();
 
+        while (it != ite)
+        {
+            if (!key_comp()(it->first, k) && !key_comp()(k, it->first))
+                return it;
+            it++;
+        }
+        return ite; 
     }
 
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::const_iterator map< Key, T, Compare, Alloc >::find(const key_type& k) const
     {
+        const_iterator it = begin();
+        const_iterator ite = end();
 
+        while (it != ite)
+        {
+            if (!key_comp()(it->first, k) && !key_comp()(k, it->first))
+                return it;
+            it++;
+        }
+        return ++ite; 
     }
 
     template< class Key, class T, class Compare, class Alloc >
@@ -445,10 +463,11 @@ namespace ft
 
     //Binary Search Tree specific functions
     template< class Key, class T, class Compare, class Alloc >
-    typename map<Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::newNode(int key)
+    typename map<Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::newNode(value_type &val)
     {
         node_ptr node = _node_alloc.allocate(1);
-        node->key = key;
+        _alloc.construct(&node->key, val);
+        
         node->right = NULL;
         node->left = NULL;
         node->parent = NULL;
@@ -460,7 +479,7 @@ namespace ft
     {
         if (node == NULL)
         {
-            node = newNode(key);
+            node = newNode(val);
             _size++;
         }
         if (key_comp()(val.first, node->key))
