@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/20 12:36:05 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/20 15:54:49 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,22 +274,28 @@ namespace ft
         else
         {
             _root = insertNode(_root, val.first);
+            ret.second = true;
         }
-        ret.first = find(val.first);
+        ret.first = find(val).first;
         return ret;
     }
 
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::iterator map< Key, T, Compare, Alloc >::insert(iterator position, const value_type& val)
     {
-
+        static_cast<void>(position);
+        return insert(val).first;
     }
 
     template< class Key, class T, class Compare, class Alloc >
     template <class InputIterator>
     void map< Key, T, Compare, Alloc >::insert(InputIterator first, InputIterator last)
     {
-
+        while (first != last)
+        {
+            insert(*first);
+            first++;
+        }
     }
 
     template< class Key, class T, class Compare, class Alloc >
@@ -366,7 +372,7 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::iterator map< Key, T, Compare, Alloc >::find(const key_type& k)
     {
-            
+
     }
 
     template< class Key, class T, class Compare, class Alloc >
@@ -449,12 +455,12 @@ namespace ft
         return node;
     }
 
-    /*template< class Key, class T, class Compare, class Alloc >
+    template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::insertNode(node_ptr node, value_type val)
     {
         if (node == NULL)
         {
-            node = newNode(key);     
+            node = newNode(key);
             _size++;
         }
         if (key_comp()(val.first, node->key))
@@ -462,13 +468,13 @@ namespace ft
             node->right = insertNode(node->right, val);
             node->right->parent = node;
         }
-        if (key_comp()(val.first, node->key))
+        if (key_comp()(node->key, val.first))
         {
             node->left = insertNode(node->left, val);
             node->left->parent = node;
         }
-        return node; 
-    }*/
+        return node;
+    }
 
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::min_node(node_ptr node)

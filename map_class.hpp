@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/20 11:52:32 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/20 14:54:47 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,7 +227,7 @@ namespace ft
 
                 //Binary Search Tree specific functions
                 node_ptr newNode(int value);
-                node_ptr insertNode(node_ptr node, int key);
+                node_ptr insertNode(node_ptr node, value_type val);
                 node_ptr min_node(node_ptr node);
                 node_ptr max_node(node_ptr node);
 
