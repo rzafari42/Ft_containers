@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/20 18:37:09 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/21 15:35:13 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,8 +171,8 @@ namespace ft
         };*/
 
         public:
-            typedef ft::MapIter<T, node_type>                   iterator;
-            typedef ft::MapIter<T, node_type>                   const_iterator;
+            typedef ft::MapIter<value_type, node_type>          iterator;
+            typedef ft::MapIter<const value_type, node_type>    const_iterator;
             typedef ft::reverse_iterator<iterator>              reverse_iterator;
             typedef ft::reverse_iterator<const_iterator>        const_reverse_iterator;
 

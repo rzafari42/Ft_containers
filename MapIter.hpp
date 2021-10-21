@@ -28,6 +28,13 @@ namespace ft
     }
 
     template <class T, typename Node >
+    MapIter<T, Node >::MapIter(Node *src)
+    {
+        _node = src;
+    }
+
+
+    template <class T, typename Node >
     MapIter<T, Node >::~MapIter()
     {
     }
@@ -65,7 +72,7 @@ namespace ft
             while (_node && tmp == _node->right)
             {
                 tmp = _node;
-                _node = _node->parents;        
+                _node = _node->parent;        
             }
         }
         return *this;

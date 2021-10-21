@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/20 19:14:00 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/21 15:33:03 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -276,7 +276,7 @@ namespace ft
             _root = insertNode(_root, val);
             ret.second = true;
         }
-        ret.first = find(val).first;
+        ret.first = find(val.first);
         return ret;
     }
 
@@ -381,7 +381,7 @@ namespace ft
                 return it;
             it++;
         }
-        return ite; 
+        return ite;
     }
 
     template< class Key, class T, class Compare, class Alloc >
@@ -396,7 +396,7 @@ namespace ft
                 return it;
             it++;
         }
-        return ++ite; 
+        return ++ite;
     }
 
     template< class Key, class T, class Compare, class Alloc >
@@ -492,22 +492,6 @@ namespace ft
             node->left = insertNode(node->left, val);
             node->left->parent = node;
         }
-        return node;
-    }
-
-    template< class Key, class T, class Compare, class Alloc >
-    typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::min_node(node_ptr node)
-    {   
-        while (node && node->left != NULL)
-            node = node->left;
-        return node;
-    }
-
-    template< class Key, class T, class Compare, class Alloc >
-    typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::max_node(node_ptr node)
-    {
-        while (node && node->right != NULL)
-            node = node->right;
         return node;
     }
 

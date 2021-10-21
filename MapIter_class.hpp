@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:34:57 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/20 16:47:19 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/21 15:46:11 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ namespace ft
 
             MapIter();
             MapIter(MapIter const& src);
+            MapIter(Node *src);
             virtual ~MapIter();
             MapIter&  operator=(MapIter const& rhs);
+
 
             bool operator==(MapIter const& rhs);
             bool operator!=(MapIter const& rhs);

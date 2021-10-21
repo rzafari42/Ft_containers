@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 23:55:41 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/20 18:41:22 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/21 15:34:01 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,22 @@ namespace ft
         Node    *left;
         Node    *parent;
     };
+
+    template< class T >
+    Node<T>* min_node(Node<T>* node)
+    {   
+        while (node && node->left != NULL)
+            node = node->left;
+        return node;
+    }
+
+    template< class T >
+    Node<T>* max_node(Node<T>* node)
+    {
+        while (node && node->right != NULL)
+            node = node->right;
+        return node;
+    }
     
 }
 
