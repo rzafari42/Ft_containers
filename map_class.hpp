@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/22 15:27:23 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/22 17:11:29 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ namespace ft
     template<class T1, class T2>
     std::ostream & operator<<( std::ostream & flux, pair<T1, T2>& rhs )
     {
-        flux << "value: " << " | key:"  << std::endl;
+        flux << "value: " << rhs.second << std::endl;// << " | key:" << rhs.first << std::endl;
         return flux;
     }
 

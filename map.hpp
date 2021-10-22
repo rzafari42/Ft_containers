@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/22 15:56:12 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/22 17:12:56 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -268,7 +268,6 @@ namespace ft
     pair<typename map<Key, T, Compare, Alloc>::iterator, bool> map< Key, T, Compare, Alloc >::insert(const value_type& val)
     {
         ft::pair<iterator, bool> ret;
-
         if (count(val.first))
             ret.second = false;
         else
