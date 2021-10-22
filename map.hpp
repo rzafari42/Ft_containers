@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/22 11:21:30 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/22 15:56:12 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,7 +198,7 @@ namespace ft
     {
         return const_iterator(min_node(_root));
     }
-
+ 
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc>::iterator map< Key, T, Compare, Alloc>::end()
     {
@@ -482,12 +482,12 @@ namespace ft
             node = newNode(val);
             _size++;
         }
-        if (key_comp()(val.first, node->key))
+        if (key_comp()(val.first, node->key.first))
         {
             node->right = insertNode(node->right, val);
             node->right->parent = node;
         }
-        if (key_comp()(node->key, val.first))
+        if (key_comp()(node->key.first, val.first))
         {
             node->left = insertNode(node->left, val);
             node->left->parent = node;

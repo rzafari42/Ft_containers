@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/22 11:04:16 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/22 15:27:23 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include "Reverse.hpp"
 # include "MapIter.hpp"
 # include "utils.hpp"
-# include <map>
 
 namespace ft 
 {
@@ -31,7 +30,7 @@ namespace ft
     {
         bool operator() (const T& x, const T& y) const {return x<y;}
     };
-    
+
     ////////////////////////
     //        PAIR       //
     ///////////////////////

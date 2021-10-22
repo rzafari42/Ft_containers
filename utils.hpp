@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 23:55:41 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/22 11:04:07 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/22 15:26:34 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ namespace ft
 
     template< class T >
     Node<T>* min_node(Node<T>* node)
-    {   
+    {
         while (node && node->left != NULL)
             node = node->left;
         return node;
@@ -72,7 +72,6 @@ namespace ft
             node = node->right;
         return node;
     }
-    
 }
 
 #endif
