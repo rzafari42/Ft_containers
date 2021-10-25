@@ -6,14 +6,14 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:34:57 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/21 15:46:11 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/25 15:52:23 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAPITER_CLASS_HPP
 # define MAPITER_CLASS_HPP
-# include <iterator>
 # include "utils.hpp"
+# include "map_class.hpp"
 
 namespace ft
 {
@@ -50,7 +50,6 @@ namespace ft
 
             template <class, class, class, class>
             friend class map;
-
             template <class, class>
             friend class MapIter;
     };

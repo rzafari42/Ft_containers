@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/22 17:11:29 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/25 16:04:01 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,21 @@ namespace ft
         pair (const first_type& a, const second_type& b) : first(a), second(b) { return; }
 
         pair& operator=(const pair& pr) {first = pr.first; second = pr.second; return *this; }
+
+        friend std::ostream & operator<<( std::ostream & flux, ft::pair<T1, T2> rhs );
    };
 
     template<class T1, class T2>
-    std::ostream & operator<<( std::ostream & flux, pair<T1, T2>& rhs )
+    std::ostream & operator<<( std::ostream & flux, ft::pair<T1, T2> &rhs )
     {
-        flux << "value: " << rhs.second << std::endl;// << " | key:" << rhs.first << std::endl;
+        flux << "key: " << rhs.first << "value: " << rhs.second.key << std::endl;
         return flux;
     }
 
-    template <class T1, class T2>
-    void	printPair(const pair<T1, T2> &iterator)
+    template <typename T>
+    void	printPair(const T &iterator)
     {
-        std::cout << "key: " << iterator.first << " | value: " << iterator.second << std::endl;
+        std::cout << "key: " << iterator->first << " | value: " << iterator->second << std::endl;
     }
 
     template <class T1, class T2>

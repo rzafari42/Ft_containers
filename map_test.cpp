@@ -17,13 +17,19 @@ int main(void)
     ft::map<T1, T2> mp;
     ft::pair<iterator, bool> tmp;
 
+    std::cout << std::boolalpha;
     tmp = mp.insert(ft::map<T1, T2>::value_type(1, 20));
+    std::cout << tmp.first << std::endl;
     tmp = mp.insert(ft::map<T1, T2>::value_type(2, 40));
+    std::cout << tmp.second << std::endl;
     tmp = mp.insert(ft::map<T1, T2>::value_type(3, 60));
+    std::cout << tmp.second << std::endl;
     tmp = mp.insert(ft::map<T1, T2>::value_type(4, 80));
+    std::cout << tmp.second << std::endl;
     tmp = mp.insert(ft::map<T1, T2>::value_type(5, 100));
+    std::cout << tmp.second << std::endl;
 
-/*     reverse_iterator it = mp.rbegin();
+    /*reverse_iterator it = mp.rbegin();
     reverse_iterator ite = mp.rend();
 
     for (; it != ite; it++)
