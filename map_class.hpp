@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/25 16:04:01 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/26 11:26:38 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ namespace ft
     {
         typedef T1 first_type;
         typedef T2 second_type;
+        typedef ft::pair<T1, T2> value_type;
 
         first_type  first;
         second_type second;
@@ -49,22 +50,7 @@ namespace ft
         pair (const first_type& a, const second_type& b) : first(a), second(b) { return; }
 
         pair& operator=(const pair& pr) {first = pr.first; second = pr.second; return *this; }
-
-        friend std::ostream & operator<<( std::ostream & flux, ft::pair<T1, T2> rhs );
    };
-
-    template<class T1, class T2>
-    std::ostream & operator<<( std::ostream & flux, ft::pair<T1, T2> &rhs )
-    {
-        flux << "key: " << rhs.first << "value: " << rhs.second.key << std::endl;
-        return flux;
-    }
-
-    template <typename T>
-    void	printPair(const T &iterator)
-    {
-        std::cout << "key: " << iterator->first << " | value: " << iterator->second << std::endl;
-    }
 
     template <class T1, class T2>
     bool operator== (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) { return (lhs.first = rhs.first && lhs.second = rhs.second);}
@@ -122,54 +108,6 @@ namespace ft
                     return comp(x.first, y.first);
                 }
         };
-
-        /*class iterator : public MapIter<value_type, Node<value_type> >
-        {
-            public:
-                typedef value_type&         reference;
-                typedef value_type const&   const_reference;
-                typedef value_type*         pointer;
-                typedef ptrdiff_t           difference_type;
-
-            public : 
-                iterator();
-                iterator(T *src);
-                iterator(iterator const& src);
-                iterator(const MapIter<value_type, node_type>& src);
-                virtual ~iterator();
-
-                iterator& operator++();
-                iterator  operator++(int);
-                iterator& operator--();
-                iterator  operator--(int);
-    
-                reference operator*() const;
-                pointer   operator->() const;
-        };
-
-        class const_iterator : public MapIter<value_type, Node<value_type> >
-        {
-            public:
-                typedef value_type const&   reference;
-                typedef value_type const&   const_reference;
-                typedef value_type const*   pointer;
-                typedef ptrdiff_t           difference_type;
-
-            public : 
-                const_iterator();
-                const_iterator(T *src);
-                const_iterator(iterator const& src);
-                const_iterator(const MapIter<value_type, node_type>& src);
-                virtual ~const_iterator();
-
-                const_iterator& operator++();
-                const_iterator  operator++(int);
-                const_iterator& operator--();
-                const_iterator  operator--(int);
-    
-                reference operator*() const;
-                pointer   operator->() const;
-        };*/
 
         public:
             typedef ft::MapIter<value_type, node_type>          iterator;
