@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 23:55:41 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/26 11:21:33 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/26 15:24:43 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,10 @@ namespace ft
     Node<T>* min_node(Node<T>* node)
     {
         while (node && node->left != NULL)
+        {
+            std::cout << "min_node00" << std::endl;
             node = node->left;
+        }
         return node;
     }
 
@@ -69,7 +72,10 @@ namespace ft
     Node<T>* max_node(Node<T>* node)
     {
         while (node && node->right != NULL)
+        {
+            std::cout << "max_node00" << std::endl;
             node = node->right;
+        }
         return node;
     }
 

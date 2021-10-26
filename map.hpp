@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/26 11:49:32 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/26 15:22:16 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,7 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc>::iterator map< Key, T, Compare, Alloc>::begin()
     {
+        std::cout << min_node(_root)->key.first << std::endl;
         return iterator(min_node(_root));
     }
 

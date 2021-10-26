@@ -32,9 +32,10 @@ int main(void)
     ft::printPair(tmp.first);
     tmp = mp.insert(ft::map<T1, T2>::value_type(6, 120));
     ft::printPair(tmp.first);
-    std::cout << "end\n" ;
+    std::cout << "\nbegin\n" ;
     it = mp.begin();
     ft::printPair(it);
+    std::cout << "end\n" ;
     it = mp.end();
     ft::printPair(it);
 
