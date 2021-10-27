@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/26 11:48:53 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/27 12:27:12 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ namespace ft
         template<class U, class V>
             pair (const pair<U,V>& pr) : first(pr.first), second(pr.second) {return;}
         pair (const first_type& a, const second_type& b) : first(a), second(b) { return; }
-
         pair& operator=(const pair& pr) {first = pr.first; second = pr.second; return *this; }
    };
 
@@ -69,6 +68,16 @@ namespace ft
 
     template <class T1, class T2>
     bool operator>= (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) { return (lhs.first >= rhs.second && lhs.second >= rhs.second);}
+
+    ////////////////////////
+    //       MAKE_PAIR   //
+    ///////////////////////
+    template <class T1,class T2>
+    ft::pair<T1,T2> make_pair (T1 x, T2 y)
+    {
+        return ( ft::pair<T1,T2>(x,y) );
+    }
+
 
     ////////////////////////
     //        MAP        //
@@ -194,6 +203,8 @@ namespace ft
             std::allocator<node_type>                   _node_alloc;
             node_ptr                                    _root;
             node_ptr                                    _ghost;
+         public:
+            node_ptr    get_root(){ return this->_root;};
     };
 }
 #endif

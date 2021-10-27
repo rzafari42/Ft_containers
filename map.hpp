@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/26 15:22:16 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/27 12:42:02 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,6 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc>::iterator map< Key, T, Compare, Alloc>::begin()
     {
-        std::cout << min_node(_root)->key.first << std::endl;
         return iterator(min_node(_root));
     }
 
@@ -353,7 +352,7 @@ namespace ft
     void map< Key, T, Compare, Alloc >::clear()
     {
 
-    }  
+    }
 
     //Observers
     template< class Key, class T, class Compare, class Alloc >
@@ -479,6 +478,7 @@ namespace ft
     {
         if (node == NULL)
         {
+            std::cout << "insertNode00" << std::endl;
             node = newNode(val);
             _size++;
         }
@@ -549,11 +549,20 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     void map< Key, T, Compare, Alloc >::PrintInOrder(node_ptr node)
     {
-        if (node)
+        if (node != NULL)
         {
-            PrintInOrder(node->left);
-            std::cout << node->key << ' ';
-            PrintInOrder(node->right);
+            //std::cout << "PrintInOrder00" << std::endl;
+            if (node->left != NULL)
+            {
+                std::cout << "PrintInOrder00" << std::endl;
+                PrintInOrder(node->left);
+            }
+            std::cout << node << ' ';
+            if (node->right != NULL)
+            {
+                std::cout << "PrintInOrder01" << std::endl;
+                PrintInOrder(node->right);
+            }
         }
         return;
     }
