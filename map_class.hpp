@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/27 12:27:12 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/27 18:13:17 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,13 @@ namespace ft
     ft::pair<T1,T2> make_pair (T1 x, T2 y)
     {
         return ( ft::pair<T1,T2>(x,y) );
+    }
+
+    template< class T1, class T2 >
+    std::ostream & operator<<( std::ostream & flux, ft::pair<T1, T2> const & rhs)
+    {
+        flux << rhs.second << std::endl;
+        return flux;
     }
 
 

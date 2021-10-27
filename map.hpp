@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/27 12:42:02 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/27 18:42:38 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -476,21 +476,21 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::insertNode(node_ptr node, value_type val)
     {
+        std::cout << "insertNode00" << std::endl;
         if (node == NULL)
         {
-            std::cout << "insertNode00" << std::endl;
             node = newNode(val);
             _size++;
         }
-        if (key_comp()(val.first, node->key.first))
-        {
-            node->right = insertNode(node->right, val);
-            node->right->parent = node;
-        }
-        if (key_comp()(node->key.first, val.first))
+        else if (key_comp()(val.first, node->key.first))
         {
             node->left = insertNode(node->left, val);
             node->left->parent = node;
+        }
+        else
+        {
+            node->right = insertNode(node->right, val);
+            node->right->parent = node;
         }
         return node;
     }
@@ -549,20 +549,12 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     void map< Key, T, Compare, Alloc >::PrintInOrder(node_ptr node)
     {
+        std::cout << "PrintInOrder00" << std::endl;
         if (node != NULL)
         {
-            //std::cout << "PrintInOrder00" << std::endl;
-            if (node->left != NULL)
-            {
-                std::cout << "PrintInOrder00" << std::endl;
-                PrintInOrder(node->left);
-            }
-            std::cout << node << ' ';
-            if (node->right != NULL)
-            {
-                std::cout << "PrintInOrder01" << std::endl;
-                PrintInOrder(node->right);
-            }
+            PrintInOrder(node->left);
+            std::cout << node->key;
+            PrintInOrder(node->right);
         }
         return;
     }

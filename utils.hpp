@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 23:55:41 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/27 12:08:39 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/27 18:08:45 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,6 @@ namespace ft
         Node    *left;
         Node    *parent;
     };
-    
-    template< class T >
-    std::ostream & operator<<( std::ostream & flux,  Node<T> const & rhs)
-    {
-        flux << &rhs.key << std::endl;
-    }
-
 
     template< class T >
     Node<T>* min_node(Node<T>* node)
