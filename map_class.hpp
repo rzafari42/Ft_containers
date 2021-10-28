@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/27 18:13:17 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/28 12:32:30 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,10 +196,11 @@ namespace ft
 
                 //Binary Search Tree specific functions
                 node_ptr newNode(value_type &val);
-                node_ptr insertNode(node_ptr node, value_type val);
+                node_ptr insertNode(node_ptr node, value_type data);
 
-                node_ptr delete_node(node_ptr node, int key);
+                node_ptr delete_node(node_ptr node, value_type data);
                 void     PrintInOrder(node_ptr node);
+                void     _setGhost(bool add);
 
         private:
             T*                                          _data;
@@ -210,6 +211,7 @@ namespace ft
             std::allocator<node_type>                   _node_alloc;
             node_ptr                                    _root;
             node_ptr                                    _ghost;
+            node_ptr                                    _GreatestData;
          public:
             node_ptr    get_root(){ return this->_root;};
     };

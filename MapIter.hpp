@@ -116,13 +116,13 @@ namespace ft
     template < class T, typename Node >
     typename MapIter<T, Node>::reference MapIter<T, Node>::operator*() const
     {
-        return _node->key;
+        return _node->data;
     }
 
     template < class T, typename Node >
     typename MapIter<T, Node >::pointer MapIter<T, Node>::operator->() const
     {
-        return &this->_node->key;
+        return &this->_node->data;
     }
 }
 

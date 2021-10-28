@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 23:55:41 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/27 18:08:45 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/28 11:26:45 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ namespace ft
     template<class T>
     struct Node
     {
-        T       key;
+        T       data;
         Node    *right;
         Node    *left;
         Node    *parent;

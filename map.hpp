@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/27 18:42:38 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/28 12:35:16 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -465,7 +465,7 @@ namespace ft
     typename map<Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::newNode(value_type &val)
     {
         node_ptr node = _node_alloc.allocate(1);
-        _alloc.construct(&node->key, val);
+        _alloc.construct(&node->data, val);
         
         node->right = NULL;
         node->left = NULL;
@@ -474,40 +474,71 @@ namespace ft
     }
 
     template< class Key, class T, class Compare, class Alloc >
-    typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::insertNode(node_ptr node, value_type val)
+    typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::insertNode(node_ptr node, value_type data)
     {
-        std::cout << "insertNode00" << std::endl;
-        if (node == NULL)
+        //std::cout << "insertNode00" << std::endl;
+        if (!node || !_root || node == _ghost)
         {
-            node = newNode(val);
+            node = newNode(data);
+            if (!_root)
+                _root = node;
+            if (node == _ghost)
+                _GreatestData = node;
             _size++;
+            //std::cout << "insertNode01" << std::endl;
         }
-        else if (key_comp()(val.first, node->key.first))
+        else if (key_comp()(data.first, node->data.first))
         {
-            node->left = insertNode(node->left, val);
+            //std::cout << "insertNode02" << std::endl;
+            node->left = insertNode(node->left, data);
             node->left->parent = node;
         }
-        else
+        else //if (key_comp()(node->data.first, val.first))
         {
-            node->right = insertNode(node->right, val);
+            //std::cout << "insertNode03" << std::endl;
+            node->right = insertNode(node->right, data);
             node->right->parent = node;
+        }
+        if (!_ghost || !key_comp()(data.first, _GreatestData->data.first))
+        {	
+            if (_ghost)
+                !key_comp()(node->data.first, _GreatestData->data.first) ? _setGhost(true) : _setGhost(false);
+            else
+                _setGhost(true);
         }
         return node;
     }
 
+    template<class Key, class T, class Compare, class Alloc>
+    void    map<Key, T, Compare, Alloc>::_setGhost(bool add)
+    {
+        if (!_ghost)
+            _ghost = _node_alloc.allocate(1);
+        if (add)
+        {
+            _GreatestData = max_node(_root);
+            _GreatestData->right = _ghost;
+        }
+        if (size() == 0)
+            _GreatestData = NULL;
+        _ghost->right = NULL;
+        _ghost->left = NULL;
+        _ghost->parent = _GreatestData;
+    }
+
     template< class Key, class T, class Compare, class Alloc >
-    typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::delete_node(node_ptr node, int key)
+    typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::delete_node(node_ptr node, value_type data)
     {
         if (node == NULL)
             return node;
-        if (key > node->key)
+        if (key_comp()(node->data.first, data.first))
         {
-            node->right = delete_node(node->right, key);
+            node->right = delete_node(node->right, data);
             return node;
         }
-        else if (key < node->key)
+        else if (key_comp()(data.first, node->data.first))
         {
-            node->left = delete_node(node->left, key);
+            node->left = delete_node(node->left, data);
             return node;
         }
 
@@ -540,7 +571,7 @@ namespace ft
                 succParent->left = succ->right;
             else
                 succParent->right = succ->right;
-            node->key = succ->key;
+            node->data = succ->data;
             _node_alloc.destroy(&succ);
         }
         return node;
@@ -549,11 +580,11 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     void map< Key, T, Compare, Alloc >::PrintInOrder(node_ptr node)
     {
-        std::cout << "PrintInOrder00" << std::endl;
+        //std::cout << "PrintInOrder00" << std::endl;
         if (node != NULL)
         {
             PrintInOrder(node->left);
-            std::cout << node->key;
+            std::cout << node->data;
             PrintInOrder(node->right);
         }
         return;
