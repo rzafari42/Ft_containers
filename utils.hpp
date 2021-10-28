@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 23:55:41 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/28 11:26:45 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/28 13:46:57 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ namespace ft
             node = node->right;
         return node;
     }
-
 
     template <typename T>
     void	printPair(const T &iterator)

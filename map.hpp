@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/28 12:35:16 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/28 14:50:20 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,13 +141,13 @@ namespace ft
     }*/
 
     template< class Key, class T, class Compare, class Alloc >
-    map< Key, T, Compare, Alloc >::map(const key_compare& comp, const allocator_type& alloc) : _data(NULL), _alloc(alloc), _size(0), _max_size(0), _comp(comp), _root(NULL), _ghost(NULL)
+    map< Key, T, Compare, Alloc >::map(const key_compare& comp, const allocator_type& alloc) : _data(NULL), _alloc(alloc), _size(0), _max_size(0), _comp(comp), _root(NULL), _ghost(NULL), _GreatestData(NULL)
     {
     }
 
     template< class Key, class T, class Compare, class Alloc >
     template <class InputIterator>
-    map< Key, T, Compare, Alloc >::map(InputIterator first, InputIterator last, const key_compare& comp, const allocator_type& alloc) : _data(NULL), _alloc(alloc), _size(0), _max_size(0), _comp(comp), _root(NULL), _ghost(NULL)
+    map< Key, T, Compare, Alloc >::map(InputIterator first, InputIterator last, const key_compare& comp, const allocator_type& alloc) : _data(NULL), _alloc(alloc), _size(0), _max_size(0), _comp(comp), _root(NULL), _ghost(NULL), _GreatestData(NULL)
     {
         insert(first, last);
         return;
@@ -462,10 +462,10 @@ namespace ft
 
     //Binary Search Tree specific functions
     template< class Key, class T, class Compare, class Alloc >
-    typename map<Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::newNode(value_type &val)
+    typename map<Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::newNode(value_type &data)
     {
         node_ptr node = _node_alloc.allocate(1);
-        _alloc.construct(&node->data, val);
+        _alloc.construct(&node->data, data);
         
         node->right = NULL;
         node->left = NULL;
@@ -473,42 +473,20 @@ namespace ft
         return node;
     }
 
+    /*
+    IDK why my solution does not work well compare to jeahnne's one
+    
     template< class Key, class T, class Compare, class Alloc >
-    typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::insertNode(node_ptr node, value_type data)
+    typename map<Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::createGhost(node_ptr parent)
     {
-        //std::cout << "insertNode00" << std::endl;
-        if (!node || !_root || node == _ghost)
-        {
-            node = newNode(data);
-            if (!_root)
-                _root = node;
-            if (node == _ghost)
-                _GreatestData = node;
-            _size++;
-            //std::cout << "insertNode01" << std::endl;
-        }
-        else if (key_comp()(data.first, node->data.first))
-        {
-            //std::cout << "insertNode02" << std::endl;
-            node->left = insertNode(node->left, data);
-            node->left->parent = node;
-        }
-        else //if (key_comp()(node->data.first, val.first))
-        {
-            //std::cout << "insertNode03" << std::endl;
-            node->right = insertNode(node->right, data);
-            node->right->parent = node;
-        }
-        if (!_ghost || !key_comp()(data.first, _GreatestData->data.first))
-        {	
-            if (_ghost)
-                !key_comp()(node->data.first, _GreatestData->data.first) ? _setGhost(true) : _setGhost(false);
-            else
-                _setGhost(true);
-        }
+        node_ptr node = _node_alloc.allocate(1);
+    
+        node->right = NULL;
+        node->left = NULL;
+        node->parent = parent;
         return node;
     }
-
+    
     template<class Key, class T, class Compare, class Alloc>
     void    map<Key, T, Compare, Alloc>::_setGhost(bool add)
     {
@@ -524,6 +502,45 @@ namespace ft
         _ghost->right = NULL;
         _ghost->left = NULL;
         _ghost->parent = _GreatestData;
+    }*/
+
+    template< class Key, class T, class Compare, class Alloc >
+    typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::insertNode(node_ptr node, value_type data)
+    {
+        if (!node || !_root || node == _ghost)
+        {
+            node = newNode(data);
+            if (!_root)
+            {
+                _root = node;
+                //_ghost = createGhost(_root);
+            }
+            if (node == _ghost)
+            {
+                _GreatestData = node;
+                //_ghost = createGhost(_GreatestData);
+            }
+            _size++;
+        }
+        else if (key_comp()(data.first, node->data.first))
+        {
+            node->left = insertNode(node->left, data);
+            node->left->parent = node;
+        }
+        else
+        {
+            node->right = insertNode(node->right, data);
+            node->right->parent = node;
+        }
+        
+        /*if (!_ghost || !key_comp()(data.first, _GreatestData->data.first))
+        {	
+            if (_ghost)
+                !key_comp()(node->data.first, _GreatestData->data.first) ? _setGhost(node) : _setGhost(node);
+            else
+                _setGhost(node);
+        }*/
+        return node;
     }
 
     template< class Key, class T, class Compare, class Alloc >
@@ -584,6 +601,8 @@ namespace ft
         if (node != NULL)
         {
             PrintInOrder(node->left);
+            if (node == _ghost)
+                std::cout << "Ghost: ";
             std::cout << node->data;
             PrintInOrder(node->right);
         }
