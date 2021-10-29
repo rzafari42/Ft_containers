@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/28 18:38:59 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/29 16:14:09 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,6 @@ namespace ft
 
                 node_ptr delete_node(node_ptr node, value_type data);
                 void     PrintInOrder(node_ptr node);
-                void     _setGhost(bool add);
 
         private:
             T*                                          _data;
