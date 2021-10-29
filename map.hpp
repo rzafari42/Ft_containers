@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/28 14:50:20 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/29 11:19:25 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -473,8 +473,6 @@ namespace ft
         return node;
     }
 
-    /*
-    IDK why my solution does not work well compare to jeahnne's one
     
     template< class Key, class T, class Compare, class Alloc >
     typename map<Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::createGhost(node_ptr parent)
@@ -502,25 +500,31 @@ namespace ft
         _ghost->right = NULL;
         _ghost->left = NULL;
         _ghost->parent = _GreatestData;
-    }*/
+    }
 
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::insertNode(node_ptr node, value_type data)
     {
-        if (!node || !_root || node == _ghost)
+        if (!node || !_root || node == _ghost || !_ghost)
         {
             node = newNode(data);
             if (!_root)
-            {
                 _root = node;
-                //_ghost = createGhost(_root);
-            }
             if (node == _ghost)
-            {
                 _GreatestData = node;
-                //_ghost = createGhost(_GreatestData);
-            }
             _size++;
+            if (!_ghost)
+            {
+                _ghost = _node_alloc.allocate(1);
+                if (!_GreatestData)
+                {
+                    _GreatestData = max_node(_root);
+                    _GreatestData->right = _ghost;
+                }
+                _ghost->parent = _GreatestData;
+                _ghost->right = NULL;
+                _ghost->left = NULL;
+            }
         }
         else if (key_comp()(data.first, node->data.first))
         {
@@ -532,14 +536,12 @@ namespace ft
             node->right = insertNode(node->right, data);
             node->right->parent = node;
         }
-        
-        /*if (!_ghost || !key_comp()(data.first, _GreatestData->data.first))
-        {	
+        /*if (!key_comp()(data.first, _GreatestData->data.first))
+        {
             if (_ghost)
-                !key_comp()(node->data.first, _GreatestData->data.first) ? _setGhost(node) : _setGhost(node);
-            else
-                _setGhost(node);
+                !key_comp()(node->data.first, _GreatestData->data.first) ? _setGhost(true) : _setGhost(false);
         }*/
+
         return node;
     }
 

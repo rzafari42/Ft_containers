@@ -32,22 +32,15 @@ int main(void)
     ft::printPair(tmp.first);
     tmp = mp.insert(ft::map<T1, T2>::value_type(6, 120));
     ft::printPair(tmp.first);
+    
+    
     std::cout << "\nbegin\n" ;
     it = mp.begin();
     ft::printPair(it);
     std::cout << "end\n" ;
     it = mp.end();
+   
     ft::printPair(it);
-
-    for(size_t i = 0; i < mp.size(); i++)
-    {
-        std::cout << mp[i] << std::endl;
-    }
-    std::cout << std::endl;
-    for(size_t j = mp.size() - 1; j > 0; j--)
-    {
-        std::cout << mp[j] << std::endl;
-    }
 
     std::cout << "\nPrint In Order" << std::endl;
     mp.PrintInOrder(mp.get_root());
