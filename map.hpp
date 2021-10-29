@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/29 11:19:25 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/29 15:17:46 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -513,7 +513,7 @@ namespace ft
             if (node == _ghost)
                 _GreatestData = node;
             _size++;
-            if (!_ghost)
+            if (!_ghost || key_comp()(_GreatestData->data.first, data.first))
             {
                 _ghost = _node_alloc.allocate(1);
                 if (!_GreatestData)
@@ -536,12 +536,6 @@ namespace ft
             node->right = insertNode(node->right, data);
             node->right->parent = node;
         }
-        /*if (!key_comp()(data.first, _GreatestData->data.first))
-        {
-            if (_ghost)
-                !key_comp()(node->data.first, _GreatestData->data.first) ? _setGhost(true) : _setGhost(false);
-        }*/
-
         return node;
     }
 
