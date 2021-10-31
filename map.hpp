@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/29 16:14:07 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/31 18:53:24 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -268,10 +268,12 @@ namespace ft
     pair<typename map<Key, T, Compare, Alloc>::iterator, bool> map< Key, T, Compare, Alloc >::insert(const value_type& val)
     {
         ft::pair<iterator, bool> ret;
+        //std::cout << "INSERT00: " << val.first << " " << val.second << std::endl;
         if (count(val.first))
             ret.second = false;
         else
         {
+            //std::cout << "INSERT01: " << val.first << " " << val.second << std::endl;
             _root = insertNode(_root, val);
             ret.second = true;
         }
@@ -300,19 +302,20 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     void map< Key, T, Compare, Alloc >::erase(iterator position)
     {
-
+        (void)position;
     }
 
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::size_type map< Key, T, Compare, Alloc >::erase(const key_type& k)
     {
-
+        (void)k;
     }
 
     template< class Key, class T, class Compare, class Alloc >
     void map< Key, T, Compare, Alloc >::erase(iterator first, iterator last)
     {
-
+        (void)first;
+        (void)last;
     }
 
     template< class Key, class T, class Compare, class Alloc >
@@ -373,10 +376,13 @@ namespace ft
     {
         iterator it = begin();
         iterator ite = end();
-
+        
+        ite--;
+        //std::cout << "Find-ite " << ite->first << " " << ite->second << std::endl;
         while (it != ite)
         {
-            if (!key_comp()(it->first, k) && !key_comp()(k, it->first))
+            //std::cout << "FIND00: " <<  it->first << " " << it->second << std::endl;
+            if (!key_comp()(k, it->first) && !key_comp()(it->first, k))
                 return it;
             it++;
         }
@@ -418,39 +424,39 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::iterator map< Key, T, Compare, Alloc >::lower_bound(const key_type& k)
     {
-
-    }    
+        (void)k;
+    }
 
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::const_iterator map< Key, T, Compare, Alloc >::lower_bound(const key_type& k) const
     {
-
+        (void)k;
     } 
 
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::iterator map< Key, T, Compare, Alloc >::upper_bound(const key_type& k)
     {
-
+        (void)k;
     }    
 
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::const_iterator map< Key, T, Compare, Alloc >::upper_bound(const key_type& k) const
     {
-
+        (void)k;
     }
 
     template< class Key, class T, class Compare, class Alloc >
     ft::pair<typename ft::map<Key, T, Compare, Alloc>::iterator, typename ft::map< Key, T, Compare , Alloc >::iterator>
     map< Key, T, Compare, Alloc >::equal_range(const key_type& k)
     {
-
+        (void)k;
     }
 
     template< class Key, class T, class Compare, class Alloc >
     ft::pair<typename ft::map<Key, T, Compare, Alloc>::const_iterator, typename ft::map< Key, T, Compare , Alloc >::const_iterator>
     map< Key, T, Compare, Alloc >::equal_range(const key_type& k) const
     {
-
+        (void)k;
     }
 
     //Allocator
@@ -475,14 +481,36 @@ namespace ft
 
     
     template< class Key, class T, class Compare, class Alloc >
-    typename map<Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::createGhost(node_ptr parent)
+    void map< Key, T, Compare, Alloc >::createGhost(bool add)
     {
-        node_ptr node = _node_alloc.allocate(1);
-    
-        node->right = NULL;
-        node->left = NULL;
-        node->parent = parent;
-        return node;
+        if (!_ghost)
+            _ghost = _node_alloc.allocate(1);
+        if(add)
+        {
+            _GreatestData = max_node(_root);
+            _GreatestData->right = _ghost;
+        }
+        _ghost->right = NULL;
+        _ghost->left = NULL;
+        _ghost->parent = _GreatestData;
+
+    }
+
+    template<class Key, class T, class Compare, class Alloc>
+    void    map<Key, T, Compare, Alloc>::_setGhost(bool add)
+    {
+        if (!_ghost)
+            _ghost = _node_alloc.allocate(1);
+        if (add)
+        {   
+            _GreatestData = max_node(_root);
+            _GreatestData->right = _ghost;
+        }
+        if (size() == 0)
+            _GreatestData = NULL;
+        _ghost->right = NULL;
+        _ghost->left = NULL;
+        _ghost->parent = _GreatestData;
     }
 
     template< class Key, class T, class Compare, class Alloc >
@@ -496,15 +524,14 @@ namespace ft
             if (node == _ghost)
                 _GreatestData = node;
             _size++;
-            if (!_ghost || key_comp()(_GreatestData->data.first, data.first))
+            if (!_ghost)
             {
                 _ghost = _node_alloc.allocate(1);
-                if (!_GreatestData)
-                    _GreatestData = max_node(_root);
-                _GreatestData->right = _ghost;
-                _ghost->parent = _GreatestData;
                 _ghost->right = NULL;
                 _ghost->left = NULL;
+                _GreatestData = max_node(_root);
+                _GreatestData->right = _ghost;
+                _ghost->parent = _GreatestData;
             }
         }
         else if (key_comp()(data.first, node->data.first))
@@ -516,6 +543,12 @@ namespace ft
         {
             node->right = insertNode(node->right, data);
             node->right->parent = node;
+        }
+        if (key_comp()(_GreatestData->data.first, node->data.first))
+        {
+                _GreatestData = max_node(_root);
+                _GreatestData->right = _ghost;
+                _ghost->parent = _GreatestData;
         }
         return node;
     }
@@ -574,7 +607,6 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     void map< Key, T, Compare, Alloc >::PrintInOrder(node_ptr node)
     {
-        //std::cout << "PrintInOrder00" << std::endl;
         if (node != NULL)
         {
             PrintInOrder(node->left);

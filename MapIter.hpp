@@ -99,7 +99,7 @@ namespace ft
             while (_node && tmp == _node->left)
             {
                 tmp = _node;
-                _node = _node->parents;        
+                _node = _node->parent;        
             }
         }
         return *this;

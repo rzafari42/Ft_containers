@@ -23,28 +23,28 @@ int main(void)
     std::cout << std::boolalpha;
 
     tmp = mp.insert(ft::map<T1, T2>::value_type(1, 20));
-    ft::printPair(tmp.first);
+    ft::printPairs(tmp.first);
     tmp = mp.insert(ft::map<T1, T2>::value_type(2, 40));
-    ft::printPair(tmp.first);
+    ft::printPairs(tmp.first);
     tmp = mp.insert(ft::map<T1, T2>::value_type(3, 60));
-    ft::printPair(tmp.first);
+    ft::printPairs(tmp.first);
     tmp = mp.insert(ft::map<T1, T2>::value_type(4, 80));
-    ft::printPair(tmp.first);
+    ft::printPairs(tmp.first);
     tmp = mp.insert(ft::map<T1, T2>::value_type(5, 100));
-    ft::printPair(tmp.first);
+    ft::printPairs(tmp.first);
     tmp = mp.insert(ft::map<T1, T2>::value_type(6, 120));
-    ft::printPair(tmp.first);
+    ft::printPairs(tmp.first);
     tmp = mp.insert(ft::map<T1, T2>::value_type(-3, -120));
-    ft::printPair(tmp.first);
+    ft::printPairs(tmp.first);
     tmp = mp.insert(ft::map<T1, T2>::value_type(3, 25));
-    ft::printPair(tmp.first);
+    ft::printPairs(tmp.first);
 
     std::cout << "\nbegin\n" ;
     it = mp.begin();
-    ft::printPair(it);
+    ft::printPairs(it);
     std::cout << "end\n" ;
     it = mp.end();
-    ft::printPair(it);
+    ft::printPairs(it);
     std::cout << "\nPrint In Order" << std::endl;
     mp.PrintInOrder(mp.get_root());
 
@@ -54,28 +54,28 @@ int main(void)
     std::pair<std::map<T1,T2>::iterator, bool> tmps;
     
     tmps = mps.insert(std::map<T1, T2>::value_type(1, 20));
-    ft::printPair(tmps.first);
+    ft::printPairs(tmps.first);
     tmps = mps.insert(std::map<T1, T2>::value_type(2, 40));
-    ft::printPair(tmps.first);
+    ft::printPairs(tmps.first);
     tmps = mps.insert(std::map<T1, T2>::value_type(3, 60));
-    ft::printPair(tmps.first);
+    ft::printPairs(tmps.first);
     tmps = mps.insert(std::map<T1, T2>::value_type(4, 80));
-    ft::printPair(tmps.first);
+    ft::printPairs(tmps.first);
     tmps = mps.insert(std::map<T1, T2>::value_type(5, 100));
-    ft::printPair(tmps.first);
+    ft::printPairs(tmps.first);
     tmps = mps.insert(std::map<T1, T2>::value_type(6, 120));
-    ft::printPair(tmps.first);
+    ft::printPairs(tmps.first);
     tmps = mps.insert(std::map<T1, T2>::value_type(-3, -120));
-    ft::printPair(tmps.first);
+    ft::printPairs(tmps.first);
     tmps = mps.insert(std::map<T1, T2>::value_type(3, 25));
-    ft::printPair(tmps.first);
+    ft::printPairs(tmps.first);
 
     std::cout << "\nbegin\n" ;
     it = mp.begin();
-    ft::printPair(it);
+    ft::printPairs(it);
     std::cout << "end\n" ;
     it = mp.end();
-    ft::printPair(it);
+    ft::printPairs(it);
     std::cout << "\nPrint In Order" << std::endl;
     mp.PrintInOrder(mp.get_root());
 
