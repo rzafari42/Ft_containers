@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 09:39:49 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/27 12:26:29 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/09/29 11:35:24 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ namespace ft
             void                push (const value_type& val);
             void                pop();
         
+        protected:
             container_type      _ctnr;
     };
     

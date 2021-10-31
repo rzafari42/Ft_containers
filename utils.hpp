@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 23:55:41 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/24 12:07:34 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/29 23:15:11 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,40 @@ namespace ft
             ++first1; ++first2;
         }
         return (first2!=last2);
+    }
+
+     ////////////////////////
+    //        NODE       //
+    ///////////////////////
+    template<class T>
+    struct Node
+    {
+        T       data;
+        Node    *right;
+        Node    *left;
+        Node    *parent;
+    };
+
+    template< class T >
+    Node<T>* min_node(Node<T>* node)
+    {
+        while (node && node->left != NULL)
+            node = node->left;
+        return node;
+    }
+
+    template< class T >
+    Node<T>* max_node(Node<T>* node)
+    {
+        while (node && node->right != NULL)
+            node = node->right;
+        return node;
+    }
+
+    template <typename T>
+    void	printPairs(const T &iterator)
+    {
+        std::cout << "key: " << iterator->first << " | value: " << iterator->second << std::endl;
     }
 }
 

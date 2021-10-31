@@ -6,86 +6,127 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/28 17:29:17 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/31 18:43:47 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef  MAP_CLASS_HPP
 # define MAP_CLASS_HPP
 # include <memory>
-# include <map>
 # include <utility>
+# include <iostream>
 # include "RandAccess.hpp"
 # include "Reverse.hpp"
-# include <iterator>
+# include "MapIter.hpp"
+# include "utils.hpp"
 
 namespace ft 
 {
-    template < class Key, class T, class Compare = std::less<Key>, class Alloc = std::allocator<std::pair<const Key,T>> > 
+    ////////////////////////
+    //        LESS       //
+    ///////////////////////
+    template <class T> 
+    struct less : std::binary_function <T,T,bool> 
+    {
+        bool operator() (const T& x, const T& y) const {return x<y;}
+    };
+
+    ////////////////////////
+    //        PAIR       //
+    ///////////////////////
+    template < class T1, class T2>
+    struct pair
+    {
+        typedef T1 first_type;
+        typedef T2 second_type;
+        typedef ft::pair<T1, T2> value_type;
+
+        first_type  first;
+        second_type second;
+
+        pair() : first(), second() { return ;}
+        template<class U, class V>
+            pair (const pair<U,V>& pr) : first(pr.first), second(pr.second) {return;}
+        pair (const first_type& a, const second_type& b) : first(a), second(b) { return; }
+        pair& operator=(const pair& pr) {first = pr.first; second = pr.second; return *this; }
+   };
+
+    template <class T1, class T2>
+    bool operator== (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) { return (lhs.first = rhs.first && lhs.second = rhs.second);}
+
+    template <class T1, class T2>
+    bool operator!= (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) { return (lhs.first != rhs.first && lhs.second != rhs.second);}
+
+    template <class T1, class T2>
+    bool operator< (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) { return (lhs.first < rhs.second && lhs.second < rhs.second);}
+
+    template <class T1, class T2>
+    bool operator<= (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) { return (lhs.first <= rhs.second && lhs.second <= rhs.second);}
+
+    template <class T1, class T2>
+    bool operator> (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) { return (lhs.first > rhs.second && lhs.second > rhs.second);}
+
+    template <class T1, class T2>
+    bool operator>= (const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) { return (lhs.first >= rhs.second && lhs.second >= rhs.second);}
+
+    ////////////////////////
+    //       MAKE_PAIR   //
+    ///////////////////////
+    template <class T1,class T2>
+    ft::pair<T1,T2> make_pair (T1 x, T2 y)
+    {
+        return ( ft::pair<T1,T2>(x,y) );
+    }
+
+    template< class T1, class T2 >
+    std::ostream & operator<<( std::ostream & flux, ft::pair<T1, T2> const & rhs)
+    {
+        flux << rhs.second << std::endl;
+        return flux;
+    }
+
+    ////////////////////////
+    //        MAP        //
+    ///////////////////////
+
+    template < class Key, class T, class Compare = less<Key>, class Alloc = std::allocator<pair<const Key,T> > >
     class map
     {
         public:
             typedef Key                                         key_type;
             typedef T                                           mapped_type;
-            typedef std::pair<const key_type,mapped_type>       value_type;
+            typedef pair<const key_type, mapped_type>			value_type;
             typedef Compare                                     key_compare;
             typedef Alloc                                       allocator_type;
-            typedef typename allocator_type::refence            reference;
+            typedef typename allocator_type::reference          reference;
             typedef typename allocator_type::const_reference    const_reference;
             typedef typename allocator_type::pointer            pointer;
             typedef typename allocator_type::const_pointer      const_pointer;
             typedef size_t                                      size_type;
             typedef ptrdiff_t                                   difference_type;
+            typedef ft::Node<value_type>                        node_type;
+            typedef node_type*                                  node_ptr;
 
-        class iterator : public Bidirect<value_type>
+        class value_compare
         {
+            friend class map;
+            protected:
+                Compare comp;
+                value_compare (Compare c) : comp(c) {};
+
             public:
-                typedef value_type&         reference;
-                typedef value_type const&   reference;
-                typedef value_type*         pointer;
-                typedef ptrdiff_t           difference_type;
-
-            public : 
-                iterator();
-                iterator(T *src);
-                iterator(iterator const& src);
-                iterator(const Bidirect<value_type>& src);
-                virtual ~iterator();
-
-                iterator& operator++();
-                iterator  opeator++(int);
-                iterator& operator--();
-                iterator  operator--(int);
-    
-                reference operator*() const;
-                pointer   operator->() const;
-        };
-
-        class const_iterator : public Bidirect<value_tpe>
-        {
-            public:
-                typedef value_type&         reference;
-                typedef value_type const&   reference;
-                typedef value_type*         pointer;
-                typedef ptrdiff_t           difference_type;
-
-            public : 
-                const_iterator();
-                const_iterator(T *src);
-                const_iterator(iterator const& src);
-                const_iterator(const Bidirect<value_type>& src);
-                virtual ~const_iterator();
-
-                const_iterator& operator++();
-                const_iterator  opeator++(int);
-                const_iterator& operator--();
-                const_iterator  operator--(int);
-    
-                reference operator*() const;
-                pointer   operator->() const;
+                typedef bool result_type;
+                typedef value_type first_argument_type;
+                typedef value_type second_argument_type;
+                bool operator() (const value_type& x, const value_type& y) const 
+                {
+                    return comp(x.first, y.first);
+                }
         };
 
         public:
+            typedef ft::MapIter<value_type, node_type>          iterator;
+            typedef ft::MapIter<const value_type, node_type>    const_iterator;
             typedef ft::reverse_iterator<iterator>              reverse_iterator;
             typedef ft::reverse_iterator<const_iterator>        const_reverse_iterator;
 
@@ -101,7 +142,7 @@ namespace ft
                 ~map();
 
                 //Operator=
-                map& operator= (const map& x);
+                map& operator=(const map& x);
 
                 //Iterators
                 iterator begin();
@@ -122,12 +163,12 @@ namespace ft
                 mapped_type& operator[] (const key_type& k);
 
                 //Modifiers
-                pair<iterator,bool> insert (const value_type& val);
+                pair<iterator,bool> insert(const value_type& val);
                 iterator insert (iterator position, const value_type& val);
                 template <class InputIterator>
                     void insert (InputIterator first, InputIterator last);
-                
-                void erase (iterator position);
+
+                void erase(iterator position);
                 size_type erase (const key_type& k);
                 void erase (iterator first, iterator last);
 
@@ -137,7 +178,7 @@ namespace ft
                 //Observers
                 key_compare key_comp() const;
                 value_compare value_comp() const;
-                
+
                 //Operation
                 iterator find (const key_type& k);
                 const_iterator find (const key_type& k) const;
@@ -145,12 +186,33 @@ namespace ft
                 iterator lower_bound (const key_type& k);
                 const_iterator lower_bound (const key_type& k) const;
                 iterator upper_bound (const key_type& k);
-                const_iterator upper_bound (const key_type& k) const;
-                pair<const_iterator,const_iterator> equal_range (const key_type& k) const;
+                const_iterator upper_bound (const key_type& k ) const;
                 pair<iterator,iterator>             equal_range (const key_type& k);
+                pair<const_iterator,const_iterator> equal_range (const key_type& k) const;
 
                 //Allocator
                 allocator_type get_allocator() const;
+
+                //Binary Search Tree specific functions
+                node_ptr newNode(value_type &data);
+                void createGhost(bool add);
+                node_ptr insertNode(node_ptr node, value_type data);
+                void _setGhost(bool add);
+                node_ptr delete_node(node_ptr node, value_type data);
+                void     PrintInOrder(node_ptr node);
+
+        private:
+            T*                                          _data;
+            allocator_type                              _alloc;
+            size_type                                   _size;
+            size_type                                   _max_size;
+            key_compare                                 _comp;
+            std::allocator<node_type>                   _node_alloc;
+            node_ptr                                    _root;
+            node_ptr                                    _ghost;
+            node_ptr                                    _GreatestData;
+         public:
+            node_ptr    get_root(){ return this->_root;};
     };
 }
 #endif

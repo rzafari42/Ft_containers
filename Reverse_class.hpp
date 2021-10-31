@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 12:07:10 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/24 12:07:40 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/11 15:50:35 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,18 @@ namespace ft
 
             //Non-Member function overloads
             //Relational operators
-            template <class Iter>
-                bool operator==(const reverse_iterator<Iter>& rhs) const;
-            template <class Iter>
-                bool operator!=(const reverse_iterator<Iter>& rhs) const;
-            template <class Iter>
-                bool operator<(const reverse_iterator<Iter>& rhs) const;
-            template <class Iter>
-                bool operator<=(const reverse_iterator<Iter>& rhs) const;
-            template <class Iter>
-                bool operator>(const reverse_iterator<Iter>& rhs) const;
-            template <class Iter>
-                bool operator>=(const reverse_iterator<Iter>& rhs) const;
+                template <class Iter>
+                    bool operator==(const reverse_iterator<Iter>& rhs) const;
+                template <class Iter>
+                    bool operator!=(const reverse_iterator<Iter>& rhs) const;
+                template <class Iter>
+                    bool operator<(const reverse_iterator<Iter>& rhs) const;
+                template <class Iter>
+                    bool operator<=(const reverse_iterator<Iter>& rhs) const;
+                template <class Iter>
+                    bool operator>(const reverse_iterator<Iter>& rhs) const;
+                template <class Iter>
+                    bool operator>=(const reverse_iterator<Iter>& rhs) const;
     };
 }
 
