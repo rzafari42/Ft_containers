@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/31 18:53:24 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/31 19:36:32 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -479,40 +479,6 @@ namespace ft
         return node;
     }
 
-    
-    template< class Key, class T, class Compare, class Alloc >
-    void map< Key, T, Compare, Alloc >::createGhost(bool add)
-    {
-        if (!_ghost)
-            _ghost = _node_alloc.allocate(1);
-        if(add)
-        {
-            _GreatestData = max_node(_root);
-            _GreatestData->right = _ghost;
-        }
-        _ghost->right = NULL;
-        _ghost->left = NULL;
-        _ghost->parent = _GreatestData;
-
-    }
-
-    template<class Key, class T, class Compare, class Alloc>
-    void    map<Key, T, Compare, Alloc>::_setGhost(bool add)
-    {
-        if (!_ghost)
-            _ghost = _node_alloc.allocate(1);
-        if (add)
-        {   
-            _GreatestData = max_node(_root);
-            _GreatestData->right = _ghost;
-        }
-        if (size() == 0)
-            _GreatestData = NULL;
-        _ghost->right = NULL;
-        _ghost->left = NULL;
-        _ghost->parent = _GreatestData;
-    }
-
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::insertNode(node_ptr node, value_type data)
     {
@@ -546,9 +512,11 @@ namespace ft
         }
         if (key_comp()(_GreatestData->data.first, node->data.first))
         {
-                _GreatestData = max_node(_root);
-                _GreatestData->right = _ghost;
-                _ghost->parent = _GreatestData;
+            _ghost->right = NULL;
+            _ghost->left = NULL;
+            _GreatestData = max_node(_root);
+            _GreatestData->right = _ghost;
+            _ghost->parent = _GreatestData;
         }
         return node;
     }
