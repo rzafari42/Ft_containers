@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/31 19:36:32 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/10/31 20:49:06 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,7 +260,7 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc>::mapped_type& map< Key, T, Compare, Alloc >::operator[] (const key_type& k)
     {
-        return (*((this->insert(make_pair(k, mapped_type()))).first)).second;
+        return (*((this->insert(ft::make_pair(k, mapped_type()))).first)).second;
     }
 
     //Modifiers
@@ -268,12 +268,10 @@ namespace ft
     pair<typename map<Key, T, Compare, Alloc>::iterator, bool> map< Key, T, Compare, Alloc >::insert(const value_type& val)
     {
         ft::pair<iterator, bool> ret;
-        //std::cout << "INSERT00: " << val.first << " " << val.second << std::endl;
         if (count(val.first))
             ret.second = false;
         else
         {
-            //std::cout << "INSERT01: " << val.first << " " << val.second << std::endl;
             _root = insertNode(_root, val);
             ret.second = true;
         }
@@ -377,11 +375,8 @@ namespace ft
         iterator it = begin();
         iterator ite = end();
         
-        ite--;
-        //std::cout << "Find-ite " << ite->first << " " << ite->second << std::endl;
         while (it != ite)
         {
-            //std::cout << "FIND00: " <<  it->first << " " << it->second << std::endl;
             if (!key_comp()(k, it->first) && !key_comp()(it->first, k))
                 return it;
             it++;
@@ -397,11 +392,11 @@ namespace ft
 
         while (it != ite)
         {
-            if (!key_comp()(it->first, k) && !key_comp()(k, it->first))
+            if (!key_comp()(k, it->first) && !key_comp()(it->first, k))
                 return it;
             it++;
         }
-        return ++ite;
+        return ite;
     }
 
     template< class Key, class T, class Compare, class Alloc >
@@ -424,39 +419,85 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::iterator map< Key, T, Compare, Alloc >::lower_bound(const key_type& k)
     {
-        (void)k;
+        iterator it = begin();
+        iterator ite = end();
+
+        while (it != ite)
+        {
+            if (!key_comp()(it->first, k))
+                return it;
+            it++;
+        }
+        return ite;
     }
 
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::const_iterator map< Key, T, Compare, Alloc >::lower_bound(const key_type& k) const
     {
-        (void)k;
+        const_iterator it = begin();
+        const_iterator ite = end();
+
+        while (it != ite)
+        {
+            if (!key_comp()(it->first, k))
+                return it;
+            it++;
+        }
+        return ite;
     } 
 
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::iterator map< Key, T, Compare, Alloc >::upper_bound(const key_type& k)
     {
-        (void)k;
+        iterator it = begin();
+        iterator ite = end();
+
+        while (it != ite)
+        {
+            if (key_comp()(k, it->first))
+                return it;
+            it++;
+        }
+        return ite;
     }    
 
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::const_iterator map< Key, T, Compare, Alloc >::upper_bound(const key_type& k) const
     {
-        (void)k;
+        const_iterator it = begin();
+        const_iterator ite = end();
+
+        while (it != ite)
+        {
+            if (key_comp()(k, it->first))
+                return it;
+            it++;
+        }
+        return ite;
     }
 
     template< class Key, class T, class Compare, class Alloc >
     ft::pair<typename ft::map<Key, T, Compare, Alloc>::iterator, typename ft::map< Key, T, Compare , Alloc >::iterator>
     map< Key, T, Compare, Alloc >::equal_range(const key_type& k)
     {
-        (void)k;
+        ft::pair<iterator, iterator> ret;
+
+        ret.first = lower_bound(k);
+        ret.second = upper_bound(k);
+
+        return ret;
     }
 
     template< class Key, class T, class Compare, class Alloc >
     ft::pair<typename ft::map<Key, T, Compare, Alloc>::const_iterator, typename ft::map< Key, T, Compare , Alloc >::const_iterator>
     map< Key, T, Compare, Alloc >::equal_range(const key_type& k) const
     {
-        (void)k;
+        ft::pair<const_iterator, const_iterator> ret;
+
+        ret.first = lower_bound(k);
+        ret.second = upper_bound(k);
+
+        return ret;
     }
 
     //Allocator
