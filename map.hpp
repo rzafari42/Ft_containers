@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/31 20:49:06 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/01 19:03:54 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,14 +173,14 @@ namespace ft
     {
         if (this != &x)
         {
-            x._data = this->_data;
-            x._alloc = this->_alloc;
-            x._size = this->_size;
-            x._max_size = this->_max_size;
-            x._comp = this->_comp;
-            x._node_alloc = this->_node_alloc;
-            x._root = this->_root;
-            x._ghost = this->_ghost;
+            this->_data = x._data;
+            this->_alloc = x._alloc;
+            this->_size = x._size;
+            this->_max_size = x._max_size;
+            this->_comp = x._comp;
+            this->_node_alloc = x._node_alloc;
+            this->_root = x._root;
+            this->_ghost = x._ghost;
         }
         return *this;
     }
@@ -352,7 +352,12 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     void map< Key, T, Compare, Alloc >::clear()
     {
-
+        for (size_type i = 0; i < _size; i++)
+            _alloc.destroy(&_root->data);
+        _size = 0;
+        _ghost =  NULL;
+        _GreatestData = NULL;
+        _root = NULL;
     }
 
     //Observers
@@ -374,14 +379,16 @@ namespace ft
     {
         iterator it = begin();
         iterator ite = end();
-        
+
+        iterator its = end();
+
         while (it != ite)
         {
             if (!key_comp()(k, it->first) && !key_comp()(it->first, k))
                 return it;
             it++;
         }
-        return ite;
+        return ++ite;
     }
 
     template< class Key, class T, class Compare, class Alloc >
@@ -396,7 +403,7 @@ namespace ft
                 return it;
             it++;
         }
-        return ite;
+        return ++ite;
     }
 
     template< class Key, class T, class Compare, class Alloc >
@@ -528,7 +535,7 @@ namespace ft
             node = newNode(data);
             if (!_root)
                 _root = node;
-            if (node == _ghost)
+            else if (node == _ghost)
                 _GreatestData = node;
             _size++;
             if (!_ghost)

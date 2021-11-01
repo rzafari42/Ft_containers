@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:34:57 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/26 11:41:09 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/01 19:53:22 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ namespace ft
             MapIter(Node *src);
             virtual ~MapIter();
             MapIter&  operator=(MapIter const& rhs);
-
+            operator MapIter<const T, Node>(void) const { return MapIter<const T, Node>(this->_node); };
 
             bool operator==(MapIter const& rhs);
             bool operator!=(MapIter const& rhs);
