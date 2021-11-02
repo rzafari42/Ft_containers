@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/02 22:31:33 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/02 22:48:35 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ namespace ft
     }
 
     template< class Key, class T, class Compare, class Alloc >
-    map<Key, T, Compare, Alloc>::map(map const &x) :_data(x._data), _alloc(x._alloc), _size(x._size), _max_size(x._max_size),  _comp(x._comp), _node_alloc(x._node_alloc)
+    map<Key, T, Compare, Alloc>::map(map const &x) : _alloc(x._alloc), _size(x._size), _max_size(x._max_size),  _comp(x._comp), _node_alloc(x._node_alloc)
     {
         clear();
         insert(x.begin(), x.end());
@@ -53,14 +53,11 @@ namespace ft
         {
             clear();
             insert(x.begin(), x.end());
-            this->_data = x._data;
             this->_alloc = x._alloc;
             this->_size = x._size;
             this->_max_size = x._max_size;
             this->_comp = x._comp;
             this->_node_alloc = x._node_alloc;
-            this->_root = x._root;
-            this->_ghost = x._ghost;
         }
         return *this;
     }
