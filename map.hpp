@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/01 19:03:54 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/01 21:17:35 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -300,20 +300,34 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     void map< Key, T, Compare, Alloc >::erase(iterator position)
     {
-        (void)position;
+        _root = delete_node(_root, value_type(position->first, position->second));
+        --_size;
     }
 
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::size_type map< Key, T, Compare, Alloc >::erase(const key_type& k)
     {
-        (void)k;
+        iterator it = find(k);
+
+        if (it == end())
+            return 0;
+        else
+        {
+            _root = delete_node(_root, value_type(k, it->second));
+            --_size;
+        }
+        return 1;
     }
 
     template< class Key, class T, class Compare, class Alloc >
     void map< Key, T, Compare, Alloc >::erase(iterator first, iterator last)
     {
-        (void)first;
-        (void)last;
+        while (first != last)
+        {
+            _root = delete_node(_root, value_type(first->first, first->second));
+            _size--;
+            first++;
+        }
     }
 
     template< class Key, class T, class Compare, class Alloc >
@@ -379,8 +393,6 @@ namespace ft
     {
         iterator it = begin();
         iterator ite = end();
-
-        iterator its = end();
 
         while (it != ite)
         {
@@ -589,14 +601,14 @@ namespace ft
         {
             node_ptr tmp = node->right;
             tmp->parent = node->parent;
-            _node_alloc.destroy(&node);
+            _alloc.destroy(&node->data);
             return tmp;
         }
         else if (node->right == NULL || node->right == _ghost)
         {
             node_ptr tmp = node->left;
             tmp->parent = node->parent;
-            _node_alloc.destroy(&node);
+            _alloc.destroy(&node->data);
             return tmp;
         }
         //2 Children case: Get the inOrder successor (smallest in the right subtree)
@@ -615,7 +627,7 @@ namespace ft
             else
                 succParent->right = succ->right;
             node->data = succ->data;
-            _node_alloc.destroy(&succ);
+            _alloc.destroy(&succ->data);
         }
         return node;
     }
