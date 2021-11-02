@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/01 21:55:20 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/02 15:27:42 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ namespace ft
     ////////////////////////
     //        PAIR       //
     ///////////////////////
-   template <class T1, class T2> struct pair
+   template <class T1, class T2> 
+   struct pair
 	{
 		typedef T1	first_type;
 		typedef T2	second_type;
@@ -42,14 +43,12 @@ namespace ft
 		first_type	first;
 		second_type	second;
 
-		pair(void) : first(), second() { return ;};
+		pair(void) : first(), second() { return; };
 		template<class U, class V>
-		pair(const pair<U,V>& pr) : first(pr.first), second(pr.second) { return ; };
-		pair(const first_type& a, const second_type& b) : first(a), second(b) { return ; };
+		    pair(const pair<U,V>& pr) : first(pr.first), second(pr.second) { return; };
+		pair(const first_type& a, const second_type& b) : first(a), second(b) { return; };
 		pair& operator=(const pair& pr) { first = pr.first; second = pr.second; return *this; };
-        operator pair<const T1, const T2>(void) const { return pair<const T1, const T2>(this->_node); };
-	
-    };
+	};
 
     template <class T1, class T2>
     bool operator==(const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) { return (lhs.first == rhs.first && lhs.second == rhs.second); };
@@ -75,7 +74,7 @@ namespace ft
     template <class T1,class T2>
     ft::pair<T1,T2> make_pair (T1 x, T2 y)
     {
-        return ( ft::pair<T1,T2>(x,y) );
+        return (ft::pair<T1,T2>(x,y));
     }
 
     template< class T1, class T2 >
@@ -211,6 +210,7 @@ namespace ft
             node_ptr                                    _root;
             node_ptr                                    _ghost;
             node_ptr                                    _GreatestData;
+        
          public:
             node_ptr    get_root(){ return this->_root;};
     };
