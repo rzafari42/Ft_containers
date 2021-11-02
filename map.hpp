@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/02 15:50:54 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/02 19:00:37 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ namespace ft
     }
 
     template< class Key, class T, class Compare, class Alloc >
-    map< Key, T, Compare, Alloc >::map(const map& x)
+    map<Key, T, Compare, Alloc>::map(map const &x) : _data(), _alloc(allocator_type()),  _size(0), _comp(key_compare())
     {
+        this->_data = new node_type;
         *this = x;
-        return;
     }
 
     template <class Key, class T, class Compare, class Alloc >
@@ -47,9 +47,10 @@ namespace ft
     template <class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc >& map< Key, T, Compare, Alloc >::operator=(const map& x)
     {
-        std::cout << "Operator=00" << std::endl;
         if (this != &x)
         {
+            clear();
+            insert(x.begin(), x.end());
             this->_data = x._data;
             this->_alloc = x._alloc;
             this->_size = x._size;
@@ -461,33 +462,25 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::delete_node(node_ptr node, value_type data)
     {
-        std::cout << "delete_Node00" << std::endl;
         if (node == NULL)
-        {
-            std::cout << "delete_Node01" << std::endl;
             return node;
-        }
         if (key_comp()(node->data.first, data.first))
         {
-            std::cout << "delete_Node02" << std::endl;
             node->right = delete_node(node->right, data);
             return node;
         }
         else if (key_comp()(data.first, node->data.first))
         {
-            std::cout << "delete_Node03" << std::endl;
             node->left = delete_node(node->left, data);
             return node;
         }
         if (node->left == NULL && node->right == NULL)
         {
-            std::cout << "delete_Node04" << std::endl;
             _alloc.destroy(&node->data);
             return NULL;
         }
         if (node->left == NULL)
         {
-            std::cout << "delete_Node05" << std::endl;
             node_ptr tmp = node->right;
             tmp->parent = node->parent;
             _alloc.destroy(&node->data);
@@ -495,7 +488,6 @@ namespace ft
         }
         else if (node->right == NULL || node->right == _ghost)
         {
-            std::cout << "delete_Node06" << std::endl;
             node_ptr tmp = node->left;
             tmp->parent = node->parent;
             _alloc.destroy(&node->data);

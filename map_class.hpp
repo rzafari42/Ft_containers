@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/02 15:27:42 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/02 18:52:18 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,7 @@ namespace ft
                 void     PrintInOrder(node_ptr node);
 
         private:
-            T*                                          _data;
+            node_ptr                                    _data;
             allocator_type                              _alloc;
             size_type                                   _size;
             size_type                                   _max_size;

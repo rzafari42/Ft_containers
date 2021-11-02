@@ -67,7 +67,6 @@ namespace ft
         else if (_node->parent)
         {
             Node  *tmp = _node;
-    
             _node = _node->parent;
             while (_node && tmp == _node->right)
             {
@@ -90,11 +89,10 @@ namespace ft
     MapIter<T, Node >& MapIter<T, Node>::operator--()
     {
         if (_node->left)
-            _node = max_node(_node->right);
+            _node = max_node(_node->left);
         else if (_node->parent)
         {
             Node  *tmp = _node;
-    
             _node = _node->parent;
             while (_node && tmp == _node->left)
             {
