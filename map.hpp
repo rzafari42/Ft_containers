@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/02 19:00:37 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/02 22:31:33 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ namespace ft
     }
 
     template< class Key, class T, class Compare, class Alloc >
-    map<Key, T, Compare, Alloc>::map(map const &x) : _data(), _alloc(allocator_type()),  _size(0), _comp(key_compare())
+    map<Key, T, Compare, Alloc>::map(map const &x) :_data(x._data), _alloc(x._alloc), _size(x._size), _max_size(x._max_size),  _comp(x._comp), _node_alloc(x._node_alloc)
     {
-        this->_data = new node_type;
-        *this = x;
+        clear();
+        insert(x.begin(), x.end());
     }
 
     template <class Key, class T, class Compare, class Alloc >
@@ -47,7 +47,9 @@ namespace ft
     template <class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc >& map< Key, T, Compare, Alloc >::operator=(const map& x)
     {
-        if (this != &x)
+        if (this == &x)
+            return *this;
+        else
         {
             clear();
             insert(x.begin(), x.end());
