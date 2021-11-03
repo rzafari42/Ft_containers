@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/03 16:37:58 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/03 16:59:41 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,14 +230,14 @@ namespace ft
         _root = x._root;
         _ghost = x._ghost;
 
-        x._data = _data;
-        x._alloc = _alloc;
-        x._size = _size;
-        x._max_size = _max_size;
-        x._comp = _comp;
-        x._node_alloc = _node_alloc;
-        x._root = _root;
-        x._ghost = _ghost;
+        x._data = tmp._data;
+        x._alloc = tmp._alloc;
+        x._size = tmp._size;
+        x._max_size = tmp._max_size;
+        x._comp = tmp._comp;
+        x._node_alloc = tmp._node_alloc;
+        x._root = tmp._root;
+        x._ghost = tmp._ghost;
     }
 
     template< class Key, class T, class Compare, class Alloc >
