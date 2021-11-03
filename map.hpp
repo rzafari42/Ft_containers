@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/03 16:59:41 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/03 18:20:52 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,12 +185,14 @@ namespace ft
     typename map< Key, T, Compare, Alloc >::size_type map< Key, T, Compare, Alloc >::erase(const key_type& k)
     {
         iterator it = find(k);
+        node_ptr tmp = _root;
 
         if (it == end())
             return 0;
         else
         {
-            _root = delete_node(_root, value_type(k, it->second));
+            _root = delete_node(_root, value_type(it->first, it->second));
+            _root = tmp;
             --_size;
         }
         return 1;
@@ -459,6 +461,7 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::delete_node(node_ptr node, value_type data)
     {
+        std::cout << "deleteNode00" << std::endl;
         if (node == NULL)
             return node;
         if (key_comp()(node->data.first, data.first))
@@ -495,7 +498,7 @@ namespace ft
         {
             node_ptr succParent = node;
             node_ptr succ = min_node(node->right);
-            while (node->left != NULL)
+            while (succ->left != NULL)
             {
                 succParent = node;
                 succ = succParent->left;
@@ -515,6 +518,7 @@ namespace ft
 		_alloc.construct(&node->data, tmp->data);
 		node->right = delete_node(node->right, tmp->data);
         }*/
+
         return node;
     }
 
