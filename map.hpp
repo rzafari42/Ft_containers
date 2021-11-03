@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/02 22:48:35 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/03 16:37:58 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -419,23 +419,19 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::insertNode(node_ptr node, value_type data)
     {
-        if (!node || !_root || node == _ghost || !_ghost)
+        if (!_root || !node || node == _ghost )
         {
             node = newNode(data);
             if (!_root)
                 _root = node;
-            else if (node == _ghost)
-                _GreatestData = node;
-            _size++;
-            if (!_ghost)
+            if (node == _ghost)
             {
-                _ghost = _node_alloc.allocate(1);
+                _GreatestData = node;
+                _ghost->parent = _GreatestData;
                 _ghost->right = NULL;
                 _ghost->left = NULL;
-                _GreatestData = max_node(_root);
-                _GreatestData->right = _ghost;
-                _ghost->parent = _GreatestData;
             }
+            _size++;
         }
         else if (key_comp()(data.first, node->data.first))
         {
@@ -447,12 +443,14 @@ namespace ft
             node->right = insertNode(node->right, data);
             node->right->parent = node;
         }
-        if (key_comp()(_GreatestData->data.first, node->data.first))
-        {
-            _ghost->right = NULL;
-            _ghost->left = NULL;
+        if (!_ghost || key_comp()(_GreatestData->data.first, data.first))
+        {	
+            if (!_ghost)
+                _ghost = _node_alloc.allocate(1);
             _GreatestData = max_node(_root);
             _GreatestData->right = _ghost;
+            _ghost->right = NULL;
+            _ghost->left = NULL;
             _ghost->parent = _GreatestData;
         }
         return node;
