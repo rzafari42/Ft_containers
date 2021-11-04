@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/04 14:30:43 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/04 14:41:41 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,25 +67,29 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc>::iterator map< Key, T, Compare, Alloc>::begin()
     {
-        return iterator(min_node(_root));
+        iterator it = min_node(_root);
+        return it;
     }
 
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc>::const_iterator map< Key, T, Compare, Alloc>::begin() const
     {
-        return const_iterator(min_node(_root));
+        const_iterator it = min_node(_root);
+        return it;
     }
  
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc>::iterator map< Key, T, Compare, Alloc>::end()
     {
-        return iterator(max_node(_root));
+        iterator ite = max_node(_root);
+        return ite;
     }
 
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc>::const_iterator map< Key, T, Compare, Alloc>::end() const
     {
-        return const_iterator(max_node(_root));
+        const_iterator ite = max_node(_root);
+        return ite;
     }
 
     template< class Key, class T, class Compare, class Alloc >
