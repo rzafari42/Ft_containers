@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/04 15:03:25 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/04 17:22:41 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc>::mapped_type& map< Key, T, Compare, Alloc >::operator[] (const key_type& k)
     {
-        return (*((this->insert(ft::make_pair(k, mapped_type()))).first)).second;
+        return (*((this->insert(value_type(k, mapped_type()))).first)).second;
     }
 
     //Modifiers
@@ -149,6 +149,7 @@ namespace ft
     pair<typename map<Key, T, Compare, Alloc>::iterator, bool> map< Key, T, Compare, Alloc >::insert(const value_type& val)
     {
         ft::pair<iterator, bool> ret;
+
         if (count(val.first))
             ret.second = false;
         else
@@ -275,13 +276,17 @@ namespace ft
     {
         iterator it = begin();
         iterator ite = end();
-
+        ite++;
         while (it != ite)
         {
             if (!key_comp()(k, it->first) && !key_comp()(it->first, k))
+            {    
+                std::cout << "find00: found -> it->first: " << it->first << " it->second: " << it->second << std::endl;
                 return it;
+            }
             it++;
         }
+        std::cout << "find00: not_found" << std::endl;
         return ++ite;
     }
 
@@ -414,7 +419,6 @@ namespace ft
     {
         node_ptr node = _node_alloc.allocate(1);
         _alloc.construct(&node->data, data);
-        
         node->right = NULL;
         node->left = NULL;
         node->parent = NULL;
