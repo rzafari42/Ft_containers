@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:34:57 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/26 11:41:09 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/02 21:56:58 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ namespace ft
     {
         protected:
             Node    *_node;
+            MapIter(Node *src);
 
         public:
             typedef T                   value_type;
@@ -33,10 +34,9 @@ namespace ft
 
             MapIter();
             MapIter(MapIter const& src);
-            MapIter(Node *src);
             virtual ~MapIter();
             MapIter&  operator=(MapIter const& rhs);
-
+            operator MapIter<const T, Node>(void) const { return MapIter<const T, Node>(this->_node); };
 
             bool operator==(MapIter const& rhs);
             bool operator!=(MapIter const& rhs);

@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/10/31 20:49:06 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/04 15:03:25 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,130 +16,6 @@
 
 namespace ft
 {
-    //iterator
-    /*template< class Key, class T, class Compare, class Alloc >
-    map< Key, T, Compare, Alloc >::iterator::iterator()
-    {
-    }
-
-    template< class Key, class T, class Compare, class Alloc >
-    map< Key, T, Compare, Alloc >::iterator::iterator(T *src): MapIter<T, Node<T> >(src)
-    {
-    }
-
-    template< class Key, class T, class Compare, class Alloc >
-    map< Key, T, Compare, Alloc >::iterator::iterator(iterator const& src) : MapIter<T, Node<T> >(src)
-    {
-    }
-
-    template< class Key, class T, class Compare, class Alloc >
-    map< Key, T, Compare, Alloc >::iterator::iterator(const MapIter<value_type, node_type>& src) : MapIter<T, Node<T> >(src)
-    {
-    }
-
-    template< class Key, class T, class Compare, class Alloc >
-    map< Key, T, Compare, Alloc >::iterator::~iterator()
-    {
-    }
-
-    template< class Key, class T, class Compare, class Alloc >
-    typename map< Key, T, Compare, Alloc >::iterator& map< Key, T, Compare, Alloc >::iterator::operator++()
-    {
-        return MapIter<T, Node<T> >::operator++();
-    }
-
-    template< class Key, class T, class Compare, class Alloc >
-    typename map< Key, T, Compare, Alloc >::iterator map< Key, T, Compare, Alloc >::iterator::operator++(int)
-    {
-        return MapIter<T, Node<T> >::operator++(0);
-    }
-
-    template< class Key, class T, class Compare, class Alloc >
-    typename map< Key, T, Compare, Alloc >::iterator& map< Key, T, Compare, Alloc >::iterator::operator--()
-    {
-        return MapIter<T, Node<T> >::operator--();
-    }
-
-    template< class Key, class T, class Compare, class Alloc >
-    typename map< Key, T, Compare, Alloc >::iterator map< Key, T, Compare, Alloc >::iterator::operator--(int)
-    {
-        return MapIter<T, Node<T> >::operator--(0);
-    }
-
-    template< class Key, class T, class Compare, class Alloc >
-    typename map< Key, T, Compare, Alloc >::iterator::reference map< Key, T, Compare, Alloc >::iterator::operator*() const
-    {
-        return *(this->_data);
-    }
-
-    template< class Key, class T, class Compare, class Alloc >
-    typename map< Key, T, Compare, Alloc >::iterator::pointer map< Key, T, Compare, Alloc >::iterator::operator->() const
-    {
-        return this->_data;
-    }
-
-    //const_iterator
-    template< class Key, class T, class Compare, class Alloc >
-    map< Key, T, Compare, Alloc >::const_iterator::const_iterator() : MapIter<T, Node<T> >()
-    {
-    }
-
-    template< class Key, class T, class Compare, class Alloc >
-    map< Key, T, Compare, Alloc >::const_iterator::const_iterator(T *src) : MapIter<T, Node<T> >(src)
-    {
-    }
-
-    template< class Key, class T, class Compare, class Alloc >
-    map< Key, T, Compare, Alloc >::const_iterator::const_iterator(iterator const& src) : MapIter<T, Node<T> >(src)
-    {
-    }
-
-    template< class Key, class T, class Compare, class Alloc >
-    map< Key, T, Compare, Alloc >::const_iterator::const_iterator(const MapIter<value_type, node_type>& src) : MapIter<T, Node<T> >(src)
-    {
-    }
-
-    template< class Key, class T, class Compare, class Alloc >
-    map< Key, T, Compare, Alloc >::const_iterator::~const_iterator()
-    {
-    }
-
-    template< class Key, class T, class Compare, class Alloc >
-    typename map< Key, T, Compare, Alloc >::const_iterator& map< Key, T, Compare, Alloc >::const_iterator::operator++()
-    {
-        return MapIter<T, Node<T> >::operator++();
-    }
-
-    template< class Key, class T, class Compare, class Alloc >
-    typename map< Key, T, Compare, Alloc >::const_iterator map< Key, T, Compare, Alloc >::const_iterator::operator++(int)
-    {
-        return MapIter<T, Node<T> >::operator++(0);
-    }
-
-    template< class Key, class T, class Compare, class Alloc >
-    typename map< Key, T, Compare, Alloc >::const_iterator& map< Key, T, Compare, Alloc >::const_iterator::operator--()
-    {
-        return MapIter<T, Node<T> >::operator--();
-    }
-
-    template< class Key, class T, class Compare, class Alloc >
-    typename map< Key, T, Compare, Alloc >::const_iterator map< Key, T, Compare, Alloc >::const_iterator::operator--(int)
-    {
-        return MapIter<T, Node<T> >::operator--(0);
-    }
-
-    template< class Key, class T, class Compare, class Alloc >
-    typename ft::map< Key, T, Compare, Alloc >::const_iterator::reference ft::map< Key, T, Compare, Alloc >::const_iterator::operator*() const
-    {
-        return *(this->_val);
-    }
-
-    template< class Key, class T, class Compare, class Alloc >
-    typename map< Key, T, Compare, Alloc >::const_iterator::pointer map< Key, T, Compare, Alloc >::const_iterator::operator->() const
-    {
-        return this->_val;
-    }*/
-
     template< class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc >::map(const key_compare& comp, const allocator_type& alloc) : _data(NULL), _alloc(alloc), _size(0), _max_size(0), _comp(comp), _root(NULL), _ghost(NULL), _GreatestData(NULL)
     {
@@ -154,10 +30,10 @@ namespace ft
     }
 
     template< class Key, class T, class Compare, class Alloc >
-    map< Key, T, Compare, Alloc >::map(const map& x)
+    map<Key, T, Compare, Alloc>::map(map const &x) : _alloc(x._alloc), _size(x._size), _max_size(x._max_size),  _comp(x._comp), _node_alloc(x._node_alloc)
     {
-        *this = x;
-        return;
+        clear();
+        insert(x.begin(), x.end());
     }
 
     template <class Key, class T, class Compare, class Alloc >
@@ -171,16 +47,17 @@ namespace ft
     template <class Key, class T, class Compare, class Alloc >
     map< Key, T, Compare, Alloc >& map< Key, T, Compare, Alloc >::operator=(const map& x)
     {
-        if (this != &x)
+        if (this == &x)
+            return *this;
+        else
         {
-            x._data = this->_data;
-            x._alloc = this->_alloc;
-            x._size = this->_size;
-            x._max_size = this->_max_size;
-            x._comp = this->_comp;
-            x._node_alloc = this->_node_alloc;
-            x._root = this->_root;
-            x._ghost = this->_ghost;
+            clear();
+            insert(x.begin(), x.end());
+            this->_alloc = x._alloc;
+            this->_size = x._size;
+            this->_max_size = x._max_size;
+            this->_comp = x._comp;
+            this->_node_alloc = x._node_alloc;
         }
         return *this;
     }
@@ -190,25 +67,29 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc>::iterator map< Key, T, Compare, Alloc>::begin()
     {
-        return iterator(min_node(_root));
+        iterator it = min_node(_root);
+        return it;
     }
 
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc>::const_iterator map< Key, T, Compare, Alloc>::begin() const
     {
-        return const_iterator(min_node(_root));
+        const_iterator it = min_node(_root);
+        return it;
     }
  
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc>::iterator map< Key, T, Compare, Alloc>::end()
     {
-        return iterator(max_node(_root));
+        iterator ite = max_node(_root);
+        return ite;
     }
 
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc>::const_iterator map< Key, T, Compare, Alloc>::end() const
     {
-        return const_iterator(max_node(_root));
+        const_iterator ite = max_node(_root);
+        return ite;
     }
 
     template< class Key, class T, class Compare, class Alloc >
@@ -300,20 +181,35 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     void map< Key, T, Compare, Alloc >::erase(iterator position)
     {
-        (void)position;
+        _root = delete_node(_root, value_type(position->first, position->second));
+        --_size;
     }
 
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::size_type map< Key, T, Compare, Alloc >::erase(const key_type& k)
     {
-        (void)k;
+        iterator it = find(k);
+        iterator ite = end();
+
+        if (!count(k))
+            return 0;
+        else
+        {
+            _root = delete_node(_root, value_type(it->first, it->second));
+            --_size;
+        }
+        return 1;
     }
 
     template< class Key, class T, class Compare, class Alloc >
     void map< Key, T, Compare, Alloc >::erase(iterator first, iterator last)
     {
-        (void)first;
-        (void)last;
+        while (first != last)
+        {
+            _root = delete_node(_root, value_type(first->first, first->second));
+            _size--;
+            first++;
+        }
     }
 
     template< class Key, class T, class Compare, class Alloc >
@@ -339,20 +235,25 @@ namespace ft
         _root = x._root;
         _ghost = x._ghost;
 
-        x._data = _data;
-        x._alloc = _alloc;
-        x._size = _size;
-        x._max_size = _max_size;
-        x._comp = _comp;
-        x._node_alloc = _node_alloc;
-        x._root = _root;
-        x._ghost = _ghost;
+        x._data = tmp._data;
+        x._alloc = tmp._alloc;
+        x._size = tmp._size;
+        x._max_size = tmp._max_size;
+        x._comp = tmp._comp;
+        x._node_alloc = tmp._node_alloc;
+        x._root = tmp._root;
+        x._ghost = tmp._ghost;
     }
 
     template< class Key, class T, class Compare, class Alloc >
     void map< Key, T, Compare, Alloc >::clear()
     {
-
+        for (size_type i = 0; i < _size; i++)
+            _alloc.destroy(&_root->data);
+        _size = 0;
+        _ghost =  NULL;
+        _GreatestData = NULL;
+        _root = NULL;
     }
 
     //Observers
@@ -374,14 +275,14 @@ namespace ft
     {
         iterator it = begin();
         iterator ite = end();
-        
+
         while (it != ite)
         {
             if (!key_comp()(k, it->first) && !key_comp()(it->first, k))
                 return it;
             it++;
         }
-        return ite;
+        return ++ite;
     }
 
     template< class Key, class T, class Compare, class Alloc >
@@ -396,7 +297,7 @@ namespace ft
                 return it;
             it++;
         }
-        return ite;
+        return ++ite;
     }
 
     template< class Key, class T, class Compare, class Alloc >
@@ -523,23 +424,19 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::insertNode(node_ptr node, value_type data)
     {
-        if (!node || !_root || node == _ghost || !_ghost)
+        if (!_root || !node || node == _ghost )
         {
             node = newNode(data);
             if (!_root)
                 _root = node;
             if (node == _ghost)
-                _GreatestData = node;
-            _size++;
-            if (!_ghost)
             {
-                _ghost = _node_alloc.allocate(1);
+                _GreatestData = node;
+                _ghost->parent = _GreatestData;
                 _ghost->right = NULL;
                 _ghost->left = NULL;
-                _GreatestData = max_node(_root);
-                _GreatestData->right = _ghost;
-                _ghost->parent = _GreatestData;
             }
+            _size++;
         }
         else if (key_comp()(data.first, node->data.first))
         {
@@ -551,12 +448,14 @@ namespace ft
             node->right = insertNode(node->right, data);
             node->right->parent = node;
         }
-        if (key_comp()(_GreatestData->data.first, node->data.first))
-        {
-            _ghost->right = NULL;
-            _ghost->left = NULL;
+        if (!_ghost || key_comp()(_GreatestData->data.first, data.first))
+        {	
+            if (!_ghost)
+                _ghost = _node_alloc.allocate(1);
             _GreatestData = max_node(_root);
             _GreatestData->right = _ghost;
+            _ghost->right = NULL;
+            _ghost->left = NULL;
             _ghost->parent = _GreatestData;
         }
         return node;
@@ -577,39 +476,51 @@ namespace ft
             node->left = delete_node(node->left, data);
             return node;
         }
-
+        if (node->left == NULL && node->right == NULL)
+        {
+            _alloc.destroy(&node->data);
+            return NULL;
+        }
         if (node->left == NULL)
         {
             node_ptr tmp = node->right;
             tmp->parent = node->parent;
-            _node_alloc.destroy(&node);
+            _alloc.destroy(&node->data);
             return tmp;
         }
         else if (node->right == NULL || node->right == _ghost)
         {
             node_ptr tmp = node->left;
             tmp->parent = node->parent;
-            _node_alloc.destroy(&node);
+            _alloc.destroy(&node->data);
             return tmp;
         }
         //2 Children case: Get the inOrder successor (smallest in the right subtree)
         else
         {
             node_ptr succParent = node;
-            node_ptr succ = node->right;
-
+            node_ptr succ = min_node(node->right);
             while (succ->left != NULL)
             {
-                succParent = succ;
+                succParent = node;
                 succ = succParent->left;
             }
             if (succParent != node)
                 succParent->left = succ->right;
             else
                 succParent->right = succ->right;
-            node->data = succ->data;
-            _node_alloc.destroy(&succ);
+            _alloc.destroy(&node->data);
+            _alloc.construct(&node->data, succ->data);
+            /*node->data = succ->data;
+            _alloc.destroy(&succ->data);*/
         }
+
+        /*node_ptr tmp = min_node(node->right);
+		_alloc.destroy(&node->data);
+		_alloc.construct(&node->data, tmp->data);
+		node->right = delete_node(node->right, tmp->data);
+        }*/
+
         return node;
     }
 
