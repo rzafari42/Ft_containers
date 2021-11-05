@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 23:55:41 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/05 16:39:16 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/05 22:35:19 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,18 @@ namespace ft
             ++first1; ++first2;
         }
         return (first2!=last2);
+    }
+
+    template <class InputIterator1, class InputIterator2>
+    bool equal ( InputIterator1 first1, InputIterator1 last1, InputIterator2 first2 )
+    {
+        while (first1!=last1) 
+        {
+            if (!(*first1 == *first2))
+            return false;
+            ++first1; ++first2;
+        }
+        return true;
     }
 
      ////////////////////////

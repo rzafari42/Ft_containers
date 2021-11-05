@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/05 21:46:10 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/05 22:25:58 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,8 +159,6 @@ namespace ft
             ret.second = true;
         }
         ret.first = find(val.first);
-        if (ret.second == true)
-            std::cout << "find(value_type)00" << std::endl;
         return ret;
     }
 
@@ -280,7 +278,6 @@ namespace ft
         iterator it = begin();
         iterator ite = end();
         
-        std::cout << "find: ite->first: " << ite->first << " | ite->second: " << ite->second << std::endl;
         while (it != ite)
         {
             if (!key_comp()(k, it->first) && !key_comp()(it->first, k))
@@ -410,7 +407,7 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::allocator_type map< Key, T, Compare, Alloc >::get_allocator() const
     {
-
+        return _alloc;
     }
 
     //Binary Search Tree specific functions
