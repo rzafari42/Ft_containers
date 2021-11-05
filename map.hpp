@@ -6,13 +6,14 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/04 17:22:41 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/05 21:46:10 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_HPP
 # define MAP_HPP
 # include "map_class.hpp"
+# include <map>
 
 namespace ft
 {
@@ -158,6 +159,8 @@ namespace ft
             ret.second = true;
         }
         ret.first = find(val.first);
+        if (ret.second == true)
+            std::cout << "find(value_type)00" << std::endl;
         return ret;
     }
 
@@ -276,17 +279,14 @@ namespace ft
     {
         iterator it = begin();
         iterator ite = end();
-        ite++;
+        
+        std::cout << "find: ite->first: " << ite->first << " | ite->second: " << ite->second << std::endl;
         while (it != ite)
         {
             if (!key_comp()(k, it->first) && !key_comp()(it->first, k))
-            {    
-                std::cout << "find00: found -> it->first: " << it->first << " it->second: " << it->second << std::endl;
                 return it;
-            }
             it++;
         }
-        std::cout << "find00: not_found" << std::endl;
         return ++ite;
     }
 
@@ -425,6 +425,24 @@ namespace ft
         return node;
     }
 
+
+    template<class Key, class T, class Compare, class Alloc>
+    void    map<Key, T, Compare, Alloc>::_setGhost(bool add)
+    {
+        if (!_ghost)
+            _ghost = _node_alloc.allocate(1);
+        if (add)
+        {
+            _GreatestData = max_node(_root);
+            _GreatestData->right = _ghost;
+        }
+        if (size() == 0)
+            _GreatestData = NULL;
+        _ghost->right = NULL;
+        _ghost->left = NULL;
+        _ghost->parent = _GreatestData;
+    }
+    
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::insertNode(node_ptr node, value_type data)
     {
@@ -515,16 +533,7 @@ namespace ft
                 succParent->right = succ->right;
             _alloc.destroy(&node->data);
             _alloc.construct(&node->data, succ->data);
-            /*node->data = succ->data;
-            _alloc.destroy(&succ->data);*/
         }
-
-        /*node_ptr tmp = min_node(node->right);
-		_alloc.destroy(&node->data);
-		_alloc.construct(&node->data, tmp->data);
-		node->right = delete_node(node->right, tmp->data);
-        }*/
-
         return node;
     }
 
