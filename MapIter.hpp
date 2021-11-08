@@ -63,7 +63,9 @@ namespace ft
     MapIter<T, Node> &MapIter<T, Node>::operator++()
     {
         if (_node->right)
+        {
             _node = min_node(_node->right);
+        }
         else if (_node->parent)
         {
             Node  *tmp = _node;

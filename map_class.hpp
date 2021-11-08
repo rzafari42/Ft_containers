@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/05 22:46:10 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/08 11:27:39 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,31 +51,46 @@ namespace ft
 	};
 
     template <class T1, class T2>
-    bool operator==(const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) { return (lhs.first == rhs.first && lhs.second == rhs.second); };
+    bool operator==(const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) 
+    { 
+        return (lhs.first == rhs.first && lhs.second == rhs.second);
+    };
 
     template <class T1, class T2>
-    bool operator!=(const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) { return (lhs.first == rhs.first && lhs.second == rhs.second); };
-
-    template <class T1, class T2>
-    bool operator<(const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) { return (lhs.first < rhs.first && lhs.second < rhs.second); };
-
-    template <class T1, class T2>
-    bool operator<=(const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) { return (lhs.first <= rhs.first && lhs.second <= rhs.second); };
-
-    template <class T1, class T2>
-    bool operator>(const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) { return (lhs.first > rhs.first && lhs.second > rhs.second); };
-
-    template <class T1, class T2>
-    bool operator>=(const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) { return (lhs.first >= rhs.first && lhs.second >= rhs.second); };
-
-    ////////////////////////
-    //       MAKE_PAIR   //
-    ///////////////////////
-    template <class T1,class T2>
-    ft::pair<T1,T2> make_pair (T1 x, T2 y)
+    bool operator!=(const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) 
     {
-        return (ft::pair<T1,T2>(x,y));
-    }
+        return (lhs.first == rhs.first && lhs.second == rhs.second);
+    };
+
+    template <class T1, class T2>
+    bool operator<(const pair<T1,T2>& lhs, const pair<T1,T2>& rhs)
+    {
+        return (lhs.first < rhs.first && lhs.second < rhs.second);
+    };
+
+    template <class T1, class T2>
+    bool operator<=(const pair<T1,T2>& lhs, const pair<T1,T2>& rhs)
+    {
+        return (lhs.first <= rhs.first && lhs.second <= rhs.second);
+    };
+
+    template <class T1, class T2>
+    bool operator>(const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) 
+    {
+        return (lhs.first > rhs.first && lhs.second > rhs.second);
+    };
+
+    template <class T1, class T2>
+    bool operator>=(const pair<T1,T2>& lhs, const pair<T1,T2>& rhs) 
+    {
+        return (lhs.first >= rhs.first && lhs.second >= rhs.second); 
+    };
+
+    template <class T1,class T2>
+    pair<T1,T2> make_pair (T1 x, T2 y) 
+    {
+        return (pair<T1,T2>(x,y) );
+    };
 
     template< class T1, class T2 >
     std::ostream & operator<<( std::ostream & flux, ft::pair<T1, T2> const & rhs)
@@ -256,10 +271,9 @@ namespace ft
     }
 
     template<class Key, class T, class Compare, class Alloc>
-    void	swap(map<Key, T, Compare, Alloc>& x, map<Key, T, Compare, Alloc>& y)
+    void	swap(map<Key, T, Compare, Alloc>& lhs, map<Key, T, Compare, Alloc>& rhs)
     {
-        x.swap(y);
+        lhs.swap(rhs);
     }
-
 }
 #endif

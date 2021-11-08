@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/31 23:55:41 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/05 22:35:19 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/08 11:32:57 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,28 @@ namespace ft
     }
 
     template <class InputIterator1, class InputIterator2>
-    bool equal ( InputIterator1 first1, InputIterator1 last1, InputIterator2 first2 )
-    {
-        while (first1!=last1) 
-        {
-            if (!(*first1 == *first2))
-            return false;
-            ++first1; ++first2;
-        }
-        return true;
-    }
+	bool equal (InputIterator1 first1, InputIterator1 last1, InputIterator2 first2)
+	{
+		while (first1 != last1)
+		{
+			if (!(*first1 == *first2))
+				return false;
+			++first1; ++first2;
+		}
+		return true;
+	}
+
+	template <class InputIterator1, class InputIterator2, class BinaryPredicate>
+    bool equal (InputIterator1 first1, InputIterator1 last1, InputIterator2 first2, BinaryPredicate pred)
+	{
+		while (first1 != last1)
+		{
+			if (!pred(*first1, *first2))
+				return false;
+			++first1; ++first2;
+		}
+		return true;
+	}
 
      ////////////////////////
     //        NODE       //
@@ -63,10 +75,13 @@ namespace ft
     template<class T>
     struct Node
     {
-        T       data;
-        Node    *right;
-        Node    *left;
-        Node    *parent;
+        private:
+            bool empty;
+        public:
+            T       data;
+            Node    *right;
+            Node    *left;
+            Node    *parent;
     };
 
     template< class T >

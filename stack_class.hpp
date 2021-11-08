@@ -6,14 +6,13 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 09:39:49 by rzafari           #+#    #+#             */
-/*   Updated: 2021/09/29 11:35:24 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/08 12:11:07 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STACK_CLASS_HPP
 # define STACK_CLASS_HPP
 # include "vector.hpp"
-# include <stack>
 
 namespace ft
 {
@@ -33,6 +32,9 @@ namespace ft
             const value_type&   top() const;
             void                push (const value_type& val);
             void                pop();
+
+            friend bool operator==(const stack<T,Container>& lhs, const stack<T,Container>& rhs) { return lhs._ctnr == rhs._ctnr; };
+            friend bool operator<(const stack<T,Container>& lhs, const stack<T,Container>& rhs) { return lhs._ctnr < rhs._ctnr; };
         
         protected:
             container_type      _ctnr;
@@ -41,11 +43,7 @@ namespace ft
     //Non-member function overloads
     //Relational operators
     template <class T, class Container>
-        bool operator== (const stack<T,Container>& lhs, const stack<T,Container>& rhs);
-    template <class T, class Container>
-        bool operator!= (const stack<T,Container>& lhs, const stack<T,Container>& rhs);
-    template <class T, class Container>
-        bool operator<  (const stack<T,Container>& lhs, const stack<T,Container>& rhs);
+        bool operator!=(const stack<T,Container>& lhs, const stack<T,Container>& rhs);
     template <class T, class Container>
         bool operator<= (const stack<T,Container>& lhs, const stack<T,Container>& rhs);
     template <class T, class Container>

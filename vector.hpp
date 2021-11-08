@@ -6,11 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 19:19:53 by rzafari           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/10/10 20:40:00 by rzafari          ###   ########.fr       */
-=======
-/*   Updated: 2021/10/17 16:30:09 by rzafari          ###   ########.fr       */
->>>>>>> Map_BST
+/*   Updated: 2021/11/08 11:54:06 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,11 +199,7 @@ namespace ft
     {
         return RandAccess<T>::operator++(0);
     }
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> Map_BST
     template < class T, class Alloc >
     typename vector<T, Alloc>::const_iterator& vector<T, Alloc>::const_iterator::operator--(void)
     {
