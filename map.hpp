@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/05 22:25:58 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/09 11:22:51 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -486,50 +486,34 @@ namespace ft
         if (node == NULL)
             return node;
         if (key_comp()(node->data.first, data.first))
-        {
             node->right = delete_node(node->right, data);
-            return node;
-        }
         else if (key_comp()(data.first, node->data.first))
-        {
             node->left = delete_node(node->left, data);
-            return node;
-        }
-        if (node->left == NULL && node->right == NULL)
-        {
-            _alloc.destroy(&node->data);
-            return NULL;
-        }
-        if (node->left == NULL)
-        {
-            node_ptr tmp = node->right;
-            tmp->parent = node->parent;
-            _alloc.destroy(&node->data);
-            return tmp;
-        }
-        else if (node->right == NULL || node->right == _ghost)
-        {
-            node_ptr tmp = node->left;
-            tmp->parent = node->parent;
-            _alloc.destroy(&node->data);
-            return tmp;
-        }
-        //2 Children case: Get the inOrder successor (smallest in the right subtree)
         else
         {
-            node_ptr succParent = node;
-            node_ptr succ = min_node(node->right);
-            while (succ->left != NULL)
+            if (node->left == NULL && node->right == NULL)
             {
-                succParent = node;
-                succ = succParent->left;
+                _alloc.destroy(&node->data);
+                return NULL;
             }
-            if (succParent != node)
-                succParent->left = succ->right;
-            else
-                succParent->right = succ->right;
-            _alloc.destroy(&node->data);
-            _alloc.construct(&node->data, succ->data);
+            if (node->left == NULL)
+            {
+                node_ptr tmp = node->right;
+                tmp->parent = node->parent;
+                _alloc.destroy(&node->data);
+                return tmp;
+            }
+            else if (node->right == NULL || node->right == _ghost)
+            {
+                node_ptr tmp = node->left;
+                tmp->parent = node->parent;
+                _alloc.destroy(&node->data);
+                return tmp;
+            }
+            node_ptr tmp = min_node(node->right);
+                _alloc.destroy(&node->data);
+                _alloc.construct(&node->data, tmp->data);
+                node->right = delete_node(node->right, tmp->data);
         }
         return node;
     }
