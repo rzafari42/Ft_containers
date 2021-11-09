@@ -6,17 +6,16 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 13:13:12 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/09 01:05:35 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/09 14:51:43 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_CLASS_HPP
 # define VECTOR_CLASS_HPP
 # include <memory>
-# include "RandAccess.hpp"
-# include "Reverse.hpp"
+# include "RandAccessIter.hpp"
+# include "ReverseIter.hpp"
 # include "utils.hpp"
-# include <iterator>
 
 namespace ft
 {
