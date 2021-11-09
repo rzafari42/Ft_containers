@@ -26,10 +26,17 @@ void	printSize(T_MAP const &mp, bool print_content = 1)
 	std::cout << "###############################################" << std::endl;
 }
 
+struct ft_more {
+	bool	operator()(const int &first, const std::string &second) const {
+		return (first > second);
+	}
+};
+
+
 int main(void)
 {
 
-    std::map<int, std::string> mp;
+    /*std::map<int, std::string> mp;
     std::map<int, std::string>::iterator ite;
 
     
@@ -48,6 +55,22 @@ int main(void)
 	mp[27] = "bee";
 	printSize(mp);
 	mp[90] = "8";
+	printSize(mp);*/
+	
+	ft::map<int, std::string, ft_more> mp;
+
+	mp[42] = "fgzgxfn";
+	std::cout << "mp[20]" << std::endl;
+	mp[42] = "funny";
+	std::cout << "mp[25]" << std::endl;
+	/*mp[80] = "hey";
+	std::cout << "mp[80]" << std::endl;
+	mp[12] = "no";
+	std::cout << "mp[12]" << std::endl;
+	mp[27] = "bee";
+	std::cout << "mp[27]" << std::endl;
+	mp[90] = "8";
+	std::cout << "mp[90]" << std::endl;*/
 	printSize(mp);
 
     return 0;

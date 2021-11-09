@@ -13,7 +13,6 @@
 #ifndef MAP_HPP
 # define MAP_HPP
 # include "map_class.hpp"
-# include <map>
 
 namespace ft
 {
