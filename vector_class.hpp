@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 13:13:12 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/08 11:54:17 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/09 01:05:35 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "RandAccess.hpp"
 # include "Reverse.hpp"
 # include "utils.hpp"
+# include <iterator>
 
 namespace ft
 {

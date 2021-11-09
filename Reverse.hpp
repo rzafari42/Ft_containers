@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 15:17:24 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/08 11:55:20 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/09 00:56:45 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,14 @@ namespace ft
     {
     }
 
+    template <class Iterator>
+    template <class Iter>
+    reverse_iterator<Iterator>	&reverse_iterator<Iterator>::operator=(const reverse_iterator<Iter> &x)
+    {
+	    _base = x.base();
+	    return *this;
+    };
+
     template< class Iterator >
     typename reverse_iterator<Iterator>::iterator_type reverse_iterator<Iterator>::base() const
     {
@@ -41,7 +49,9 @@ namespace ft
     template< class Iterator >
     typename reverse_iterator<Iterator>::reference reverse_iterator<Iterator>::operator*() const
     {
-        return (--Iterator(_base)).operator*();
+        Iterator tmp = _base;
+
+        return *--tmp;
     }
 
     template< class Iterator >
@@ -53,19 +63,19 @@ namespace ft
     template< class Iterator >
     reverse_iterator<Iterator> reverse_iterator<Iterator>::operator+(difference_type n) const
     {
-        return reverse_iterator(_base.operator-(n));
+        return reverse_iterator(_base - n);
     }
 
     template< class Iterator >
     reverse_iterator<Iterator> reverse_iterator<Iterator>::operator-(difference_type n) const
     {
-        return reverse_iterator(_base.operator+(n));
+        return reverse_iterator(_base + n);
     }
 
     template< class Iterator >
     reverse_iterator<Iterator>& reverse_iterator<Iterator>::operator++()
     {
-        _base--;
+        --_base;
         return *this;
     }
 
@@ -73,14 +83,14 @@ namespace ft
     reverse_iterator<Iterator> reverse_iterator<Iterator>::operator++(int)
     {
         reverse_iterator tmp(*this);
-        _base--;
+        --_base;
         return tmp;
     }
 
     template< class Iterator >
     reverse_iterator<Iterator>& reverse_iterator<Iterator>::operator--()
     {
-        _base++;
+        ++_base;
         return *this;
     }
 
@@ -88,7 +98,7 @@ namespace ft
     reverse_iterator<Iterator> reverse_iterator<Iterator>::operator--(int)
     {
         reverse_iterator tmp(*this);
-        _base++;
+        ++_base;
         return tmp;
     }
 
@@ -112,7 +122,7 @@ namespace ft
         return *(*this + n);
     }
 
-    template< class Iterator >
+    /*template< class Iterator >
     template <class Iter>
     bool reverse_iterator<Iterator>::operator==(const reverse_iterator<Iter>& rhs) const
     {
@@ -125,11 +135,11 @@ namespace ft
     {
         return _base.operator!=(rhs.base());
     }
-    
+
     template< class Iterator >
     template <class Iter>
     bool reverse_iterator<Iterator>::operator<(const reverse_iterator<Iter>& rhs) const
-    {
+    { 
         return _base.operator>(rhs.base());
     }
 
@@ -152,7 +162,7 @@ namespace ft
     bool reverse_iterator<Iterator>::operator>=(const reverse_iterator<Iter>& rhs) const 
     {
         return _base.operator<=(rhs.base());
-    }
+    }*/
 }
 
 #endif

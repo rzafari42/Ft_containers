@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 09:39:49 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/08 12:11:07 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/08 13:16:16 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ namespace ft
         protected:
             container_type      _ctnr;
     };
-    
+
     //Non-member function overloads
     //Relational operators
     template <class T, class Container>
