@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/10 18:01:14 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/10 18:12:20 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,20 +108,20 @@ namespace ft
     class map
     {
         public:
-            typedef Key                                                 key_type;
-            typedef T                                                   mapped_type;
-            typedef pair<const key_type, mapped_type>			        value_type;
-            typedef Compare                                             key_compare;
-            typedef Alloc                                               allocator_type;
-            typedef typename allocator_type::reference                  reference;
-            typedef typename allocator_type::const_reference            const_reference;
-            typedef typename allocator_type::pointer                    pointer;
-            typedef typename allocator_type::const_pointer              const_pointer;
-            typedef ptrdiff_t                                           difference_type;
-            typedef size_t                                              size_type;
-            typedef ft::Node<value_type>                                node_type;
-            typedef node_type*                                          node_ptr;
-            typedef typename Alloc::template rebind<node_type>::other   _new;
+            typedef Key                                                         key_type;
+            typedef T                                                           mapped_type;
+            typedef pair<const key_type, mapped_type>			                value_type;
+            typedef Compare                                                     key_compare;
+            typedef Alloc                                                       allocator_type;
+            typedef typename allocator_type::reference                          reference;
+            typedef typename allocator_type::const_reference                    const_reference;
+            typedef typename allocator_type::pointer                            pointer;
+            typedef typename allocator_type::const_pointer                      const_pointer;
+            typedef ptrdiff_t                                                   difference_type;
+            typedef size_t                                                      size_type;
+            typedef ft::Node<value_type>                                        node_type;
+            typedef node_type*                                                  node_ptr;
+            typedef typename allocator_type::template rebind<node_type>::other  _new;
 
             //Iterators
             typedef ft::MapIter<value_type, node_type>          iterator;

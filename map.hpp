@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/10 17:10:17 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/10 18:12:00 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,6 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc>::iterator map< Key, T, Compare, Alloc>::end()
     {
-        /* if (!_root || !_size)
-            return iterator(_GreatestData);
-        return iterator(_GreatestData->right); */
         return iterator(max_node(_root));
     }
 
@@ -95,9 +92,6 @@ namespace ft
     typename map< Key, T, Compare, Alloc>::const_iterator map< Key, T, Compare, Alloc>::end() const
     {
         return const_iterator(max_node(_root));
-        /* if (!_root || !_size)
-            return const_iterator(_GreatestData);
-        return const_iterator(_GreatestData->right); */
     }
 
     template< class Key, class T, class Compare, class Alloc >
@@ -142,7 +136,9 @@ namespace ft
     template <class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::size_type map< Key, T, Compare, Alloc >::max_size() const
     {
-        return _node_alloc.max_size();
+        _new ret;
+        
+        return ret.max_size();
     }
     
     //Element Access
