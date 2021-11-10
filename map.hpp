@@ -6,25 +6,24 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/05 22:25:58 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/10 18:12:00 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_HPP
 # define MAP_HPP
 # include "map_class.hpp"
-# include <map>
 
 namespace ft
 {
     template< class Key, class T, class Compare, class Alloc >
-    map< Key, T, Compare, Alloc >::map(const key_compare& comp, const allocator_type& alloc) : _data(NULL), _alloc(alloc), _size(0), _max_size(0), _comp(comp), _root(NULL), _ghost(NULL), _GreatestData(NULL)
+    map< Key, T, Compare, Alloc >::map(const key_compare& comp, const allocator_type& alloc) : _alloc(alloc), _size(0), _max_size(0), _comp(comp), _root(NULL), _ghost(NULL), _GreatestData(NULL)
     {
     }
 
     template< class Key, class T, class Compare, class Alloc >
     template <class InputIterator>
-    map< Key, T, Compare, Alloc >::map(InputIterator first, InputIterator last, const key_compare& comp, const allocator_type& alloc) : _data(NULL), _alloc(alloc), _size(0), _max_size(0), _comp(comp), _root(NULL), _ghost(NULL), _GreatestData(NULL)
+    map< Key, T, Compare, Alloc >::map(InputIterator first, InputIterator last, const key_compare& comp, const allocator_type& alloc) :  _alloc(alloc), _size(0), _max_size(0), _comp(comp), _root(NULL), _ghost(NULL), _GreatestData(NULL)
     {
         insert(first, last);
         return;
@@ -41,7 +40,12 @@ namespace ft
     map< Key, T, Compare, Alloc >::~map()
     {
         clear();
-        _data = NULL;
+        if (_root)
+            _node_alloc.deallocate(_root, _size);
+        if (_ghost)
+            _node_alloc.deallocate(_ghost, 1);
+
+        return ;
     }
 
     //Operator=
@@ -60,6 +64,7 @@ namespace ft
             this->_comp = x._comp;
             this->_node_alloc = x._node_alloc;
         }
+
         return *this;
     }
 
@@ -68,29 +73,25 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc>::iterator map< Key, T, Compare, Alloc>::begin()
     {
-        iterator it = min_node(_root);
-        return it;
+        return iterator(min_node(_root));
     }
 
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc>::const_iterator map< Key, T, Compare, Alloc>::begin() const
     {
-        const_iterator it = min_node(_root);
-        return it;
+        return const_iterator(min_node(_root));
     }
  
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc>::iterator map< Key, T, Compare, Alloc>::end()
     {
-        iterator ite = max_node(_root);
-        return ite;
+        return iterator(max_node(_root));
     }
 
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc>::const_iterator map< Key, T, Compare, Alloc>::end() const
     {
-        const_iterator ite = max_node(_root);
-        return ite;
+        return const_iterator(max_node(_root));
     }
 
     template< class Key, class T, class Compare, class Alloc >
@@ -135,7 +136,9 @@ namespace ft
     template <class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::size_type map< Key, T, Compare, Alloc >::max_size() const
     {
-        return _node_alloc.max_size();
+        _new ret;
+        
+        return ret.max_size();
     }
     
     //Element Access
@@ -219,7 +222,6 @@ namespace ft
     {
         map<Key, T, Compare, Alloc> tmp;
 
-        tmp._data = _data;
         tmp._alloc = _alloc;
         tmp._size = _size;
         tmp._max_size = _max_size;
@@ -228,7 +230,6 @@ namespace ft
         tmp._root = _root;
         tmp._ghost = _ghost;
 
-        _data = x._data;
         _alloc = x._alloc;
         _size = x._size;
         _max_size = x._max_size;
@@ -237,7 +238,6 @@ namespace ft
         _root = x._root;
         _ghost = x._ghost;
 
-        x._data = tmp._data;
         x._alloc = tmp._alloc;
         x._size = tmp._size;
         x._max_size = tmp._max_size;
@@ -423,7 +423,7 @@ namespace ft
     }
 
 
-    template<class Key, class T, class Compare, class Alloc>
+/*    template<class Key, class T, class Compare, class Alloc>
     void    map<Key, T, Compare, Alloc>::_setGhost(bool add)
     {
         if (!_ghost)
@@ -478,6 +478,55 @@ namespace ft
             _ghost->parent = _GreatestData;
         }
         return node;
+    } */
+
+    template<class Key, class T, class Compare, class Alloc>
+    void    map<Key, T, Compare, Alloc>::_setGhost(bool add)
+    {
+        if (!_ghost)
+            _ghost = _node_alloc.allocate(1);
+        if (add)
+        {
+            _GreatestData = max_node(_root);
+            _GreatestData->right = _ghost;
+        }
+        if (size() == 0)
+            _GreatestData = NULL;
+        _ghost->right = NULL;
+        _ghost->left = NULL;
+        _ghost->parent = _GreatestData;
+    }
+
+    template<class Key, class T, class Compare, class Alloc>
+    typename map<Key, T, Compare, Alloc>::node_ptr    map<Key, T, Compare, Alloc>::insertNode(node_ptr node, value_type val)
+    {
+        if (!_root || !node || node == _ghost)
+        {
+            node = newNode(val);
+            if (!_root)
+                _root = node;
+            else if (node == _ghost)
+                _GreatestData = node;
+            _size++;
+        }
+        else if (key_comp()(val.first, node->data.first))
+        {
+            node->left = insertNode(node->left, val);
+            node->left->parent = node;
+        }
+        else
+        {
+            node->right = insertNode(node->right, val);
+            node->right->parent = node;
+        }
+        if (!_ghost || !key_comp()(val.first, _GreatestData->data.first))
+        {	
+            if (_ghost)
+                !key_comp()(node->data.first, _GreatestData->data.first) ? _setGhost(true) : _setGhost(false);
+            else
+                _setGhost(true);
+        }
+        return node;
     }
 
     template< class Key, class T, class Compare, class Alloc >
@@ -486,50 +535,34 @@ namespace ft
         if (node == NULL)
             return node;
         if (key_comp()(node->data.first, data.first))
-        {
             node->right = delete_node(node->right, data);
-            return node;
-        }
         else if (key_comp()(data.first, node->data.first))
-        {
             node->left = delete_node(node->left, data);
-            return node;
-        }
-        if (node->left == NULL && node->right == NULL)
-        {
-            _alloc.destroy(&node->data);
-            return NULL;
-        }
-        if (node->left == NULL)
-        {
-            node_ptr tmp = node->right;
-            tmp->parent = node->parent;
-            _alloc.destroy(&node->data);
-            return tmp;
-        }
-        else if (node->right == NULL || node->right == _ghost)
-        {
-            node_ptr tmp = node->left;
-            tmp->parent = node->parent;
-            _alloc.destroy(&node->data);
-            return tmp;
-        }
-        //2 Children case: Get the inOrder successor (smallest in the right subtree)
         else
         {
-            node_ptr succParent = node;
-            node_ptr succ = min_node(node->right);
-            while (succ->left != NULL)
+            if (node->left == NULL && node->right == NULL)
             {
-                succParent = node;
-                succ = succParent->left;
+                _alloc.destroy(&node->data);
+                return NULL;
             }
-            if (succParent != node)
-                succParent->left = succ->right;
-            else
-                succParent->right = succ->right;
-            _alloc.destroy(&node->data);
-            _alloc.construct(&node->data, succ->data);
+            if (node->left == NULL)
+            {
+                node_ptr tmp = node->right;
+                tmp->parent = node->parent;
+                _alloc.destroy(&node->data);
+                return tmp;
+            }
+            else if (node->right == NULL || node->right == _ghost)
+            {
+                node_ptr tmp = node->left;
+                tmp->parent = node->parent;
+                _alloc.destroy(&node->data);
+                return tmp;
+            }
+            node_ptr tmp = min_node(node->right);
+                _alloc.destroy(&node->data);
+                _alloc.construct(&node->data, tmp->data);
+                node->right = delete_node(node->right, tmp->data);
         }
         return node;
     }
@@ -548,5 +581,4 @@ namespace ft
         return;
     }
 }
-
 #endif
