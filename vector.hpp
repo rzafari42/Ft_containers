@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 19:19:53 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/08 11:54:06 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/11 12:19:58 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,7 +218,7 @@ namespace ft
     vector<T, Alloc>::vector(const allocator_type& alloc) : _data(NULL), _alloc(alloc), _size(0), _capacity(0) { }
 
     template < class T, class Alloc >
-    vector<T, Alloc>::vector(size_type n, const value_type& val, const allocator_type& alloc) : _data(NULL), _alloc(alloc), _size(n), _capacity(n)
+    vector<T, Alloc>::vector(size_type n, const value_type& val, const allocator_type& alloc) : _alloc(alloc), _size(n), _capacity(n)
     {
         _data = _alloc.allocate(n);
         for (size_t i = 0; i < n; i++)
@@ -227,7 +227,7 @@ namespace ft
 
     template < class T, class Alloc >
     template < class InputIterator >
-    vector<T, Alloc>::vector(typename ft::enable_if<!std::numeric_limits<InputIterator>::is_integer, InputIterator>::type first, InputIterator last, const allocator_type& alloc) : _data(NULL), _alloc(alloc), _size(0), _capacity(0)
+    vector<T, Alloc>::vector(typename ft::enable_if<!std::numeric_limits<InputIterator>::is_integer, InputIterator>::type first, InputIterator last, const allocator_type& alloc) : _alloc(alloc), _size(0), _capacity(0)
     {
         _capacity = ft::InputIterator_len(first, last);
         _data = _alloc.allocate(_capacity);

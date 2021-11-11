@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 13:13:12 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/09 14:51:43 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/11 12:44:02 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,11 @@ namespace ft
         public:
             //Member Functions
                 //Contructors
-                explicit vector(const allocator_type& alloc = allocator_type());
-                explicit vector(size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type());
+                explicit vector(const allocator_type& alloc = allocator_type()); //default
+                explicit vector(size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type()); //fill
                 template <class InputIterator>
-                    vector(typename ft::enable_if<!std::numeric_limits<InputIterator>::is_integer, InputIterator>::type first, InputIterator last, const allocator_type& alloc = allocator_type());
-                vector(const vector& x);
+                    vector(typename ft::enable_if<!std::numeric_limits<InputIterator>::is_integer, InputIterator>::type first, InputIterator last, const allocator_type& alloc = allocator_type()); //range
+                vector(const vector& x); //copy
 
                 //Destructor
                 ~vector();
@@ -152,8 +152,6 @@ namespace ft
                 void            pop_back();
                 iterator        insert(iterator position, const value_type& val);	
                 void            insert(iterator position, size_type n, const value_type& val);	
-                //template <class InputIterator>
-                //    void        insert(iterator position, InputIterator first, InputIterator last);
                 template <class InputIterator>
 		            void        insert(iterator position, InputIterator first, typename ft::enable_if<!std::numeric_limits<InputIterator>::is_integer, InputIterator>::type last);
                 iterator        erase(iterator position);

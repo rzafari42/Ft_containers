@@ -6,7 +6,7 @@
 #    By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/10 18:44:45 by rzafari           #+#    #+#              #
-#    Updated: 2021/11/10 19:49:00 by rzafari          ###   ########.fr        #
+#    Updated: 2021/11/11 11:43:20 by rzafari          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJ)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 clean:
 	/bin/rm -f $(OBJ)
@@ -31,5 +31,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: clean
-
-
