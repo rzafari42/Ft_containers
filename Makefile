@@ -6,27 +6,29 @@
 #    By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/10 18:44:45 by rzafari           #+#    #+#              #
-#    Updated: 2021/11/11 11:43:20 by rzafari          ###   ########.fr        #
+#    Updated: 2021/11/11 15:59:59 by rzafari          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_containers
+NAME_FT = ft_containers
+NAME_STD = std_containers
 SRC = main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 CXX = clang++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-all : $(NAME)
+all : $(NAME_FT)
 
-$(NAME) : $(OBJ)
-	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
+$(NAME_FT) : $(OBJ)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME_FT) -DNAMESPACE=ft
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME_STD) -DNAMESPACE=std
 
 clean:
 	/bin/rm -f $(OBJ)
 
 fclean: clean
-	/bin/rm $(NAME)
+	/bin/rm $(NAME_FT) $(NAME_STD)
 
 re: fclean all
 
