@@ -6,7 +6,7 @@
 #    By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/10 18:44:45 by rzafari           #+#    #+#              #
-#    Updated: 2021/11/11 15:59:59 by rzafari          ###   ########.fr        #
+#    Updated: 2021/11/11 19:24:08 by rzafari          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRC = main.cpp
 OBJ = $(SRC:.cpp=.o)
 CXX = clang++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+LEAK = -fsanitize=address -g3
 
 all : $(NAME_FT)
 

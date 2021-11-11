@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/10 18:40:31 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/11 18:59:23 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,11 +148,11 @@ namespace ft
 
             //Member functions
                 //Constructors
-                explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type());
+                explicit map(const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()); //empty
                 template <class InputIterator>
-                        map (InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type());
-                map (const map& x);
-                
+                        map(InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()); //range
+                map (const map& x); //copy
+
                 // Destructor
                 ~map();
 
