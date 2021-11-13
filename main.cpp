@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 18:49:40 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/13 13:03:20 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/13 13:06:43 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void print_size_vector(NAMESPACE::vector<T> vt)
 
 void vector(void)
 {
-    int start = clock();
+    //int start = clock();
     std::cout << "#######" << std::endl;
     std::cout << "VECTOR" << std::endl;
     std::cout << "#######" << std::endl;
@@ -203,8 +203,8 @@ void vector(void)
     std::cout << "vt_cpy <= vt_equal_op ? " << (vt_cpy <= vt_equal_op) << std::endl;
     std::cout << "vt_cpy <= vt_fill ? " << (vt_cpy <= vt_fill) << std::endl;
     
-    int end = clock();
-    std::cout << "Execution time (vector): " << ((float)end - start)/CLOCKS_PER_SEC << " seconds" << std::endl;
+    /* int end = clock();
+    std::cout << "Execution time (vector): " << ((float)end - start)/CLOCKS_PER_SEC << " seconds" << std::endl; */
 }   
 
 template<class T>
@@ -217,7 +217,7 @@ void print_size_stack(NAMESPACE::stack<T> st)
 
 void stack(void)
 {
-    int start = clock();
+    //int start = clock();
     std::cout << "#######" << std::endl;
     std::cout << "STACK" << std::endl;
     std::cout << "#######" << std::endl;
@@ -257,8 +257,8 @@ void stack(void)
     std::cout << "### LOWER OR EQUAL ###" << std::endl;
     std::cout << "st <= st2 ? " << (st <= st2) << std::endl;
     
-    int end = clock();
-    std::cout << "Execution time (stack): " << ((float)end - start)/CLOCKS_PER_SEC << " seconds" << std::endl;
+    /* int end = clock();
+    std::cout << "Execution time (stack): " << ((float)end - start)/CLOCKS_PER_SEC << " seconds" << std::endl; */
 }
 
 template<class T1, class T2>
@@ -315,7 +315,7 @@ void print_size_map(NAMESPACE::map<T1, T2> mp)
 
 void map(void)
 {
-    int start = clock();
+    //int start = clock();
     std::cout << "#######" << std::endl;
     std::cout << "map" << std::endl;
     std::cout << "#######" << std::endl;
@@ -393,8 +393,8 @@ void map(void)
     print_elem_map(mp);
     print_size_map(mp);
 
-    int end = clock();
-    std::cout << "Execution time (map): " << ((float)end - start)/CLOCKS_PER_SEC << " seconds" << std::endl;
+    /*int end = clock();
+    std::cout << "Execution time (map): " << ((float)end - start)/CLOCKS_PER_SEC << " seconds" << std::endl; */
 }   
 
 int main(void)
