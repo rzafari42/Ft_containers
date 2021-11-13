@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 18:49:40 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/11 19:56:40 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/13 11:30:53 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,7 +225,7 @@ void stack(void)
     std::cout << "Let's try the 'push' function ! (10 elem. insertion)" << std::endl;
     for (int i = 0; i < 10; i++)
         st.push(i * 2);
-    print_size_stack(st);
+    //print_size_stack(st);
     std::cout << "Let's try the 'top' function ! (should be 18)" << std::endl;
     std::cout << "TOP : " << st.top() << std::endl;
     std::cout << "Let's try the 'pop' function !" << std::endl;
@@ -302,7 +302,6 @@ void print_size_map(NAMESPACE::map<T1, T2> mp)
     std::cout << "Empty:    " << mp.empty() << std::endl;
     std::cout << "Size:     " << mp.size() << std::endl;
     std::cout << "Max_Size: " << mp.max_size() << std::endl;
-    std::cout << "\n";
 }
 
 void map(void)
@@ -319,22 +318,16 @@ void map(void)
 
     std::cout << "Let's try the insert(value_type) function" << std::endl;
     NAMESPACE::pair<int, int> foo;
-    foo = NAMESPACE::make_pair(1,10);
-    mp.insert(foo);
-    foo = NAMESPACE::make_pair(2,15);
-    mp.insert(foo);
-    foo = NAMESPACE::make_pair(3,20);
-    mp.insert(foo);
-    foo = NAMESPACE::make_pair(4,25);
-    mp.insert(foo);
-    foo = NAMESPACE::make_pair(5,30);
-    mp.insert(foo);
+    mp.insert(NAMESPACE::map<int, int>::value_type(1,10));
+    mp.insert(NAMESPACE::map<int, int>::value_type(2, 15));
+    mp.insert(NAMESPACE::map<int, int>::value_type(3, 20));
+    mp.insert(NAMESPACE::map<int, int>::value_type(4, 25));
+    mp.insert(NAMESPACE::map<int, int>::value_type(5, 30));
     print_elem_map(mp);
     print_size_map(mp);
     
     std::cout << "Let's try the insert(position, val) function" << std::endl;
-    foo = NAMESPACE::make_pair(6,35);
-    mp.insert(mp.begin(), foo);
+    mp.insert(mp.begin(), NAMESPACE::map<int, int>::value_type(6, 35));
     print_elem_map(mp);
     print_size_map(mp);
 

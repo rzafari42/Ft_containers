@@ -1,0 +1,619 @@
+#######
+VECTOR
+#######
+Constructors
+
+### vt_empty ###
+Elem (iterator):               
+Elem (const_iterator):         
+Elem (reverse_iterator):       
+Elem (const_reverse_iterator): 
+Front:       0
+Back:        0
+
+Empty:    1
+Size:     0
+Max_Size: 4611686018427387903
+Capacity: 0
+
+#################
+### vt_fill ###
+Elem (iterator):               42 42 42 42 42 42 42 42 42 42 
+Elem (const_iterator):         42 42 42 42 42 42 42 42 42 42 
+Elem (reverse_iterator):       42 42 42 42 42 42 42 42 42 42 
+Elem (const_reverse_iterator): 42 42 42 42 42 42 42 42 42 42 
+Front:       42
+Back:        42
+AT[4]:       42
+operator[4]: 42
+
+Empty:    0
+Size:     10
+Max_Size: 4611686018427387903
+Capacity: 10
+
+#################
+### vt_range ###
+Elem (iterator):               42 42 42 42 42 42 42 42 42 42 
+Elem (const_iterator):         42 42 42 42 42 42 42 42 42 42 
+Elem (reverse_iterator):       42 42 42 42 42 42 42 42 42 42 
+Elem (const_reverse_iterator): 42 42 42 42 42 42 42 42 42 42 
+Front:       42
+Back:        42
+AT[4]:       42
+operator[4]: 42
+
+Empty:    0
+Size:     10
+Max_Size: 4611686018427387903
+Capacity: 10
+
+#################
+### vt_cpy ###
+Elem (iterator):               42 42 42 42 42 42 42 42 42 42 
+Elem (const_iterator):         42 42 42 42 42 42 42 42 42 42 
+Elem (reverse_iterator):       42 42 42 42 42 42 42 42 42 42 
+Elem (const_reverse_iterator): 42 42 42 42 42 42 42 42 42 42 
+Front:       42
+Back:        42
+AT[4]:       42
+operator[4]: 42
+
+Empty:    0
+Size:     10
+Max_Size: 4611686018427387903
+Capacity: 10
+
+#################
+### operator= ###
+Elem (iterator):               42 42 42 42 42 42 42 42 42 42 
+Elem (const_iterator):         42 42 42 42 42 42 42 42 42 42 
+Elem (reverse_iterator):       42 42 42 42 42 42 42 42 42 42 
+Elem (const_reverse_iterator): 42 42 42 42 42 42 42 42 42 42 
+Front:       42
+Back:        42
+AT[4]:       42
+operator[4]: 42
+
+Empty:    0
+Size:     10
+Max_Size: 4611686018427387903
+Capacity: 10
+
+################
+### vt_default ###
+Let's try the 'insert' function !
+
+Elem (iterator):               27 24 21 18 15 12 9 6 3 0 
+Elem (const_iterator):         27 24 21 18 15 12 9 6 3 0 
+Elem (reverse_iterator):       0 3 6 9 12 15 18 21 24 27 
+Elem (const_reverse_iterator): 0 3 6 9 12 15 18 21 24 27 
+Front:       27
+Back:        0
+AT[4]:       15
+operator[4]: 15
+
+Empty:    0
+Size:     10
+Max_Size: 4611686018427387903
+Capacity: 16
+
+Let's try the 'push_back' function !
+
+Elem (iterator):               27 24 21 18 15 12 9 6 3 0 124 
+Elem (const_iterator):         27 24 21 18 15 12 9 6 3 0 124 
+Elem (reverse_iterator):       124 0 3 6 9 12 15 18 21 24 27 
+Elem (const_reverse_iterator): 124 0 3 6 9 12 15 18 21 24 27 
+Front:       27
+Back:        124
+AT[4]:       15
+operator[4]: 15
+
+Empty:    0
+Size:     11
+Max_Size: 4611686018427387903
+Capacity: 16
+
+Let's try the 'pop_back' function !
+
+Elem (iterator):               27 24 21 18 15 12 9 6 3 0 
+Elem (const_iterator):         27 24 21 18 15 12 9 6 3 0 
+Elem (reverse_iterator):       0 3 6 9 12 15 18 21 24 27 
+Elem (const_reverse_iterator): 0 3 6 9 12 15 18 21 24 27 
+Front:       27
+Back:        0
+AT[4]:       15
+operator[4]: 15
+
+Empty:    0
+Size:     10
+Max_Size: 4611686018427387903
+Capacity: 16
+
+Let's try the 'erase' function !
+
+Elem (iterator):               27 24 18 15 12 9 6 3 0 
+Elem (const_iterator):         27 24 18 15 12 9 6 3 0 
+Elem (reverse_iterator):       0 3 6 9 12 15 18 24 27 
+Elem (const_reverse_iterator): 0 3 6 9 12 15 18 24 27 
+Front:       27
+Back:        0
+AT[4]:       12
+operator[4]: 12
+
+Empty:    0
+Size:     9
+Max_Size: 4611686018427387903
+Capacity: 16
+
+Let's try the 'assign(n, val)' function !
+
+Elem (iterator):               21 21 21 21 21 
+Elem (const_iterator):         21 21 21 21 21 
+Elem (reverse_iterator):       21 21 21 21 21 
+Elem (const_reverse_iterator): 21 21 21 21 21 
+Front:       21
+Back:        21
+AT[4]:       21
+operator[4]: 21
+
+Empty:    0
+Size:     5
+Max_Size: 4611686018427387903
+Capacity: 16
+
+Let's try the 'clear' function !
+
+Elem (iterator):               
+Elem (const_iterator):         
+Elem (reverse_iterator):       
+Elem (const_reverse_iterator): 
+Front:       0
+Back:        0
+
+Empty:    1
+Size:     0
+Max_Size: 4611686018427387903
+Capacity: 16
+
+Let's try the 'assign(first, last)' function !
+
+Elem (iterator):               21 21 21 21 21 9 6 3 0 0 124 0 0 0 0 
+Elem (const_iterator):         21 21 21 21 21 9 6 3 0 0 124 0 0 0 0 
+Elem (reverse_iterator):       0 0 0 0 124 0 0 3 6 9 21 21 21 21 21 
+Elem (const_reverse_iterator): 0 0 0 0 124 0 0 3 6 9 21 21 21 21 21 
+Front:       21
+Back:        0
+AT[4]:       21
+operator[4]: 21
+
+Empty:    0
+Size:     15
+Max_Size: 4611686018427387903
+Capacity: 16
+
+Let's try the 'insert(position, first, last)' function ! (We need to clear before)
+
+Elem (iterator):               21 21 21 1 2 3 4 21 21 9 6 3 0 0 124 0 0 0 0 
+Elem (const_iterator):         21 21 21 1 2 3 4 21 21 9 6 3 0 0 124 0 0 0 0 
+Elem (reverse_iterator):       0 0 0 0 124 0 0 3 6 9 21 21 4 3 2 1 21 21 21 
+Elem (const_reverse_iterator): 0 0 0 0 124 0 0 3 6 9 21 21 4 3 2 1 21 21 21 
+Front:       21
+Back:        0
+AT[4]:       2
+operator[4]: 2
+
+Empty:    0
+Size:     19
+Max_Size: 4611686018427387903
+Capacity: 32
+
+################
+### SWAP ###
+Let's swap between vt_default and vt_fill
+New vt_default
+Elem (iterator):               42 42 42 42 42 42 42 42 42 42 
+Elem (const_iterator):         42 42 42 42 42 42 42 42 42 42 
+Elem (reverse_iterator):       42 42 42 42 42 42 42 42 42 42 
+Elem (const_reverse_iterator): 42 42 42 42 42 42 42 42 42 42 
+Front:       42
+Back:        42
+AT[4]:       42
+operator[4]: 42
+
+Empty:    0
+Size:     10
+Max_Size: 4611686018427387903
+Capacity: 10
+
+New vt_fill
+Elem (iterator):               21 21 21 1 2 3 4 21 21 9 6 3 0 0 124 0 0 0 0 
+Elem (const_iterator):         21 21 21 1 2 3 4 21 21 9 6 3 0 0 124 0 0 0 0 
+Elem (reverse_iterator):       0 0 0 0 124 0 0 3 6 9 21 21 4 3 2 1 21 21 21 
+Elem (const_reverse_iterator): 0 0 0 0 124 0 0 3 6 9 21 21 4 3 2 1 21 21 21 
+Front:       21
+Back:        0
+AT[4]:       2
+operator[4]: 2
+
+Empty:    0
+Size:     19
+Max_Size: 4611686018427387903
+Capacity: 32
+
+### Relational Operators ###
+### EQUAL ### 
+vt_cpy == vt_equal_op ? 1
+### DIFFERENT ###
+vt_cpy != vt_equal_op ? 0
+vt_cpy != vt_fill ? 1
+### GREATER ###
+vt_cpy > vt_equal_op ? 0
+vt_cpy > vt_fill ? 1
+### GREATER OR EQUAL ###
+vt_cpy >= vt_equal_op ? 1
+vt_cpy >= vt_fill ? 1
+### LOWER ###
+vt_cpy < vt_equal_op ? 0
+vt_cpy < vt_fill ? 0
+### LOWER OR EQUAL ###
+vt_cpy <= vt_equal_op ? 1
+vt_cpy <= vt_fill ? 0
+
+
+#######
+STACK
+#######
+Constructors
+
+### st ###
+Let's try the 'push' function ! (10 elem. insertion)
+Let's try the 'top' function ! (should be 18)
+TOP : 18
+Let's try the 'pop' function !
+Last element should now be 16. Let's check it !
+TOP : 16
+### Relational Operators ###
+Filling another stack container ....
+st2 top element is: 81
+### EQUAL ###
+st == st2 ? 0
+### DIFFERENT ###
+st != st2 ? 1
+### GREATER ###
+st > st2 ? 0
+### GREATER OR EQUAL ###
+st >= st2 ? 0
+### LOWER ###
+st < st2 ? 1
+### LOWER OR EQUAL ###
+st <= st2 ? 1
+
+
+#######
+map
+#######
+Constructors
+
+Default:
+Let's try the insert(value_type) function
+Elem (iterator):               
+fisrt: 1| Second: 10
+fisrt: 2| Second: 15
+fisrt: 3| Second: 20
+fisrt: 4| Second: 25
+fisrt: 5| Second: 30
+Elem (const_iterator):         
+fisrt: 1| Second: 10
+fisrt: 2| Second: 15
+fisrt: 3| Second: 20
+fisrt: 4| Second: 25
+fisrt: 5| Second: 30
+Elem (reverse_iterator):       
+fisrt: 5| Second: 30
+fisrt: 4| Second: 25
+fisrt: 3| Second: 20
+fisrt: 2| Second: 15
+fisrt: 1| Second: 10
+Elem (const_reverse_iterator): 
+fisrt: 5| Second: 30
+fisrt: 4| Second: 25
+fisrt: 3| Second: 20
+fisrt: 2| Second: 15
+fisrt: 1| Second: 10
+operator[4]: 25
+
+Empty:    0
+Size:     5
+Max_Size: 461168601842738790
+Let's try the insert(position, val) function
+Elem (iterator):               
+fisrt: 1| Second: 10
+fisrt: 2| Second: 15
+fisrt: 3| Second: 20
+fisrt: 4| Second: 25
+fisrt: 5| Second: 30
+fisrt: 6| Second: 35
+Elem (const_iterator):         
+fisrt: 1| Second: 10
+fisrt: 2| Second: 15
+fisrt: 3| Second: 20
+fisrt: 4| Second: 25
+fisrt: 5| Second: 30
+fisrt: 6| Second: 35
+Elem (reverse_iterator):       
+fisrt: 6| Second: 35
+fisrt: 5| Second: 30
+fisrt: 4| Second: 25
+fisrt: 3| Second: 20
+fisrt: 2| Second: 15
+fisrt: 1| Second: 10
+Elem (const_reverse_iterator): 
+fisrt: 6| Second: 35
+fisrt: 5| Second: 30
+fisrt: 4| Second: 25
+fisrt: 3| Second: 20
+fisrt: 2| Second: 15
+fisrt: 1| Second: 10
+operator[4]: 25
+
+Empty:    0
+Size:     6
+Max_Size: 461168601842738790
+Let's try the insert(first, last) function. With an empty map instance of course !
+Elem (iterator):               
+fisrt: 1| Second: 10
+fisrt: 2| Second: 15
+fisrt: 3| Second: 20
+fisrt: 4| Second: 25
+fisrt: 5| Second: 30
+fisrt: 6| Second: 35
+Elem (const_iterator):         
+fisrt: 1| Second: 10
+fisrt: 2| Second: 15
+fisrt: 3| Second: 20
+fisrt: 4| Second: 25
+fisrt: 5| Second: 30
+fisrt: 6| Second: 35
+Elem (reverse_iterator):       
+fisrt: 6| Second: 35
+fisrt: 5| Second: 30
+fisrt: 4| Second: 25
+fisrt: 3| Second: 20
+fisrt: 2| Second: 15
+fisrt: 1| Second: 10
+Elem (const_reverse_iterator): 
+fisrt: 6| Second: 35
+fisrt: 5| Second: 30
+fisrt: 4| Second: 25
+fisrt: 3| Second: 20
+fisrt: 2| Second: 15
+fisrt: 1| Second: 10
+operator[4]: 25
+
+Empty:    0
+Size:     6
+Max_Size: 461168601842738790
+Range:
+Elem (iterator):               
+fisrt: 1| Second: 10
+fisrt: 2| Second: 15
+fisrt: 3| Second: 20
+fisrt: 4| Second: 25
+fisrt: 5| Second: 30
+Elem (const_iterator):         
+fisrt: 1| Second: 10
+fisrt: 2| Second: 15
+fisrt: 3| Second: 20
+fisrt: 4| Second: 25
+fisrt: 5| Second: 30
+Elem (reverse_iterator):       
+fisrt: 5| Second: 30
+fisrt: 4| Second: 25
+fisrt: 3| Second: 20
+fisrt: 2| Second: 15
+fisrt: 1| Second: 10
+Elem (const_reverse_iterator): 
+fisrt: 5| Second: 30
+fisrt: 4| Second: 25
+fisrt: 3| Second: 20
+fisrt: 2| Second: 15
+fisrt: 1| Second: 10
+operator[4]: 25
+
+Empty:    0
+Size:     5
+Max_Size: 461168601842738790
+Copy:
+Elem (iterator):               
+fisrt: 1| Second: 10
+fisrt: 2| Second: 15
+fisrt: 3| Second: 20
+fisrt: 4| Second: 25
+fisrt: 5| Second: 30
+fisrt: 6| Second: 35
+Elem (const_iterator):         
+fisrt: 1| Second: 10
+fisrt: 2| Second: 15
+fisrt: 3| Second: 20
+fisrt: 4| Second: 25
+fisrt: 5| Second: 30
+fisrt: 6| Second: 35
+Elem (reverse_iterator):       
+fisrt: 6| Second: 35
+fisrt: 5| Second: 30
+fisrt: 4| Second: 25
+fisrt: 3| Second: 20
+fisrt: 2| Second: 15
+fisrt: 1| Second: 10
+Elem (const_reverse_iterator): 
+fisrt: 6| Second: 35
+fisrt: 5| Second: 30
+fisrt: 4| Second: 25
+fisrt: 3| Second: 20
+fisrt: 2| Second: 15
+fisrt: 1| Second: 10
+operator[4]: 25
+
+Empty:    0
+Size:     6
+Max_Size: 461168601842738790
+Operator= :
+Elem (iterator):               
+fisrt: 1| Second: 10
+fisrt: 2| Second: 15
+fisrt: 3| Second: 20
+fisrt: 4| Second: 25
+fisrt: 5| Second: 30
+fisrt: 6| Second: 35
+Elem (const_iterator):         
+fisrt: 1| Second: 10
+fisrt: 2| Second: 15
+fisrt: 3| Second: 20
+fisrt: 4| Second: 25
+fisrt: 5| Second: 30
+fisrt: 6| Second: 35
+Elem (reverse_iterator):       
+fisrt: 6| Second: 35
+fisrt: 5| Second: 30
+fisrt: 4| Second: 25
+fisrt: 3| Second: 20
+fisrt: 2| Second: 15
+fisrt: 1| Second: 10
+Elem (const_reverse_iterator): 
+fisrt: 6| Second: 35
+fisrt: 5| Second: 30
+fisrt: 4| Second: 25
+fisrt: 3| Second: 20
+fisrt: 2| Second: 15
+fisrt: 1| Second: 10
+operator[4]: 25
+
+Empty:    0
+Size:     6
+Max_Size: 461168601842738790
+Erase(position) :
+Elem (iterator):               
+fisrt: 1| Second: 10
+fisrt: 2| Second: 15
+fisrt: 4| Second: 25
+fisrt: 5| Second: 30
+fisrt: 6| Second: 35
+Elem (const_iterator):         
+fisrt: 1| Second: 10
+fisrt: 2| Second: 15
+fisrt: 4| Second: 25
+fisrt: 5| Second: 30
+fisrt: 6| Second: 35
+Elem (reverse_iterator):       
+fisrt: 6| Second: 35
+fisrt: 5| Second: 30
+fisrt: 4| Second: 25
+fisrt: 2| Second: 15
+fisrt: 1| Second: 10
+Elem (const_reverse_iterator): 
+fisrt: 6| Second: 35
+fisrt: 5| Second: 30
+fisrt: 4| Second: 25
+fisrt: 2| Second: 15
+fisrt: 1| Second: 10
+operator[4]: 25
+
+Empty:    0
+Size:     5
+Max_Size: 461168601842738790
+Erase(key_type) :
+Elem (iterator):               
+fisrt: 1| Second: 10
+fisrt: 2| Second: 15
+fisrt: 4| Second: 25
+fisrt: 6| Second: 35
+Elem (const_iterator):         
+fisrt: 1| Second: 10
+fisrt: 2| Second: 15
+fisrt: 4| Second: 25
+fisrt: 6| Second: 35
+Elem (reverse_iterator):       
+fisrt: 6| Second: 35
+fisrt: 4| Second: 25
+fisrt: 2| Second: 15
+fisrt: 1| Second: 10
+Elem (const_reverse_iterator): 
+fisrt: 6| Second: 35
+fisrt: 4| Second: 25
+fisrt: 2| Second: 15
+fisrt: 1| Second: 10
+operator[4]: 25
+
+Empty:    0
+Size:     4
+Max_Size: 461168601842738790
+Erase(first, last) :
+Elem (iterator):               
+fisrt: 6| Second: 35
+Elem (const_iterator):         
+fisrt: 6| Second: 35
+Elem (reverse_iterator):       
+fisrt: 6| Second: 35
+Elem (const_reverse_iterator): 
+fisrt: 6| Second: 35
+operator[4]: 0
+
+Empty:    0
+Size:     1
+Max_Size: 461168601842738790
+Swap:
+mp:
+Elem (iterator):               
+fisrt: 1| Second: 10
+fisrt: 2| Second: 15
+fisrt: 3| Second: 20
+fisrt: 4| Second: 25
+fisrt: 5| Second: 30
+Elem (const_iterator):         
+fisrt: 1| Second: 10
+fisrt: 2| Second: 15
+fisrt: 3| Second: 20
+fisrt: 4| Second: 25
+fisrt: 5| Second: 30
+Elem (reverse_iterator):       
+fisrt: 5| Second: 30
+fisrt: 4| Second: 25
+fisrt: 3| Second: 20
+fisrt: 2| Second: 15
+fisrt: 1| Second: 10
+Elem (const_reverse_iterator): 
+fisrt: 5| Second: 30
+fisrt: 4| Second: 25
+fisrt: 3| Second: 20
+fisrt: 2| Second: 15
+fisrt: 1| Second: 10
+operator[4]: 25
+
+Empty:    0
+Size:     5
+Max_Size: 461168601842738790
+mp_range:
+Elem (iterator):               
+fisrt: 6| Second: 35
+Elem (const_iterator):         
+fisrt: 6| Second: 35
+Elem (reverse_iterator):       
+fisrt: 6| Second: 35
+Elem (const_reverse_iterator): 
+fisrt: 6| Second: 35
+operator[4]: 0
+
+Empty:    0
+Size:     1
+Max_Size: 461168601842738790
+Clear:
+mp:
+Elem (iterator):               
+Elem (const_iterator):         
+Elem (reverse_iterator):       
+Elem (const_reverse_iterator): 
+
+Empty:    1
+Size:     0
+Max_Size: 461168601842738790

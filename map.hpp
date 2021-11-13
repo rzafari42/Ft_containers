@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 10:39:48 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/10 18:12:00 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/13 10:27:05 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 namespace ft
 {
     template< class Key, class T, class Compare, class Alloc >
-    map< Key, T, Compare, Alloc >::map(const key_compare& comp, const allocator_type& alloc) : _alloc(alloc), _size(0), _max_size(0), _comp(comp), _root(NULL), _ghost(NULL), _GreatestData(NULL)
+    map< Key, T, Compare, Alloc >::map(const key_compare& comp, const allocator_type& alloc) : _alloc(alloc), _size(0), _max_size(0), _comp(comp), _root(NULL), _sentinel(NULL), _GreatestData(NULL)
     {
     }
 
     template< class Key, class T, class Compare, class Alloc >
     template <class InputIterator>
-    map< Key, T, Compare, Alloc >::map(InputIterator first, InputIterator last, const key_compare& comp, const allocator_type& alloc) :  _alloc(alloc), _size(0), _max_size(0), _comp(comp), _root(NULL), _ghost(NULL), _GreatestData(NULL)
+    map< Key, T, Compare, Alloc >::map(InputIterator first, InputIterator last, const key_compare& comp, const allocator_type& alloc) :  _alloc(alloc), _size(0), _max_size(0), _comp(comp), _root(NULL), _sentinel(NULL), _GreatestData(NULL)
     {
         insert(first, last);
         return;
@@ -42,10 +42,8 @@ namespace ft
         clear();
         if (_root)
             _node_alloc.deallocate(_root, _size);
-        if (_ghost)
-            _node_alloc.deallocate(_ghost, 1);
-
-        return ;
+        if (_sentinel)
+            _node_alloc.deallocate(_sentinel, 1);
     }
 
     //Operator=
@@ -97,13 +95,13 @@ namespace ft
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc>::reverse_iterator map< Key, T, Compare, Alloc>::rbegin()
     {
-        return reverse_iterator(_ghost);
+        return reverse_iterator(_sentinel);
     }
 
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc>::const_reverse_iterator map< Key, T, Compare, Alloc>::rbegin() const
     {
-        return const_reverse_iterator(_ghost);
+        return const_reverse_iterator(_sentinel);
     }
 
     template< class Key, class T, class Compare, class Alloc >
@@ -228,7 +226,7 @@ namespace ft
         tmp._comp = _comp;
         tmp._node_alloc = _node_alloc;
         tmp._root = _root;
-        tmp._ghost = _ghost;
+        tmp._sentinel = _sentinel;
 
         _alloc = x._alloc;
         _size = x._size;
@@ -236,7 +234,7 @@ namespace ft
         _comp = x._comp;
         _node_alloc = x._node_alloc;
         _root = x._root;
-        _ghost = x._ghost;
+        _sentinel = x._sentinel;
 
         x._alloc = tmp._alloc;
         x._size = tmp._size;
@@ -244,7 +242,7 @@ namespace ft
         x._comp = tmp._comp;
         x._node_alloc = tmp._node_alloc;
         x._root = tmp._root;
-        x._ghost = tmp._ghost;
+        x._sentinel = tmp._sentinel;
     }
 
     template< class Key, class T, class Compare, class Alloc >
@@ -253,7 +251,7 @@ namespace ft
         for (size_type i = 0; i < _size; i++)
             _alloc.destroy(&_root->data);
         _size = 0;
-        _ghost =  NULL;
+        _sentinel =  NULL;
         _GreatestData = NULL;
         _root = NULL;
     }
@@ -422,38 +420,20 @@ namespace ft
         return node;
     }
 
-
-/*    template<class Key, class T, class Compare, class Alloc>
-    void    map<Key, T, Compare, Alloc>::_setGhost(bool add)
-    {
-        if (!_ghost)
-            _ghost = _node_alloc.allocate(1);
-        if (add)
-        {
-            _GreatestData = max_node(_root);
-            _GreatestData->right = _ghost;
-        }
-        if (size() == 0)
-            _GreatestData = NULL;
-        _ghost->right = NULL;
-        _ghost->left = NULL;
-        _ghost->parent = _GreatestData;
-    }
-    
     template< class Key, class T, class Compare, class Alloc >
     typename map< Key, T, Compare, Alloc >::node_ptr map< Key, T, Compare, Alloc >::insertNode(node_ptr node, value_type data)
     {
-        if (!_root || !node || node == _ghost )
+        if (!node || node == _sentinel)
         {
             node = newNode(data);
-            if (!_root)
-                _root = node;
-            if (node == _ghost)
+            if (node == _sentinel)
             {
                 _GreatestData = node;
-                _ghost->parent = _GreatestData;
-                _ghost->right = NULL;
-                _ghost->left = NULL;
+                _GreatestData->right = _sentinel;
+                _GreatestData->left = NULL;
+                _sentinel->parent = _GreatestData;
+                _sentinel->right = NULL;
+                _sentinel->left = NULL;
             }
             _size++;
         }
@@ -462,69 +442,23 @@ namespace ft
             node->left = insertNode(node->left, data);
             node->left->parent = node;
         }
-        else
+        else if (key_comp()(node->data.first, data.first))
         {
             node->right = insertNode(node->right, data);
             node->right->parent = node;
         }
-        if (!_ghost || key_comp()(_GreatestData->data.first, data.first))
-        {	
-            if (!_ghost)
-                _ghost = _node_alloc.allocate(1);
+        if (!_root)
+            _root = node;
+        if (!_sentinel || key_comp()(_GreatestData->data.first, data.first))
+        {
+            if (!_sentinel)
+                _sentinel = _node_alloc.allocate(1);
             _GreatestData = max_node(_root);
-            _GreatestData->right = _ghost;
-            _ghost->right = NULL;
-            _ghost->left = NULL;
-            _ghost->parent = _GreatestData;
-        }
-        return node;
-    } */
-
-    template<class Key, class T, class Compare, class Alloc>
-    void    map<Key, T, Compare, Alloc>::_setGhost(bool add)
-    {
-        if (!_ghost)
-            _ghost = _node_alloc.allocate(1);
-        if (add)
-        {
-            _GreatestData = max_node(_root);
-            _GreatestData->right = _ghost;
-        }
-        if (size() == 0)
-            _GreatestData = NULL;
-        _ghost->right = NULL;
-        _ghost->left = NULL;
-        _ghost->parent = _GreatestData;
-    }
-
-    template<class Key, class T, class Compare, class Alloc>
-    typename map<Key, T, Compare, Alloc>::node_ptr    map<Key, T, Compare, Alloc>::insertNode(node_ptr node, value_type val)
-    {
-        if (!_root || !node || node == _ghost)
-        {
-            node = newNode(val);
-            if (!_root)
-                _root = node;
-            else if (node == _ghost)
-                _GreatestData = node;
-            _size++;
-        }
-        else if (key_comp()(val.first, node->data.first))
-        {
-            node->left = insertNode(node->left, val);
-            node->left->parent = node;
-        }
-        else
-        {
-            node->right = insertNode(node->right, val);
-            node->right->parent = node;
-        }
-        if (!_ghost || !key_comp()(val.first, _GreatestData->data.first))
-        {	
-            if (_ghost)
-                !key_comp()(node->data.first, _GreatestData->data.first) ? _setGhost(true) : _setGhost(false);
-            else
-                _setGhost(true);
+            _GreatestData->right = _sentinel;
+            _GreatestData->left = NULL;
+            _sentinel->right = NULL;
+            _sentinel->left = NULL;
+            _sentinel->parent = _GreatestData;
         }
         return node;
     }
@@ -552,7 +486,7 @@ namespace ft
                 _alloc.destroy(&node->data);
                 return tmp;
             }
-            else if (node->right == NULL || node->right == _ghost)
+            else if (node->right == NULL || node->right == _sentinel)
             {
                 node_ptr tmp = node->left;
                 tmp->parent = node->parent;
@@ -560,9 +494,9 @@ namespace ft
                 return tmp;
             }
             node_ptr tmp = min_node(node->right);
-                _alloc.destroy(&node->data);
-                _alloc.construct(&node->data, tmp->data);
-                node->right = delete_node(node->right, tmp->data);
+            _alloc.destroy(&node->data);
+            _alloc.construct(&node->data, tmp->data);
+            node->right = delete_node(node->right, tmp->data);
         }
         return node;
     }
@@ -573,7 +507,7 @@ namespace ft
         if (node != NULL)
         {
             PrintInOrder(node->left);
-            if (node == _ghost)
+            if (node == _sentinel)
                 std::cout << "Ghost: ";
             std::cout << node->data;
             PrintInOrder(node->right);

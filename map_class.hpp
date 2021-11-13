@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/11 18:59:23 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/13 10:21:59 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,7 +223,7 @@ namespace ft
             key_compare                                 _comp;
             std::allocator<node_type>                   _node_alloc;
             node_ptr                                    _root;
-            node_ptr                                    _ghost;
+            node_ptr                                    _sentinel;
             node_ptr                                    _GreatestData;
         
          public:
@@ -249,7 +249,7 @@ namespace ft
     template<class Key, class T, class Compare, class Alloc>
     bool operator<(const map<Key, T, Compare, Alloc>& lhs, const map<Key, T, Compare, Alloc>& rhs)
     {
-        return ft::lexicographical_compare(lhs.begin(), --lhs.end(), rhs.begin(), --rhs.end());
+        return ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
     }
 
     template<class Key, class T, class Compare, class Alloc>
