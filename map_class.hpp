@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:19:19 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/13 10:21:59 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/13 12:59:25 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,12 +202,13 @@ namespace ft
                 const_iterator lower_bound (const key_type& k) const;
                 iterator upper_bound (const key_type& k);
                 const_iterator upper_bound (const key_type& k ) const;
-                pair<iterator,iterator>             equal_range (const key_type& k);
                 pair<const_iterator,const_iterator> equal_range (const key_type& k) const;
+                pair<iterator,iterator>             equal_range (const key_type& k);
 
                 //Allocator
                 allocator_type get_allocator() const;
 
+        private:
                 //Binary Search Tree specific functions
                 node_ptr newNode(value_type &data);
                 void createGhost(bool add);
@@ -271,9 +272,9 @@ namespace ft
     }
 
     template<class Key, class T, class Compare, class Alloc>
-    void	swap(map<Key, T, Compare, Alloc>& lhs, map<Key, T, Compare, Alloc>& rhs)
+    void	swap(map<Key, T, Compare, Alloc>& x, map<Key, T, Compare, Alloc>& y)
     {
-        lhs.swap(rhs);
+        x.swap(y);
     }
 }
 #endif

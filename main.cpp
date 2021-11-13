@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 18:49:40 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/13 11:30:53 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/13 13:03:20 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "vector.hpp"
 #include "stack.hpp"
 #include "map.hpp" 
+#include <time.h>
 
 #ifndef NAMESPACE
     #define NAMESPACE ft
@@ -87,6 +88,7 @@ void print_size_vector(NAMESPACE::vector<T> vt)
 
 void vector(void)
 {
+    int start = clock();
     std::cout << "#######" << std::endl;
     std::cout << "VECTOR" << std::endl;
     std::cout << "#######" << std::endl;
@@ -181,7 +183,7 @@ void vector(void)
     std::cout << "New vt_fill" << std::endl;
     print_elem_vector(vt_fill);
     print_size_vector(vt_fill);
-
+    
     std::cout << "### Relational Operators ###" << std::endl;
     std::cout << "### EQUAL ### " << std::endl;
     std::cout << "vt_cpy == vt_equal_op ? " << (vt_cpy == vt_equal_op) << std::endl;
@@ -200,6 +202,9 @@ void vector(void)
     std::cout << "### LOWER OR EQUAL ###" << std::endl;
     std::cout << "vt_cpy <= vt_equal_op ? " << (vt_cpy <= vt_equal_op) << std::endl;
     std::cout << "vt_cpy <= vt_fill ? " << (vt_cpy <= vt_fill) << std::endl;
+    
+    int end = clock();
+    std::cout << "Execution time (vector): " << ((float)end - start)/CLOCKS_PER_SEC << " seconds" << std::endl;
 }   
 
 template<class T>
@@ -212,6 +217,7 @@ void print_size_stack(NAMESPACE::stack<T> st)
 
 void stack(void)
 {
+    int start = clock();
     std::cout << "#######" << std::endl;
     std::cout << "STACK" << std::endl;
     std::cout << "#######" << std::endl;
@@ -225,7 +231,7 @@ void stack(void)
     std::cout << "Let's try the 'push' function ! (10 elem. insertion)" << std::endl;
     for (int i = 0; i < 10; i++)
         st.push(i * 2);
-    //print_size_stack(st);
+    print_size_stack(st);
     std::cout << "Let's try the 'top' function ! (should be 18)" << std::endl;
     std::cout << "TOP : " << st.top() << std::endl;
     std::cout << "Let's try the 'pop' function !" << std::endl;
@@ -250,6 +256,9 @@ void stack(void)
     std::cout << "st < st2 ? " << (st < st2) << std::endl;
     std::cout << "### LOWER OR EQUAL ###" << std::endl;
     std::cout << "st <= st2 ? " << (st <= st2) << std::endl;
+    
+    int end = clock();
+    std::cout << "Execution time (stack): " << ((float)end - start)/CLOCKS_PER_SEC << " seconds" << std::endl;
 }
 
 template<class T1, class T2>
@@ -306,6 +315,7 @@ void print_size_map(NAMESPACE::map<T1, T2> mp)
 
 void map(void)
 {
+    int start = clock();
     std::cout << "#######" << std::endl;
     std::cout << "map" << std::endl;
     std::cout << "#######" << std::endl;
@@ -318,7 +328,8 @@ void map(void)
 
     std::cout << "Let's try the insert(value_type) function" << std::endl;
     NAMESPACE::pair<int, int> foo;
-    mp.insert(NAMESPACE::map<int, int>::value_type(1,10));
+    foo = NAMESPACE::make_pair(1, 10);
+    mp.insert(foo);
     mp.insert(NAMESPACE::map<int, int>::value_type(2, 15));
     mp.insert(NAMESPACE::map<int, int>::value_type(3, 20));
     mp.insert(NAMESPACE::map<int, int>::value_type(4, 25));
@@ -381,6 +392,9 @@ void map(void)
     std::cout << "mp:" << std::endl;
     print_elem_map(mp);
     print_size_map(mp);
+
+    int end = clock();
+    std::cout << "Execution time (map): " << ((float)end - start)/CLOCKS_PER_SEC << " seconds" << std::endl;
 }   
 
 int main(void)

@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 19:19:53 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/11 12:19:58 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/13 12:14:11 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -384,9 +384,9 @@ namespace ft
         }
         else
         {
-            if (n <= _capacity)
-                ;
-            else if (n <= _capacity * 2)
+            /*if (n <= _capacity)
+                ;*/
+            if (n <= _capacity * 2)
                 reserve(_capacity * 2);
             else
                 reserve(n);

@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 13:13:12 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/11 17:00:13 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/13 11:55:43 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,10 +129,10 @@ namespace ft
                 //Capacity
                 size_type   size() const;
                 size_type   max_size() const;
+                void        resize(size_type n, value_type val = value_type());
                 size_type   capacity() const;
                 bool        empty() const;
-               /*(1)*/ void        resize(size_type n, value_type val = value_type());
-               /*(2)*/ void        reserve(size_type n);
+                void        reserve(size_type n);
 
                 //Element Access
                 reference       operator[](size_type n);
