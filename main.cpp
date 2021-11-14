@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 18:49:40 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/13 13:06:43 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/14 19:11:33 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -315,9 +315,9 @@ void print_size_map(NAMESPACE::map<T1, T2> mp)
 
 void map(void)
 {
-    //int start = clock();
+    int start = clock();
     std::cout << "#######" << std::endl;
-    std::cout << "map" << std::endl;
+    std::cout << "MAP" << std::endl;
     std::cout << "#######" << std::endl;
 
     std::cout << "Constructors\n\n";
@@ -330,10 +330,10 @@ void map(void)
     NAMESPACE::pair<int, int> foo;
     foo = NAMESPACE::make_pair(1, 10);
     mp.insert(foo);
-    mp.insert(NAMESPACE::map<int, int>::value_type(2, 15));
-    mp.insert(NAMESPACE::map<int, int>::value_type(3, 20));
-    mp.insert(NAMESPACE::map<int, int>::value_type(4, 25));
     mp.insert(NAMESPACE::map<int, int>::value_type(5, 30));
+    mp.insert(NAMESPACE::map<int, int>::value_type(2, 15));
+    mp.insert(NAMESPACE::map<int, int>::value_type(4, 25));
+    mp.insert(NAMESPACE::map<int, int>::value_type(3, 20));
     print_elem_map(mp);
     print_size_map(mp);
     
@@ -393,8 +393,8 @@ void map(void)
     print_elem_map(mp);
     print_size_map(mp);
 
-    /*int end = clock();
-    std::cout << "Execution time (map): " << ((float)end - start)/CLOCKS_PER_SEC << " seconds" << std::endl; */
+    int end = clock();
+    std::cout << "Execution time (map): " << ((float)end - start)/CLOCKS_PER_SEC << " seconds" << std::endl;
 }   
 
 int main(void)

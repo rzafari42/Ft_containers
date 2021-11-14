@@ -6,7 +6,7 @@
 /*   By: rzafari <rzafari@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 09:39:49 by rzafari           #+#    #+#             */
-/*   Updated: 2021/11/08 13:16:16 by rzafari          ###   ########.fr       */
+/*   Updated: 2021/11/14 19:33:17 by rzafari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ namespace ft
     template <class T, class Container>
         bool operator!=(const stack<T,Container>& lhs, const stack<T,Container>& rhs);
     template <class T, class Container>
-        bool operator<= (const stack<T,Container>& lhs, const stack<T,Container>& rhs);
+        bool operator<=(const stack<T,Container>& lhs, const stack<T,Container>& rhs);
     template <class T, class Container>
-        bool operator>  (const stack<T,Container>& lhs, const stack<T,Container>& rhs);
+        bool operator>(const stack<T,Container>& lhs, const stack<T,Container>& rhs);
     template <class T, class Container>
-        bool operator>= (const stack<T,Container>& lhs, const stack<T,Container>& rhs);
+        bool operator>=(const stack<T,Container>& lhs, const stack<T,Container>& rhs);
 }
 
 #endif
