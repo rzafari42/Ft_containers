@@ -21,6 +21,6 @@ Ressources: <br/>
 Containers to implement:<br/>
 <ul>
   <li><a href="https://www.cplusplus.com/reference/vector/vector/?kw=vector">Vector</a></li>
-  <li><a href="https://www.cplusplus.com/reference/map/map/?kw=map">Map</a>(see how binary tree works)</li>
+  <li><a href="https://www.cplusplus.com/reference/map/map/?kw=map">Map</a></li>
   <li><a href="https://www.cplusplus.com/reference/stack/stack/?kw=stack">Stack</a></li>
 </ul>
