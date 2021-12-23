@@ -19,4 +19,6 @@ Language : C++98
   <li><a href="https://www.cplusplus.com/reference/stack/stack/?kw=stack">Stack</a></li>
 </ul>
 
+## Comment lancer le projet ?
+Un simple 'make' suffit à lancer le projet 😉🧑‍💻
 Sujet (FR): [Ft_containers](https://cdn.intra.42.fr/pdf/pdf/34621/fr.subject.pdf)
