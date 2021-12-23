@@ -1,5 +1,4 @@
 # [FT_CONTAINERS](https://cdn.intra.42.fr/pdf/pdf/34621/fr.subject.pdf) 
-Projet développé dans le cadre d'un projet scolaire 👉 [Ecole 42](https://42.fr/)  
 
 Ce projet a pour but d'implémenter différents Containers de la Bibliothèque standard du C++  
 Language : C++98
@@ -27,3 +26,6 @@ Un simple 'make' suffit à lancer le projet 😉🧑‍💻
 
 * Rigueur
 * Programmation Orientée Objet
+
+
+Projet développé dans le cadre d'un projet scolaire 👉 [Ecole 42](https://42.fr/)  
