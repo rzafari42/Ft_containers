@@ -1,4 +1,4 @@
-# FT_CONTAINERS
+# [FT_CONTAINERS](https://cdn.intra.42.fr/pdf/pdf/34621/fr.subject.pdf)
 
 Ce projet a pour but d'implémenter différents Containers de la Bibliothèque standard du C++  
 Language : C++98
@@ -20,5 +20,4 @@ Language : C++98
 </ul>
 
 ## Comment lancer le projet ?
-Un simple 'make' suffit à lancer le projet 😉🧑‍💻
-Sujet (FR): [Ft_containers](https://cdn.intra.42.fr/pdf/pdf/34621/fr.subject.pdf)
+Un simple 'make' suffit à lancer le projet 😉🧑‍💻  
