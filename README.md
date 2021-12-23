@@ -1,4 +1,4 @@
-# [FT_CONTAINERS](fr.subject.pdf) 
+# [FT_CONTAINERS](https://cdn.intra.42.fr/pdf/pdf/34621/fr.subject.pdf) 
 
 Ce projet a pour but d'implémenter différents Containers de la Bibliothèque standard du C++  
 Language : C++98
@@ -19,9 +19,6 @@ Language : C++98
   <li><a href="https://www.cplusplus.com/reference/stack/stack/?kw=stack">Stack</a></li>
 </ul>
 
-## Compatibilité OS
-Projet développé sous MacOs
-
 ## Comment lancer le projet ?
 Un simple 'make' suffit à lancer le projet 😉🧑‍💻  
 
@@ -30,5 +27,8 @@ Un simple 'make' suffit à lancer le projet 😉🧑‍💻
 * Rigueur
 * Programmation Orientée Objet
 
+## Compatibilité OS
+
+Projet développé sous MacOS
 
 Projet développé dans le cadre d'un projet scolaire 👉 [Ecole 42](https://42.fr/)  
