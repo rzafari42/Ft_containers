@@ -1,15 +1,9 @@
 # FT_CONTAINERS
-The aim of the project is to implement various containers types of the C++ standard template library. (The code is in C++98 only !)
 
-Compilation flags: Wall -Wextra -Werror -std=c++98<br/>
+Ce projet a pour but d'implémenter différents Containers de la Bibliothèque standard du C++  
+Language : C++98
 
-Allowed things to use:<br/>
-<ul>
-  <li>std::allocator</li>
-  <li>Keyword "<a href="https://docs.microsoft.com/en-us/cpp/cpp/friend-cpp?view=msvc-160">friend</a>" is allowed for non-member overloads</li>
-</ul>
-
-Ressources: <br/> 
+## Ressources: <br/> 
 <ul>
   <li><a href="https://www.cplusplus.com">cplusplus.com</a></li>
   <li><a href="https://cppreference.com">cppreference.com</a></li>
@@ -18,9 +12,11 @@ Ressources: <br/>
   <li><a href="https://stdcxx.apache.org/doc/stdlibug/16-3.html">Guide to create your own containers</a></li>
 </ul>
 
-Containers to implement:<br/>
+## Containers to implement:<br/>
 <ul>
   <li><a href="https://www.cplusplus.com/reference/vector/vector/?kw=vector">Vector</a></li>
-  <li><a href="https://www.cplusplus.com/reference/map/map/?kw=map">Map</a>(see how binary tree works)</li>
+  <li><a href="https://www.cplusplus.com/reference/map/map/?kw=map">Map</a></li>
   <li><a href="https://www.cplusplus.com/reference/stack/stack/?kw=stack">Stack</a></li>
 </ul>
+
+Sujet (FR): [Ft_containers](https://cdn.intra.42.fr/pdf/pdf/34621/fr.subject.pdf)
