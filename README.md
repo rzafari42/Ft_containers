@@ -19,6 +19,9 @@ Language : C++98
   <li><a href="https://www.cplusplus.com/reference/stack/stack/?kw=stack">Stack</a></li>
 </ul>
 
+## Compatibilité OS
+Projet développé sous MacOs
+
 ## Comment lancer le projet ?
 Un simple 'make' suffit à lancer le projet 😉🧑‍💻  
 
