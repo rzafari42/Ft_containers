@@ -21,3 +21,8 @@ Language : C++98
 
 ## Comment lancer le projet ?
 Un simple 'make' suffit à lancer le projet 😉🧑‍💻  
+
+## Compétences développées
+
+* Rigueur
+* Programmation Orientée Objet
